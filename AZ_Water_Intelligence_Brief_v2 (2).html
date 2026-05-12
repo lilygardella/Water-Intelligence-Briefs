@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Intelligence Brief — Arizona Water Districts & Utilities</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1F2B5B;--green:#86BC25;--white:#fff;--ltgray:#F4F5F7;--midgray:#CCCCCC;--dkgray:#3A3A3A;--ltgreen:#EEF5D8;--border:#D8DCE8;--gold:#E8A020;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--dkgray);background:#ECEEF5;line-height:1.6;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:3px solid var(--green);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:8px;height:52px;overflow-x:auto;}
+.nav-brand{font-weight:700;font-size:12px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;margin-right:16px;}
+.tab-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.6);font-size:12px;font-weight:500;padding:6px 14px;border-radius:4px;white-space:nowrap;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.tab-btn:hover{color:#fff;background:rgba(255,255,255,.08);}
+.tab-btn.active{color:#fff;background:rgba(134,188,37,.25);border-bottom:2px solid var(--green);}
+
+/* LAYOUT */
+.page{max-width:1100px;margin:0 auto;padding:28px 24px 80px;}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+
+/* COVER */
+.cover{background:var(--navy);border-radius:6px;padding:40px 48px 36px;margin-bottom:32px;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--green);}
+.cover-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:10px;}
+.cover h1{font-family:'Libre Baskerville',serif;font-size:32px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:8px;}
+.cover-sub{font-size:14px;color:rgba(255,255,255,.6);margin-bottom:16px;}
+.cover-meta{display:flex;gap:20px;font-size:11px;color:rgba(255,255,255,.4);}
+.cover-meta span{display:flex;align-items:center;gap:5px;}
+.dot{width:3px;height:3px;border-radius:50%;background:var(--green);}
+
+/* EXEC SUMMARY */
+.exec-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+.exec-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--navy);border-radius:4px;padding:20px;}
+.exec-card.highlight{border-top-color:var(--green);}
+.exec-card h3{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;}
+.exec-card p,.exec-card li{font-size:12.5px;line-height:1.65;color:var(--dkgray);}
+.exec-card ul{padding-left:16px;}
+.exec-card li{margin-bottom:4px;}
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-bottom:24px;border-radius:4px;overflow:hidden;}
+.kpi{background:var(--navy);padding:16px 12px;text-align:center;}
+.kpi-val{font-family:'Libre Baskerville',serif;font-size:22px;font-weight:700;color:var(--green);display:block;margin-bottom:4px;}
+.kpi-lbl{font-size:10px;color:rgba(255,255,255,.6);line-height:1.4;}
+.kpi-entity{font-size:11px;font-weight:600;color:rgba(255,255,255,.45);margin-top:4px;}
+.opp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+.opp-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--green);padding:16px 18px;border-radius:0 4px 4px 0;}
+.opp-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.opp-body{font-size:12px;color:var(--dkgray);line-height:1.6;}
+.opp-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+.opp-tag{background:var(--ltgreen);color:#3a6000;font-size:10px;font-weight:600;padding:2px 8px;border-radius:3px;}
+.priority-table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:12.5px;}
+.priority-table thead tr{background:var(--navy);}
+.priority-table thead th{color:#fff;font-weight:600;padding:10px 12px;text-align:left;font-size:11px;}
+.priority-table tbody tr:nth-child(odd){background:var(--ltgray);}
+.priority-table tbody tr:nth-child(even){background:#fff;}
+.priority-table td{padding:10px 12px;border:1px solid var(--border);vertical-align:top;line-height:1.55;}
+.priority-table td:first-child{font-weight:700;color:var(--navy);white-space:nowrap;}
+.conf-high{color:#2E7D32;font-weight:700;font-size:11px;}
+.conf-med{color:#E65100;font-weight:700;font-size:11px;}
+.conf-low{color:#C62828;font-weight:700;font-size:11px;}
+
+/* ENTITY SECTIONS */
+.section-hdr{background:var(--navy);color:#fff;font-size:14px;font-weight:700;padding:12px 20px;border-radius:4px;margin:0 0 24px;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:28px;border-radius:4px;overflow:hidden;border:1px solid var(--navy);}
+.stat{background:var(--navy);padding:18px 14px;text-align:center;}
+.stat-val{font-family:'Libre Baskerville',serif;font-size:22px;font-weight:700;color:var(--green);display:block;margin-bottom:6px;}
+.stat-lbl{font-size:10px;color:rgba(255,255,255,.6);line-height:1.4;}
+.sub-hdr{font-size:14px;font-weight:700;color:var(--navy);border-bottom:2px solid var(--midgray);padding-bottom:7px;margin:28px 0 12px;}
+p.bt{font-size:13px;line-height:1.7;color:var(--dkgray);margin-bottom:14px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px;}
+.cell{border:1px solid var(--border);padding:14px 16px;background:#fff;}
+.cell-title{font-size:12.5px;font-weight:700;color:var(--green);margin-bottom:6px;line-height:1.35;}
+.cell-body{font-size:12px;color:var(--dkgray);line-height:1.65;}
+.ch-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px;}
+.ch-cell{border:1px solid var(--border);padding:12px 14px;background:#fff;font-size:12px;line-height:1.6;}
+.ch-cell strong{color:var(--navy);}
+.partners{background:var(--ltgray);border:1px solid var(--border);border-left:3px solid var(--green);padding:12px 16px;font-size:12px;line-height:1.7;margin-bottom:8px;border-radius:0 4px 4px 0;}
+.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px;}
+.news-cell{border:1px solid var(--border);padding:14px 16px;background:#fff;}
+.news-title{font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.news-body{font-size:12px;color:var(--dkgray);line-height:1.65;}
+.rfp-table{width:100%;border-collapse:collapse;margin-bottom:8px;font-size:12px;}
+.rfp-table thead tr{background:var(--navy);}
+.rfp-table thead th{color:#fff;font-weight:600;padding:9px 12px;text-align:left;font-size:11px;}
+.rfp-table tbody tr:nth-child(odd){background:var(--ltgray);}
+.rfp-table tbody tr:nth-child(even){background:#fff;}
+.rfp-table td{padding:9px 12px;border:1px solid var(--border);vertical-align:top;line-height:1.55;}
+.rfp-table td:first-child{width:80px;text-align:center;}
+.rfp-table td:nth-child(2){width:200px;font-weight:600;color:var(--navy);}
+.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+.bp{background:rgba(31,43,91,.1);color:var(--navy);}
+.ba{background:rgba(134,188,37,.15);color:#4a7000;}
+.bpi{background:rgba(255,165,0,.12);color:#8a5200;}
+.baw{background:rgba(0,128,0,.1);color:#005200;}
+.pursuit{border:1px solid var(--border);border-left:4px solid var(--navy);background:#fff;padding:18px 20px;margin-bottom:10px;border-radius:0 4px 4px 0;}
+.pursuit-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:4px;}
+.pursuit-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.3;}
+.pursuit-body{font-size:12.5px;line-height:1.7;color:var(--dkgray);margin-bottom:10px;}
+.tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{background:var(--ltgreen);color:#3a6000;font-size:10px;font-weight:700;padding:2px 9px;border-radius:3px;}
+
+/* COMPARISON */
+.comp-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px;}
+.comp-table thead tr{background:var(--navy);}
+.comp-table thead th{color:#fff;font-weight:700;padding:10px 12px;text-align:left;font-size:11px;}
+.comp-table tbody tr:nth-child(odd){background:var(--ltgray);}
+.comp-table tbody tr:nth-child(even){background:#fff;}
+.comp-table td{padding:10px 12px;border:1px solid var(--border);vertical-align:top;line-height:1.55;}
+.comp-table td:first-child{font-weight:700;color:var(--navy);width:130px;white-space:nowrap;}
+.action-box{background:#fff;border:1px solid var(--border);border-radius:4px;padding:18px 20px;margin-bottom:10px;}
+.action-timing{display:inline-block;background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:3px;margin-bottom:8px;}
+.action-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.action-body{font-size:12.5px;line-height:1.7;color:var(--dkgray);margin-bottom:10px;}
+
+/* PRIORITY BADGE */
+.pri-1{background:#1F2B5B;color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:700;}
+.pri-2{background:#2E5B99;color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:700;}
+.pri-3{background:#86BC25;color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:700;}
+
+footer{text-align:center;padding:20px;font-size:11px;color:#999;border-top:1px solid var(--midgray);margin-top:48px;}
+@media(max-width:700px){.stats,.kpi-row{grid-template-columns:1fr 1fr;}.two-col,.ch-grid,.news-grid,.exec-grid,.opp-grid{grid-template-columns:1fr;}.nav-brand{display:none;}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">AZ Water Brief</div>
+    <button class="tab-btn active" onclick="showTab('exec')">Executive Summary</button>
+    <button class="tab-btn" onclick="showTab('srp')">SRP</button>
+    <button class="tab-btn" onclick="showTab('cap')">CAP / CAWCD</button>
+    <button class="tab-btn" onclick="showTab('mdwid')">Metro Water</button>
+    <button class="tab-btn" onclick="showTab('ycwua')">YCWUA</button>
+    <button class="tab-btn" onclick="showTab('rwcd')">RWCD</button>
+    <button class="tab-btn" onclick="showTab('comparison')">Comparison &amp; Sequencing</button>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="cover">
+    <div class="cover-label">Client Intelligence Brief</div>
+    <h1>Arizona Water Districts &amp; Utilities</h1>
+    <div class="cover-sub">Salt River Project · Central Arizona Project (CAWCD) · Metro Water (MDWID) · Yuma County Water Users' Association · Roosevelt Water Conservation District</div>
+    <div class="cover-meta">
+      <span><span class="dot"></span>May 2026</span>
+      <span><span class="dot"></span>Confidential — Internal Use Only</span>
+      <span><span class="dot"></span>Deloitte LLP</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════ EXEC SUMMARY ══════════════════ -->
+  <div id="tab-exec" class="tab-panel active">
+    <div class="section-hdr">Executive Summary — Arizona Water Market</div>
+
+    <div class="kpi-row">
+      <div class="kpi"><span class="kpi-val">$4.15B</span><div class="kpi-lbl">Total Operating Revenue</div><div class="kpi-entity">SRP (FY2024)</div></div>
+      <div class="kpi"><span class="kpi-val">$309.9M</span><div class="kpi-lbl">Total Operating Revenue</div><div class="kpi-entity">CAP/CAWCD (CY2024)</div></div>
+      <div class="kpi"><span class="kpi-val">~$28–30M</span><div class="kpi-lbl">Operating Revenue (budget)</div><div class="kpi-entity">Metro Water / MDWID</div></div>
+      <div class="kpi"><span class="kpi-val">~$13M</span><div class="kpi-lbl">Total Revenue (Form 990)</div><div class="kpi-entity">YCWUA (FY2024)</div></div>
+      <div class="kpi"><span class="kpi-val">~$5.6M</span><div class="kpi-lbl">Est. Revenue (low confidence)</div><div class="kpi-entity">RWCD</div></div>
+    </div>
+
+    <div class="exec-grid">
+      <div class="exec-card highlight">
+        <h3>Market Overview</h3>
+        <p>Arizona's water market is dominated by two large-scale entities — Salt River Project ($4.15B total revenue, primarily electric) and the Central Arizona Project/CAWCD ($309.9M, pure wholesale water) — followed by a long tail of smaller district and irrigation operators. The five entities profiled here represent the primary non-retail water infrastructure operators in the state. Deloitte has limited current engagement in AZ water: SRP has some power advisory relationship; all other entities represent greenfield opportunities.</p>
+      </div>
+      <div class="exec-card">
+        <h3>Key Market Dynamics</h3>
+        <ul>
+          <li>Colorado River post-2026 operating guideline renegotiation is the defining policy event — affects CAP, SRP customers, YCWUA, Metro Water, and RWCD simultaneously</li>
+          <li>SRP's $6.4B+ ACC-approved bond program is the largest capital program in AZ utility history</li>
+          <li>CAP/CAWCD managing $444M capital reserve build-up ahead of post-2026 infrastructure needs</li>
+          <li>Metro Water's NWRRDS project (mid-2026 completion) expanding CAP water access in Tucson suburbs</li>
+          <li>OT/SCADA cybersecurity is the single most common challenge across all 5 entities</li>
+          <li>RWCD and YCWUA are the lowest-priority targets due to small scale and limited financial transparency</li>
+        </ul>
+      </div>
+      <div class="exec-card">
+        <h3>Revenue Confidence Summary</h3>
+        <ul>
+          <li><span class="conf-high">HIGH</span> — SRP: $4.15B (PwC audited, FY2024 Combined Financial Statements)</li>
+          <li><span class="conf-high">HIGH</span> — CAP/CAWCD: $309.9M (CLA audited, CY2024 ACFR)</li>
+          <li><span class="conf-med">MEDIUM</span> — Metro Water: ~$28–30M (FY2025 budget; audited actuals at metrowater.com p.21 not fully extracted)</li>
+          <li><span class="conf-high">HIGH</span> — YCWUA: ~$13M (IRS Form 990, FY2024 via ProPublica)</li>
+          <li><span class="conf-low">LOW</span> — RWCD: ~$5.6M (third-party estimate only; no official financials publicly available)</li>
+        </ul>
+      </div>
+      <div class="exec-card">
+        <h3>Procurement Access Summary</h3>
+        <ul>
+          <li><strong>SRP</strong> — Proprietary portal (srpnet.com/suppliers); closed bids; eRFx for energy; relationship-driven</li>
+          <li><strong>CAP/CAWCD</strong> — eBids portal (ebids.cap-az.com); vendor registration required; two divisions</li>
+          <li><strong>Metro Water</strong> — Bid page (metrowater.com); cooperative purchasing; informal; no dedicated portal</li>
+          <li><strong>YCWUA</strong> — No public portal; website under redesign; informal procurement likely</li>
+          <li><strong>RWCD</strong> — No public portal; minimal website; competitive bids for capital projects only</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-hdr">Top Deloitte Opportunities — Arizona Water Market</div>
+    <div class="opp-grid">
+      <div class="opp-card">
+        <div class="opp-title">1. Capital Program PMO &amp; Owner's Advisor — SRP ($6.4B+)</div>
+        <div class="opp-body">SRP's ACC-approved $6.4B revenue bond program for 7,000 MW renewables, 1,000 MW pumped hydro, 1,500 MW battery storage, and T&D upgrades is one of the largest capital programs ever undertaken by an AZ utility. Deloitte G&I can occupy the PMO lane — distinct from Black &amp; Veatch, Burns &amp; McDonnell, AECOM competing for design/build work.</div>
+        <div class="opp-tags"><span class="opp-tag">G&I Practice</span><span class="opp-tag">Capital PMO</span><span class="opp-tag">SRP</span></div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-title">2. Post-2026 Colorado River Scenario Planning — CAP/CAWCD</div>
+        <div class="opp-body">CAWCD is Arizona's lead agency in the post-2026 CO River guideline renegotiation. Deloitte Strategy &amp; Analytics can lead financial scenario modeling, stakeholder engagement strategy, and long-range capital planning — creating an expansion path to Phoenix Water, Tucson Water, and all CAP subcontractors facing the same exposure.</div>
+        <div class="opp-tags"><span class="opp-tag">Strategy &amp; Analytics</span><span class="opp-tag">Scenario Planning</span><span class="opp-tag">CAP</span></div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-title">3. OT/ICS Cybersecurity — SRP + CAP Simultaneously</div>
+        <div class="opp-body">Both SRP (combined water-power SCADA across 2,900 sq miles) and CAP (336-mile aqueduct with aging control systems) face critical OT cybersecurity exposure. A joint thought leadership play — white paper, roundtable — targeting both entities simultaneously builds Deloitte Cyber's visibility in a single motion.</div>
+        <div class="opp-tags"><span class="opp-tag">Deloitte Cyber</span><span class="opp-tag">OT/ICS</span><span class="opp-tag">SRP + CAP</span></div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-title">4. Federal Funding Strategy &amp; Grant Advisory — CAP + Metro Water</div>
+        <div class="opp-body">CAP is managing federal USBR cost-sharing uncertainty; Metro Water relies on WIFA loans and BIL funding for NWRRDS. Deloitte Public Finance Advisory can support grant strategy, compliance tracking for existing federal awards, and alternative financing scenarios — timely given current federal budget environment.</div>
+        <div class="opp-tags"><span class="opp-tag">Public Finance Advisory</span><span class="opp-tag">CAP</span><span class="opp-tag">Metro Water</span></div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-title">5. Renewable Integration &amp; Grid Analytics — SRP</div>
+        <div class="opp-body">Adding 7,000 MW of intermittent renewables by 2035 while maintaining Phoenix metro reliability requires advanced grid analytics, dispatch optimization, and demand response program design. AMI deployment also creates a new data asset Deloitte Analytics &amp; AI can help SRP leverage.</div>
+        <div class="opp-tags"><span class="opp-tag">Analytics &amp; AI</span><span class="opp-tag">Energy Advisory</span><span class="opp-tag">SRP</span></div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-title">6. ERP/EAM Modernization — CAP + Metro Water</div>
+        <div class="opp-body">Both CAP and Metro Water operate aging enterprise systems while expanding capital programs. CAP's SCADA and operational systems across 336 miles are aging. Metro Water's new customer portal signals technology modernization appetite. Deloitte's SAP/Maximo and Digital Engineering capabilities are directly applicable.</div>
+        <div class="opp-tags"><span class="opp-tag">Digital Engineering</span><span class="opp-tag">SAP/Maximo</span><span class="opp-tag">CAP + Metro</span></div>
+      </div>
+    </div>
+
+    <div class="sub-hdr">Entity Priority Rankings for Deloitte Engagement</div>
+    <table class="priority-table">
+      <thead><tr><th>Priority</th><th>Entity</th><th>Revenue</th><th>Confidence</th><th>Top Deloitte Angle</th><th>Entry Ease</th><th>Key Flag</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pri-1">#1 PRIORITY</span></td><td><strong>SRP</strong></td><td>$4.15B total ($25.5M water-only)</td><td><span class="conf-high">HIGH</span></td><td>Capital PMO ($6.4B bonds) + OT Cybersecurity + Grid Analytics</td><td>Moderate-Low — closed procurement; relationship-driven</td><td>Primarily electric utility; water revenue is $25.5M of $4.15B total</td></tr>
+        <tr><td><span class="pri-1">#1 PRIORITY</span></td><td><strong>CAP / CAWCD</strong></td><td>$309.9M (water only)</td><td><span class="conf-high">HIGH</span></td><td>Post-2026 Scenario Planning + OT Cybersecurity + Federal Funding Advisory</td><td>Moderate — eBids accessible; advisory lane open vs. engineering firms</td><td>Only true pure wholesale water entity in AZ; highest advisory relevance</td></tr>
+        <tr><td><span class="pri-2">#2 PRIORITY</span></td><td><strong>Metro Water (MDWID)</strong></td><td>~$28–30M</td><td><span class="conf-med">MEDIUM</span></td><td>Federal Funding Advisory + ERP/EAM Modernization + CIP PMO</td><td>Moderate — bid page accessible; cooperative purchasing</td><td>NWRRDS project (mid-2026) is key near-term capital event; audited actuals need manual verification</td></tr>
+        <tr><td><span class="pri-3">#3 LOWER</span></td><td><strong>YCWUA</strong></td><td>~$13M</td><td><span class="conf-high">HIGH</span></td><td>Federal Grant Strategy (USBR Water Smart) + Water Entitlement Advisory</td><td>Low — no public portal; informal procurement</td><td>501(c)(4) non-profit; small scale; Yuma geography limits broader engagement</td></tr>
+        <tr><td><span class="pri-3">#3 LOWER</span></td><td><strong>RWCD</strong></td><td>~$5.6M (est.)</td><td><span class="conf-low">LOW</span></td><td>Urbanization transition advisory; Chandler water agreement resolution</td><td>Very Low — no portal; minimal website; ongoing litigation</td><td>Lowest priority; smallest revenue; financial data unverified; active litigation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════ SRP ══════════════════ -->
+  <div id="tab-srp" class="tab-panel">
+    <div class="section-hdr">Salt River Project (SRP) — Salt River Valley Water Users' Association</div>
+    <div class="stats">
+      <div class="stat"><span class="stat-val">$4.15B</span><div class="stat-lbl">FY2024 Total Operating Revenue (HIGH — PwC Audited)</div></div>
+      <div class="stat"><span class="stat-val">$25.5M</span><div class="stat-lbl">Water-Only Revenue FY2024 (slice of $4.15B total)</div></div>
+      <div class="stat"><span class="stat-val">~2M+</span><div class="stat-lbl">Phoenix Metro Customers (water + electric)</div></div>
+      <div class="stat"><span class="stat-val">$6.4B+$7B</span><div class="stat-lbl">ACC-Approved Revenue Bonds (Sept. 2024)</div></div>
+    </div>
+    <div class="sub-hdr">Agency Overview</div>
+    <p class="bt">Salt River Project (SRP) is the umbrella name for two entities: the Salt River Valley Water Users' Association (private water corporation, est. 1903) and the Salt River Project Agricultural Improvement and Power District (electric utility and AZ political subdivision, est. 1937). SRP is the largest utility in Arizona by total revenue ($4.15B FY2024, PwC audited). For water, SRP is a hybrid wholesaler/retailer delivering ~1M acre-feet/year of Salt and Verde River water to agricultural landholders, cities, and municipalities via 7 dams, 6 reservoirs, 131+ miles of canals, and 250+ groundwater wells across a 13,000-square-mile watershed. Water revenue ($25.5M) is a small fraction of total. Both entities governed by elected boards representing landowners through acreage-based proportional voting. ACC approved $6.4B new revenue bonds + $7B refunding bonds in September 2024 — the largest bond authorization in SRP history.</p>
+    <div class="sub-hdr">Key Projects &amp; Initiatives</div>
+    <div class="two-col">
+      <div class="cell"><div class="cell-title">Grid Expansion &amp; 7,000 MW Renewable Build-Out — ISP 2023–2035</div><div class="cell-body">Board-approved Integrated System Plan (ISP, October 2023): 7,000 MW new renewables by 2035 (6,000 MW solar, 1,000 MW wind); 1,500 MW battery storage; 1,000 MW pumped hydro; 2,000 MW natural gas peaking. Net-zero carbon by 2050. $6.4B new revenue bonds + $7B refunding bonds approved ACC Sept. 2024. Load growth: Phoenix data centers, semiconductor manufacturing, EV adoption, population growth.</div></div>
+      <div class="cell"><div class="cell-title">Water Supply Resilience &amp; Underground Storage</div><div class="cell-body">Goal: store 1M acre-feet underground by 2035. Manages 13,000-square-mile Salt/Verde watershed. Operates Granite Reef Underground Storage Project (GRUSP) with 9 Valley cities. Provides Groundwater Savings Facility (GSF) services to Phoenix Water, Mesa, Gilbert, Chandler, Scottsdale, Tempe. $6M annual Colorado Water Resiliency Fund.</div></div>
+      <div class="cell"><div class="cell-title">Advanced Metering Infrastructure &amp; Grid Modernization</div><div class="cell-body">Deploying AMI across electric service territory for demand response, TOU pricing, EV load management. Grid monitoring, SCADA modernization, and distribution automation. Ranked #1 reliability for 500K+ customer utilities in the Southwest (2023 SAIDI). Technology modernization to support 7,000 MW renewable integration is a multi-year capital program.</div></div>
+      <div class="cell"><div class="cell-title">Rate Management &amp; Financial Planning</div><div class="cell-body">FPPAM price increase 3.9% effective November 2024. Public pricing process opened December 2024 for base rate adjustments. Revolving credit: Bank of America ($250M, amended Nov. 2025), PNC ($200M), TD Bank ($175M), JP Morgan Chase. Total customer accounts: 1,183,163 as of April 30, 2025 — 2.1% YOY increase.</div></div>
+    </div>
+    <div class="sub-hdr">Key Challenge Areas</div>
+    <div class="ch-grid">
+      <div class="ch-cell"><strong>Unprecedented Load Growth</strong> — Data centers, semiconductor fabs, EV adoption, and population growth driving electricity demand at unprecedented pace. Must accelerate generation and T&D capital investment while managing affordability.</div>
+      <div class="ch-cell"><strong>Renewable Integration &amp; Grid Stability</strong> — Adding 7,000 MW of intermittent renewables + 1,500 MW storage by 2035 requires sophisticated grid management and demand response. Phoenix's extreme summer peak demand creates central operational tension.</div>
+      <div class="ch-cell"><strong>Colorado River Exposure</strong> — SRP's primary source is Salt/Verde watershed, but municipal customers rely heavily on CAP/Colorado River water. Ongoing CO River Tier 1 shortage affects SRP's downstream customers and the regional water balance.</div>
+      <div class="ch-cell"><strong>Cybersecurity &amp; Critical Infrastructure</strong> — Operates critical electric and water infrastructure across 2,900-square-mile territory with extensive SCADA/ICS. Combined water-power infrastructure is a high-value target. OT/ICS security complexity amplified by scale and interconnectedness.</div>
+      <div class="ch-cell"><strong>Capital Program Scale &amp; Financing</strong> — $6.4B in new revenue bonds for generation and T&D. Managing dozens of simultaneous projects requires sophisticated PMO infrastructure, project controls, and contractor management.</div>
+      <div class="ch-cell"><strong>Workforce &amp; Organizational Capacity</strong> — Adding 7,000 MW of new resources requires significant workforce scale-up in engineering, construction management, and operations — all in a tight Phoenix metro labor market.</div>
+    </div>
+    <div class="sub-hdr">Known Partners &amp; Third Parties</div>
+    <div class="partners">Arizona Corporation Commission (ACC) — bond approval authority &nbsp;•&nbsp; PricewaterhouseCoopers LLP (auditor) &nbsp;•&nbsp; PFM Financial Advisors LLC (municipal advisor) &nbsp;•&nbsp; Bank of America, PNC, TD Bank, JP Morgan Chase (revolving credit) &nbsp;•&nbsp; City of Phoenix Water, Mesa, Chandler, Gilbert, Scottsdale, Tempe, Glendale, Peoria (water delivery / GSF participants) &nbsp;•&nbsp; CAP/CAWCD — CAP delivery coordination &nbsp;•&nbsp; Salt River Pima-Maricopa Indian Community &nbsp;•&nbsp; Gila River Indian Community &nbsp;•&nbsp; Carollo Engineers, Black &amp; Veatch, Burns &amp; McDonnell (engineering)</div>
+    <div class="sub-hdr">Recent News &amp; Developments</div>
+    <div class="news-grid">
+      <div class="news-cell"><div class="news-title">ACC Approves $13.4B Revenue Bond Program — September 2024</div><div class="news-body">ACC approved $6.4B in new tax-exempt revenue bonds + $7B refunding bonds — largest single bond authorization in SRP history. Signals massive, multi-year capital program for Phoenix metro power and water infrastructure.</div></div>
+      <div class="news-cell"><div class="news-title">Springerville Unit 4 Coal-to-Gas Conversion Approved</div><div class="news-body">SRP Board approved converting Springerville Generating Station Unit 4 (400 MW) from coal to natural gas. Part of multi-year coal transition toward 82% CO2 reduction by 2035.</div></div>
+      <div class="news-cell"><div class="news-title">FY2025 Combined Financial Statements Released — June 2025</div><div class="news-body">FY2025 Combined Financial Statements (PwC audited, FY ended April 30, 2025). Total customer accounts: 1,183,163 — 2.1% YOY increase. FPPAM price increase 3.9% effective November 2024. Bank of America revolving credit amended November 2025.</div></div>
+      <div class="news-cell"><div class="news-title">2026 Board &amp; Council Elections — April 7, 2026</div><div class="news-body">SRP held 2026 elections April 7, 2026 — 22 seats on Water Users' Association Board/Council, 24 seats on Power District Board/Council. Acreage-based proportional voting system concentrates influence among large landowners.</div></div>
+    </div>
+    <div class="sub-hdr">Recent RFPs &amp; Procurement Activity</div>
+    <table class="rfp-table">
+      <thead><tr><th>Status</th><th>Opportunity</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge bp">PORTAL</span></td><td>SRP Supplier Portal</td><td>Vendor registration at <strong>srpnet.com/doing-business/suppliers</strong>. Majority of bids closed/not public. Public RFPs at srpnet.com/doing-business/suppliers/proposal-request. Energy procurement via proprietary eRFx platform. Not on PlanetBids. Relationship-based engagement most effective.</td></tr>
+        <tr><td><span class="badge ba">ACTIVE</span></td><td>All-Source Peaking Capacity RFP</td><td>2025 All-Source Peaking Capacity RFP via eRFx platform. Part of 2,000 MW gas peaking capacity target by 2035 per ISP. Signals sustained large-scale energy infrastructure procurement activity.</td></tr>
+        <tr><td><span class="badge bpi">PIPELINE</span></td><td>Generation &amp; T&D Capital Program</td><td>$6.4B bond authorization drives engineering, construction management, project controls, and technology procurement across multi-year generation and T&D capital program. Build relationships with SRP procurement and capital programs teams.</td></tr>
+        <tr><td><span class="badge bpi">PIPELINE</span></td><td>Grid Modernization &amp; AMI Technology</td><td>AMI deployment, grid monitoring, SCADA modernization, and distribution automation. Technology advisory and implementation support anticipated. Monitor SRP public RFP page.</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-hdr">Deloitte Pursuit Angles — SRP</div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 1</div><div class="pursuit-title">Capital Program PMO &amp; Owner's Advisor — $6.4B Bond Authorization</div><div class="pursuit-body">SRP's $6.4B capital program — 7,000 MW renewables, 1,000 MW pumped hydro, 1,500 MW battery storage, and T&D upgrades — requires sophisticated PMO infrastructure, project controls, earned value management, and contractor management support distinct from engineering firms competing for design/build work. Deloitte G&I can occupy the strategic PMO lane as a compelling differentiator vs. Black &amp; Veatch, Burns &amp; McDonnell, and AECOM.</div><div class="tags"><span class="tag">Capital PMO</span><span class="tag">Owner's Advisor</span><span class="tag">G&I Practice</span><span class="tag">Program Controls</span><span class="tag">EVM</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 2</div><div class="pursuit-title">Cybersecurity &amp; OT/ICS Risk — Combined Water-Power Infrastructure</div><div class="pursuit-body">SRP operates both critical water infrastructure and one of the largest electric utility SCADA/ICS networks in the Southwest. Combined OT security complexity — electric grid ICS, water delivery SCADA, pumping plant controls, AMI — creates an attack surface that nation-state actors and ransomware groups actively target. Deloitte Cyber's OT/ICS practice can lead a comprehensive risk assessment and resilience roadmap, particularly compelling as the capital program introduces new technologies and third-party contractors into the OT environment.</div><div class="tags"><span class="tag">Deloitte Cyber</span><span class="tag">OT/ICS Security</span><span class="tag">NIST CSF</span><span class="tag">Critical Infrastructure</span><span class="tag">Electric &amp; Water ICS</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 3</div><div class="pursuit-title">Renewable Integration Strategy &amp; Grid Analytics</div><div class="pursuit-body">Adding 7,000 MW of intermittent renewables by 2035 requires advanced grid analytics, dispatch optimization, demand response program design, and long-range resource adequacy modeling. Deloitte Analytics &amp; AI can support SRP's integrated resource planning, renewable portfolio optimization, and data-driven grid management. AMI deployment creates a massive new data asset for customer programs and operational efficiency.</div><div class="tags"><span class="tag">Analytics &amp; AI</span><span class="tag">Energy Advisory</span><span class="tag">Grid Modernization</span><span class="tag">Resource Planning</span><span class="tag">Demand Response</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 4</div><div class="pursuit-title">Workforce Strategy &amp; Organizational Design — Capital Scale-Up</div><div class="pursuit-body">SRP's $6.4B capital program requires significant workforce scale-up in engineering, construction management, and project controls in a tight Phoenix metro labor market. Deloitte Human Capital can support workforce planning, talent acquisition strategy, organizational design for the expanded capital delivery function, and succession planning — a lane engineering firms competing for construction work have no incentive to fill.</div><div class="tags"><span class="tag">Human Capital</span><span class="tag">Workforce Planning</span><span class="tag">Org Design</span><span class="tag">Talent Strategy</span><span class="tag">Capital Scale-Up</span></div></div>
+  </div>
+
+  <!-- ══════════════════ CAP ══════════════════ -->
+  <div id="tab-cap" class="tab-panel">
+    <div class="section-hdr">Central Arizona Water Conservation District (CAWCD / CAP)</div>
+    <div class="stats">
+      <div class="stat"><span class="stat-val">$309.9M</span><div class="stat-lbl">CY2024 Operating Revenue — HIGH (CLA Audited ACFR)</div></div>
+      <div class="stat"><span class="stat-val">336 mi</span><div class="stat-lbl">CAP Aqueduct — Longest Conveyance System in the U.S.</div></div>
+      <div class="stat"><span class="stat-val">~6M</span><div class="stat-lbl">AZ Residents Served Indirectly (80% of State Population)</div></div>
+      <div class="stat"><span class="stat-val">$444M</span><div class="stat-lbl">Capital Reserve Target (2024 Board Decision)</div></div>
+    </div>
+    <div class="sub-hdr">Agency Overview</div>
+    <p class="bt">CAWCD operates the Central Arizona Project (CAP), the 336-mile aqueduct delivering Colorado River water from Lake Havasu to central and southern Arizona. CAP is the largest single source of renewable water in Arizona and the state's only true large-scale pure water wholesaler — delivering up to 1.5 million acre-feet annually of raw, untreated water to municipalities, agricultural districts, and tribes. CAWCD also operates the Central Arizona Groundwater Replenishment District (CAGRD) for 24 active member service areas. Operating revenue $309.9M confirmed from CY2024 ACFR (CliftonLarsonAllen, Dec. 31, 2024) — increase of $23.2M vs. 2023. Governed by a 15-member elected Board (10 Maricopa, 4 Pima, 1 Pinal).</p>
+    <div class="sub-hdr">Key Projects &amp; Initiatives</div>
+    <div class="two-col">
+      <div class="cell"><div class="cell-title">Post-2026 Colorado River Operations — NEPA/DEIS Engagement</div><div class="cell-body">Current Lower Basin shortage-sharing guidelines expire end of 2026. CAWCD is Arizona's primary negotiating agency in the DEIS process — the most consequential water policy decision in AZ in decades. Outcome determines CAP delivery reliability for the next 20+ years, directly impacting 80% of AZ population. All 8 KRAs in CAWCD's 2022 Strategic Plan are oriented around managing this uncertainty.</div></div>
+      <div class="cell"><div class="cell-title">Capital Program &amp; Infrastructure Reliability — 336-Mile Aqueduct</div><div class="cell-body">2022 Strategic Plan (8 KRAs, active through 2027) prioritizes infrastructure O&M and technology asset replacement. 336-mile aqueduct — pump stations, canal lining, SCADA, telemetry, control infrastructure built in the 1970s–1990s — requires ongoing rehabilitation. Capital Reserve target raised to $444M (2024 Board decision), up from $281M.</div></div>
+      <div class="cell"><div class="cell-title">CAGRD — Groundwater Replenishment Expansion &amp; 2025 Plan</div><div class="cell-body">CAWCD Board approved the CAGRD 2025 Plan of Operation (Oct. 2024; submitted to ADWR Dec. 2024). Annual replenishment obligation projected to reach 86,900 acre-feet by 2034. CAGRD has accrued 4.47M acre-feet of long-term storage credits. Two new underground storage facilities added since 2015. First CAGRD bond issuance 2019.</div></div>
+      <div class="cell"><div class="cell-title">Financial Strength &amp; 2026/27 Biennial Budget</div><div class="cell-body">2026/2027 Biennial Budget approved by CAWCD Board. Capital reserve raised to $444M. WIFA loan eligibility maintained. Property tax levy in Maricopa, Pima, and Pinal counties (LPV growing 5–6%/year). Investment-grade rated debt. Revenue from water delivery charges, capital charges, CAGRD assessments, and property taxes.</div></div>
+    </div>
+    <div class="sub-hdr">Key Challenge Areas</div>
+    <div class="ch-grid">
+      <div class="ch-cell"><strong>Post-2026 CO River Shortage &amp; Renegotiation</strong> — Ongoing Lower Basin Tier 1 shortage reduces CAP deliveries. Post-2026 NEPA/DEIS process is existential for CAWCD's mission — outcome determines long-term delivery reliability and financial model for decades.</div>
+      <div class="ch-cell"><strong>Infrastructure Age &amp; Technology Modernization</strong> — CAP aqueduct infrastructure from 1970s–1990s requires sustained rehabilitation. Pump stations, SCADA, canal lining, and OT across 336 miles present a large, complex, multi-decade capital challenge.</div>
+      <div class="ch-cell"><strong>CAGRD Replenishment Obligation Growth</strong> — Urbanization drives growing CAGRD member service areas and replenishment obligations. Managing water supply procurement, underground storage facility capacity, and member compliance across 24 active areas requires sophisticated data infrastructure.</div>
+      <div class="ch-cell"><strong>Cybersecurity &amp; OT Risk</strong> — CAWCD operates critical regional infrastructure across 336 miles of aqueduct, pumping plants, and SCADA/telemetry. Water sector is the top ransomware target nationally. OT/ICS security across geographically distributed, aging control systems is a growing priority.</div>
+    </div>
+    <div class="sub-hdr">Known Partners &amp; Third Parties</div>
+    <div class="partners">U.S. Bureau of Reclamation (USBR) — federal owner of CAP infrastructure &nbsp;•&nbsp; ADWR — regulatory partner; CAGRD oversight &nbsp;•&nbsp; Arizona Water Banking Authority (AWBA) — 4.47M acre-feet LTSCs &nbsp;•&nbsp; Gila River Indian Community (GRIC) &nbsp;•&nbsp; Salt River Pima-Maricopa Indian Community &nbsp;•&nbsp; Tohono O'odham Nation &nbsp;•&nbsp; City of Phoenix Water, Tucson Water, Mesa, Chandler, Gilbert, Scottsdale, Glendale, Peoria, Tempe (M&I subcontractors) &nbsp;•&nbsp; CliftonLarsonAllen LLP (auditor) &nbsp;•&nbsp; Carollo Engineers, CDM Smith, Brown &amp; Caldwell &nbsp;•&nbsp; WIFA</div>
+    <div class="sub-hdr">Recent News &amp; Developments</div>
+    <div class="news-grid">
+      <div class="news-cell"><div class="news-title">CY2024 ACFR — Operating Revenue $309.9M</div><div class="news-body">CliftonLarsonAllen-audited 2024 ACFR confirmed operating revenues $309.9M — increase of $23.2M over 2023. Capital reserve raised to $444M. 2026/27 Biennial Budget approved. GFOA Certificate of Achievement for Excellence in Financial Reporting — 13th consecutive year.</div></div>
+      <div class="news-cell"><div class="news-title">CAGRD 2025 Plan of Operation — Submitted to ADWR Dec. 2024</div><div class="news-body">Board unanimously approved Oct. 2024; submitted to ADWR Dec. 2024. Projects replenishment obligations and available supplies through 2034 and beyond. Total available supplies identified: 980,000+ acre-feet annually — order of magnitude greater than near-term replenishment needs.</div></div>
+      <div class="news-cell"><div class="news-title">Post-2026 Colorado River NEPA/DEIS Process Active</div><div class="news-body">Bureau of Reclamation's DEIS process for post-2026 Lower Basin operating guidelines underway. Current Tier 1 shortage reduces AZ's CO River entitlement by 512,000 acre-feet. Outcome governs CAP delivery certainty through approximately 2046.</div></div>
+      <div class="news-cell"><div class="news-title">WIFA Receives $1B — Desalination Discussions Initiated</div><div class="news-body">Arizona WIFA received $1B in appropriations for long-term water supply projects (2024). WIFA board authorized discussions with IDE Technologies on Sea of Cortez desalination plant. CAWCD would be the likely delivery and integration partner for any CO River augmentation to central AZ.</div></div>
+    </div>
+    <div class="sub-hdr">Recent RFPs &amp; Procurement Activity</div>
+    <table class="rfp-table">
+      <thead><tr><th>Status</th><th>Opportunity</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge bp">PORTAL</span></td><td>CAP eBids Portal</td><td>Vendor registration at <strong>ebids.cap-az.com</strong>. Two divisions: Engineering (ARS Title 34 construction) and Purchasing (materials/services). Solicitations &gt;$100K advertised in Maricopa County newspaper. Procurement guide: cap-az.com/doing-business-with-cap/. Not on PlanetBids.</td></tr>
+        <tr><td><span class="badge bpi">PIPELINE</span></td><td>Infrastructure Rehabilitation &amp; SCADA Modernization</td><td>Ongoing capital program for pump station rehabilitation, canal lining, SCADA/telemetry upgrades across 336-mile aqueduct. Monitor eBids portal and CAWCD Board agendas (cap-az.com/about-cap/leadership/board-of-directors).</td></tr>
+        <tr><td><span class="badge bpi">PIPELINE</span></td><td>Post-2026 Operations — Strategic Advisory</td><td>CO River guideline renegotiation will generate demand for scenario analysis, financial modeling, stakeholder engagement strategy, and long-range planning advisory. Monitor CAWCD GM communications and Board agendas for procurement signals.</td></tr>
+        <tr><td><span class="badge bpi">PIPELINE</span></td><td>CAGRD Water Supply &amp; Data Systems</td><td>Growing CAGRD obligations drive demand for water supply procurement advisory, data infrastructure, and member compliance management systems. CAGRD has established bonding authority and increasing annual budget.</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-hdr">Deloitte Pursuit Angles — CAWCD / CAP</div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 1</div><div class="pursuit-title">Post-2026 Colorado River Scenario Planning &amp; Strategic Advisory</div><div class="pursuit-body">The post-2026 CO River guideline renegotiation is the most consequential water policy event in AZ in decades. CAWCD needs sophisticated financial scenario modeling (Tier 1, Tier 2, and structural shortage scenarios), stakeholder engagement strategy, long-range capital planning under demand uncertainty, and communications support. Deloitte Strategy &amp; Analytics is ideally positioned — with natural expansion to Phoenix Water, Tucson Water, and all CAP subcontractors facing the same exposure.</div><div class="tags"><span class="tag">Strategy &amp; Analytics</span><span class="tag">Scenario Planning</span><span class="tag">Financial Modeling</span><span class="tag">Water Policy Advisory</span><span class="tag">Stakeholder Engagement</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 2</div><div class="pursuit-title">Cybersecurity &amp; OT/ICS Risk Advisory — Critical Aqueduct Infrastructure</div><div class="pursuit-body">CAWCD operates SCADA and ICS across 336 miles of aqueduct, 14 pumping plants, and distributed telemetry — much of it aging and originally designed without cybersecurity considerations. EPA guidance increasingly requires formal OT risk assessments from large water systems. Deloitte Cyber can lead OT/ICS risk assessment, NIST CSF alignment, and resilience roadmap — a distinctive lane vs. the engineering firms that typically compete for CAWCD work.</div><div class="tags"><span class="tag">Deloitte Cyber</span><span class="tag">OT/ICS Security</span><span class="tag">NIST CSF</span><span class="tag">Critical Infrastructure</span><span class="tag">Risk Advisory</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 3</div><div class="pursuit-title">CAGRD Data Infrastructure, Financial Planning &amp; Compliance Systems</div><div class="pursuit-body">CAGRD's complexity is growing: 24 active member service areas, 86,900 acre-foot replenishment obligation by 2034, 100-year planning horizon. Managing water supply procurement, storage credit accounting, member compliance tracking, and financial reserves requires sophisticated data infrastructure. Deloitte Digital Engineering and Analytics can support CAGRD data strategy, ERP modernization, and compliance management.</div><div class="tags"><span class="tag">Digital Engineering</span><span class="tag">Data &amp; Analytics</span><span class="tag">ERP/Financial Systems</span><span class="tag">Compliance Management</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 4</div><div class="pursuit-title">Federal Funding Strategy &amp; Alternative Financing Advisory</div><div class="pursuit-body">CAWCD operates federally owned infrastructure under USBR contract. Federal budget pressures and WIFA's $1B expansion create both uncertainty and opportunity for CAWCD's capital program. Deloitte Public Finance Advisory can support federal funding strategy, WIFA loan structuring, green bond issuance analysis, and alternative financing scenarios — particularly valuable as post-2026 framework creates new long-range financial planning needs.</div><div class="tags"><span class="tag">Public Finance Advisory</span><span class="tag">Federal Funding Strategy</span><span class="tag">Green Bonds</span><span class="tag">WIFA Loan Structuring</span></div></div>
+  </div>
+
+  <!-- ══════════════════ MDWID ══════════════════ -->
+  <div id="tab-mdwid" class="tab-panel">
+    <div class="section-hdr">Metropolitan Domestic Water Improvement District (MDWID / Metro Water)</div>
+    <div class="stats">
+      <div class="stat"><span class="stat-val">~$28–30M</span><div class="stat-lbl">FY2025 Operating Revenue (MEDIUM — FY25 budget; audited actuals at metrowater.com p.21)</div></div>
+      <div class="stat"><span class="stat-val">~50K</span><div class="stat-lbl">Customers Served (Tucson Metro, 19,500 connections)</div></div>
+      <div class="stat"><span class="stat-val">Fitch AA-</span><div class="stat-lbl">Bond Rating (Stable Outlook)</div></div>
+      <div class="stat"><span class="stat-val">NWRRDS</span><div class="stat-lbl">Major CAP Water Recovery Project — Mid-2026 Completion</div></div>
+    </div>
+    <div class="sub-hdr">Agency Overview</div>
+    <p class="bt">MDWID (Metro Water District) is the largest domestic water improvement district in Arizona — and the only urban one. Founded in 1992, it provides retail water service to approximately 19,500 connections serving ~50,000 people and hundreds of businesses in northwest, northeast, and southwest metropolitan Tucson across 6 service areas. 95% of customers are single-family residential. Governed by a 5-member elected Board. Fiscal year ends June 30. Financial note: the FY2025 $28.88M figure reflects budgeted operating revenue; exact FY2024 audited actuals are available at metrowater.com/wp-content/uploads/2025-Final-FS.pdf (manual review of p.21 recommended to confirm exact figure). Fitch AA- rated with stable outlook.</p>
+    <div class="sub-hdr">Key Projects &amp; Initiatives</div>
+    <div class="two-col">
+      <div class="cell"><div class="cell-title">NWRRDS — Northwest Recharge, Recovery &amp; Delivery System</div><div class="cell-body">Major multi-agency CAP water recovery project in partnership with Towns of Oro Valley and Marana. Construction expected to complete mid-2026. Will provide 115,000+ customers direct access to CAP renewable water supplies in NW Tucson. Most significant capital infrastructure investment in Metro Water's history — funded through WIFA loans and revenue bonds.</div></div>
+      <div class="cell"><div class="cell-title">5-Year Capital Improvement Program — Aging Infrastructure Replacement</div><div class="cell-body">Rolling 5-year CIP prioritizing aging infrastructure replacement: transmission mains, waterlines, meters. Over 100,000 LF of transmission mains and 150,000 LF of aged waterlines already replaced in prior programs. CIP funded through WIFA loans (Series 2005 $15.375M, Series 2007 $12.625M) and revenue bonds (Series 1999 $13M, Series 2002 $10M).</div></div>
+      <div class="cell"><div class="cell-title">Lead &amp; Copper Rule Compliance &amp; Water Quality</div><div class="cell-body">Active service line inventory underway — no lead service lines identified to date. Arsenic treatment and VOC removal systems in place across service areas. Lead &amp; Copper Rule revision preparation included in FY2025/26 budget priorities. Water quality monitoring across 6 service areas with distinct water chemistry.</div></div>
+      <div class="cell"><div class="cell-title">Water Supply Diversification &amp; CAP Wheeling</div><div class="cell-body">CAP wheeling agreement in progress for Metro Southwest service area to provide more reliable base supply. Water supply diversification from groundwater-dependent to CAP renewable base is a long-term strategic priority. Rate sustainability: three-year rate and fee plan in effect; 2023 rate increases implemented. New free online customer portal launched.</div></div>
+    </div>
+    <div class="sub-hdr">Key Challenge Areas</div>
+    <div class="ch-grid">
+      <div class="ch-cell"><strong>Aging Infrastructure &amp; Capital Funding</strong> — Serving ~50K customers across 6 service areas with aging distribution infrastructure. CIP needs are substantial relative to revenue size (~$28–30M); WIFA loans and revenue bonds required to fund capital program. Fitch AA- rating maintains access to capital markets.</div>
+      <div class="ch-cell"><strong>CAP Supply Access &amp; Tucson Exchange</strong> — Metro Water depends on CAP renewable water via recharge agreements. NWRRDS project (completing mid-2026) will improve direct CAP access for NW Tucson customers. Colorado River shortage conditions create long-term supply uncertainty for CAP-dependent utilities.</div>
+      <div class="ch-cell"><strong>Financial Sustainability &amp; Rate Pressure</strong> — Operating revenues ~$28–30M require careful rate management to fund capital program without rate shock to residential customers. WIFA AA- rating maintained but leaves less headroom than AA or AA+ rated peers.</div>
+      <div class="ch-cell"><strong>Small Scale Procurement Limitations</strong> — No dedicated vendor portal; relies on City of Tucson cooperative purchasing and AZ state bid list. Three bids required for purchases &gt;$2,500. Limited procurement infrastructure relative to the scale of capital projects (NWRRDS) underway.</div>
+    </div>
+    <div class="sub-hdr">Known Partners &amp; Third Parties</div>
+    <div class="partners">Town of Oro Valley &amp; Town of Marana (NWRRDS partners) &nbsp;•&nbsp; CAP/CAWCD — CAP water delivery &nbsp;•&nbsp; WIFA (Water Infrastructure Finance Authority of AZ) — loan financing &nbsp;•&nbsp; HintonBurdick CPAs &amp; Advisors (auditor) &nbsp;•&nbsp; Fitch Ratings (AA-) &nbsp;•&nbsp; City of Tucson — cooperative purchasing vehicle &nbsp;•&nbsp; Arizona Department of Water Resources (ADWR)</div>
+    <div class="sub-hdr">Recent News &amp; Developments</div>
+    <div class="news-grid">
+      <div class="news-cell"><div class="news-title">NWRRDS Nearing Completion — Mid-2026 Target</div><div class="news-body">The Northwest Recharge, Recovery &amp; Delivery System (NWRRDS) — a multi-agency CAP water recovery project with Oro Valley and Marana — is on track for mid-2026 completion. Will provide direct CAP renewable water access to 115,000+ customers across NW Tucson service area.</div></div>
+      <div class="news-cell"><div class="news-title">FY2025/2024 Audited Financial Statements Available</div><div class="news-body">HintonBurdick-audited financial statements for FY2025 and FY2024 are publicly posted at metrowater.com/wp-content/uploads/2025-Final-FS.pdf. FY2025 operating revenue ~$28–30M per budget documents; exact audited actuals on p.21 of the document (manual review recommended).</div></div>
+      <div class="news-cell"><div class="news-title">FY2026 Adopted Budget Published</div><div class="news-body">MDWID's FY2026 Adopted Budget confirms continued CIP investment and NWRRDS capital commitment. Budget document available at metrowater.com/about-us/budget-audit. Fitch AA- stable rating maintained.</div></div>
+      <div class="news-cell"><div class="news-title">Customer Portal Modernization — New Online Portal Launched</div><div class="news-body">Metro Water launched a new free online customer portal, signaling appetite for technology modernization consistent with the district's CIP and rate transparency priorities. Combined with NWRRDS technology integration, indicates technology investment momentum.</div></div>
+    </div>
+    <div class="sub-hdr">Recent RFPs &amp; Procurement Activity</div>
+    <table class="rfp-table">
+      <thead><tr><th>Status</th><th>Opportunity</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge bp">PORTAL</span></td><td>Metro Water Procurement Page</td><td>Bid opportunities at <strong>metrowater.com/construction-center/procurement-bid-opportunities</strong>. Leverages City of Tucson cooperative purchasing + AZ state bid list. Three bids required for purchases &gt;$2,500. No dedicated vendor portal. Not on PlanetBids.</td></tr>
+        <tr><td><span class="badge ba">ACTIVE</span></td><td>NWRRDS Project — Capital Completion</td><td>NWRRDS construction approaching mid-2026 completion. Procurement for commissioning, systems integration, and technology support anticipated. Monitor metrowater.com procurement page and Fitch rating announcements.</td></tr>
+        <tr><td><span class="badge bpi">PIPELINE</span></td><td>CIP — Infrastructure Replacement &amp; Technology</td><td>Rolling 5-year CIP generates ongoing demand for engineering design, construction management, technology, and advisory services. WIFA financing eligibility supports continued capital investment. Monitor metrowater.com for solicitation postings.</td></tr>
+        <tr><td><span class="badge bpi">PIPELINE</span></td><td>CAP Wheeling Agreement Implementation</td><td>CAP wheeling agreement in progress for Metro Southwest service area. Advisory, legal, and financial support for agreement structuring and implementation anticipated. Deloitte water advisory practice well-positioned.</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-hdr">Deloitte Pursuit Angles — Metro Water</div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 1</div><div class="pursuit-title">Federal Funding Strategy &amp; WIFA Financing Advisory</div><div class="pursuit-body">Metro Water has historically relied on WIFA loans (two tranches: $15.375M and $12.625M) and revenue bonds for capital. NWRRDS and ongoing CIP create continued capital financing needs. Bipartisan Infrastructure Law (BIL) and EPA SRF programs offer additional funding channels Metro Water may not be fully pursuing. Deloitte Public Finance Advisory can support grant strategy, WIFA loan optimization, and alternative financing scenarios as capital program advances post-NWRRDS.</div><div class="tags"><span class="tag">Public Finance Advisory</span><span class="tag">Federal Grant Strategy</span><span class="tag">WIFA Optimization</span><span class="tag">BIL/SRF Funding</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 2</div><div class="pursuit-title">Capital Program Management — NWRRDS Completion &amp; Next CIP Phase</div><div class="pursuit-body">With NWRRDS completing mid-2026, Metro Water will transition from project delivery to operations, and the next CIP phase will begin. Deloitte G&I can support project closeout, transition planning, and next-phase CIP prioritization and delivery — occupying an advisory lane distinct from Metro Water's engineering firms who will compete for the next construction tranche.</div><div class="tags"><span class="tag">Capital PMO</span><span class="tag">Project Closeout</span><span class="tag">CIP Advisory</span><span class="tag">G&I Practice</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 3</div><div class="pursuit-title">ERP/EAM &amp; Technology Modernization — Customer Portal Expansion</div><div class="pursuit-body">Metro Water's new customer portal signals technology modernization appetite at a relatively small but growing district. NWRRDS integration with existing SCADA and distribution systems creates EAM/asset management needs. Deloitte's Digital Engineering practice can support Metro Water in building an integrated technology strategy that connects the NWRRDS, CIP, and customer-facing systems into a coherent data and operations platform.</div><div class="tags"><span class="tag">Digital Engineering</span><span class="tag">EAM Strategy</span><span class="tag">Customer Portal</span><span class="tag">Technology Advisory</span></div></div>
+  </div>
+
+  <!-- ══════════════════ YCWUA ══════════════════ -->
+  <div id="tab-ycwua" class="tab-panel">
+    <div class="section-hdr">Yuma County Water Users' Association (YCWUA)</div>
+    <div class="stats">
+      <div class="stat"><span class="stat-val">~$13.0M</span><div class="stat-lbl">FY2024 Total Revenues — HIGH (IRS Form 990 via ProPublica)</div></div>
+      <div class="stat"><span class="stat-val">$55.9M</span><div class="stat-lbl">Total Assets FY2024 (Form 990)</div></div>
+      <div class="stat"><span class="stat-val">~100K+</span><div class="stat-lbl">Yuma Area Agriculture + City of Yuma Municipal</div></div>
+      <div class="stat"><span class="stat-val">Most Senior</span><div class="stat-lbl">Colorado River Entitlements in Arizona (~360K acre-ft/year)</div></div>
+    </div>
+    <div class="sub-hdr">Agency Overview</div>
+    <p class="bt">YCWUA is a private non-profit corporation (501(c)(4)) founded in 1903, one year after the Reclamation Act. Since 1951, YCWUA has operated and maintained the Valley Division of the U.S. Bureau of Reclamation's Yuma Project under federal contract. YCWUA holds the most senior Colorado River water entitlements in Arizona (~360,000 acre-feet/year approved diversion), serves approximately 53,450 irrigable acres (45,000 currently farmed), provides over 95% of the City of Yuma's municipal water supply (~18,000 acre-feet/year), and serves the Cocopah Indian Tribe (~6,000 acre-feet/year). YCWUA also operates the Siphon Drop hydroelectric power plant under federal contract. As a 501(c)(4) non-profit, financial disclosure is via IRS Form 990 — not an ACFR. FY2024 total revenues ~$13.0M; total assets $55.9M (Form 990, EIN 86-0069710, via CauseIQ/ProPublica). 68 employees. Official website (ycwua.org) is currently under redesign with minimal content.</p>
+    <div class="sub-hdr">Key Projects &amp; Initiatives</div>
+    <div class="two-col">
+      <div class="cell"><div class="cell-title">Water Delivery &amp; Colorado River Entitlement Management</div><div class="cell-body">Deliver and manage Colorado River water to Valley Division agricultural users (360,400 acre-feet/year approved diversion). Manage the conversion of irrigation entitlements to domestic/municipal use enabled by 1996 Supplementary Contract with USBR. Ongoing management of Yuma Project Valley Division infrastructure (canals, laterals, drop structures) under USBR O&M contract.</div></div>
+      <div class="cell"><div class="cell-title">Municipal Supply Expansion</div><div class="cell-body">Plans to expand domestic water delivery to City of Somerton and City of San Luis in addition to existing City of Yuma service (~18,000 acre-feet/year). Water entitlement conversion from irrigation to domestic use is a key long-term strategy as Yuma agricultural land transitions. YCWUA holds the most senior CO River rights in AZ — critical asset as shortage conditions increase.</div></div>
+      <div class="cell"><div class="cell-title">Siphon Drop Hydroelectric Operations</div><div class="cell-body">YCWUA operates the Siphon Drop Power Plant under federal contract with USBR. Hydroelectric operations provide energy revenue diversification. Plant maintenance and operations are an ongoing capital priority alongside irrigation infrastructure O&M.</div></div>
+      <div class="cell"><div class="cell-title">Irrigation Efficiency &amp; Federal Grant Programs</div><div class="cell-body">Participated in USBR Water Smart SWEP (Savings in Water, Energy, and Production) program — prior award ~$1.25M. N-Drip agricultural efficiency pilot program implemented across YCWUA service area. Water efficiency reduces operational costs and helps Yuma agriculture remain competitive as water scarcity increases across the Colorado River Basin.</div></div>
+    </div>
+    <div class="sub-hdr">Key Challenge Areas</div>
+    <div class="ch-grid">
+      <div class="ch-cell"><strong>Colorado River Shortage Conditions</strong> — Ongoing Lower Basin Tier 1 shortage reduces Colorado River deliveries. YCWUA's most-senior entitlements provide some protection, but long-term shortage framework uncertainty affects planning for agricultural and municipal supply.</div>
+      <div class="ch-cell"><strong>Agricultural-to-Domestic Transition</strong> — As Yuma agriculture declines and municipal demand grows, YCWUA must navigate water entitlement conversion from irrigation to domestic use. 1996 Supplementary Contract with USBR enables this but creates administrative complexity.</div>
+      <div class="ch-cell"><strong>Limited Financial Transparency &amp; Website</strong> — YCWUA's official website is under redesign with minimal accessible content. Financial disclosure via Form 990 (not ACFR) limits the detail available for procurement and financial assessment. No public vendor portal identified.</div>
+      <div class="ch-cell"><strong>Small Scale &amp; Geographic Isolation</strong> — With ~$13M revenue and 68 employees in rural Yuma County, YCWUA is below the scale threshold for most Deloitte advisory engagements. Geographic isolation from Phoenix/Tucson metro areas limits in-person relationship building.</div>
+    </div>
+    <div class="sub-hdr">Known Partners &amp; Third Parties</div>
+    <div class="partners">U.S. Bureau of Reclamation (USBR) — federal Yuma Project owner; O&M contract &nbsp;•&nbsp; City of Yuma — primary municipal water customer &nbsp;•&nbsp; Cocopah Indian Tribe — water delivery recipient &nbsp;•&nbsp; City of Somerton &amp; City of San Luis — planned future municipal customers &nbsp;•&nbsp; USBR Water Smart Program — grant program partner &nbsp;•&nbsp; N-Drip irrigation technology (pilot program partner)</div>
+    <div class="sub-hdr">Recent News &amp; Developments</div>
+    <div class="news-grid">
+      <div class="news-cell"><div class="news-title">FY2024 Form 990 — Total Revenue ~$13.0M, Assets $55.9M</div><div class="news-body">IRS Form 990 (FY2024, filed December 2024) confirmed total revenues ~$13.0M; total assets $55.9M; 68 employees. EIN 86-0069710 via CauseIQ/ProPublica. Note: YCWUA is a 501(c)(4) social welfare organization — IRS Form 990 is the primary public financial disclosure document, not an ACFR.</div></div>
+      <div class="news-cell"><div class="news-title">Website Under Redesign</div><div class="news-body">The official YCWUA website (ycwua.org) is currently under redesign with minimal accessible content. Financial documents, procurement information, and organizational details are not publicly accessible online. Direct outreach required for detailed procurement and financial information.</div></div>
+      <div class="news-cell"><div class="news-title">CO River Shortage Conditions Continue</div><div class="news-body">YCWUA's most-senior Colorado River water rights in Arizona provide some buffer against Tier 1 shortage impacts that affect CAP/CAWCD. However, long-term shortage framework post-2026 creates planning uncertainty for YCWUA's agricultural and municipal supply mix.</div></div>
+      <div class="news-cell"><div class="news-title">USBR N-Drip Efficiency Program Ongoing</div><div class="news-body">YCWUA continues participation in USBR Water Smart and N-Drip agricultural efficiency programs. These federal programs signal YCWUA's engagement with federal grant ecosystem and openness to technology-driven water efficiency improvements in agricultural irrigation.</div></div>
+    </div>
+    <div class="sub-hdr">Recent RFPs &amp; Procurement Activity</div>
+    <table class="rfp-table">
+      <thead><tr><th>Status</th><th>Opportunity</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge bp">PORTAL</span></td><td>No Public Portal Identified</td><td>YCWUA website (ycwua.org) is under redesign — no public vendor portal or bid board identified. Contact: (928) 627-8824 | P.O. Box 5775, Somerton, AZ 85350. Procurement process not publicly documented; likely informal for routine purchases.</td></tr>
+        <tr><td><span class="badge bpi">PIPELINE</span></td><td>Federal Grant Programs — USBR Water Smart</td><td>YCWUA has previously received USBR Water Smart program grants (~$1.25M). Future federal efficiency grant applications are likely. Deloitte grant advisory could support YCWUA in identifying and pursuing BIL/IIJA funding for agricultural efficiency and municipal supply expansion.</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-hdr">Deloitte Pursuit Angles — YCWUA</div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 1</div><div class="pursuit-title">Federal Grant Strategy — USBR Water Smart &amp; BIL Programs</div><div class="pursuit-body">YCWUA has established a relationship with USBR grant programs (prior ~$1.25M Water Smart award). The Bipartisan Infrastructure Law expanded USBR water efficiency grant programs significantly. Deloitte Public Finance Advisory can support YCWUA in identifying, applying for, and managing BIL-funded water efficiency grants — a low-barrier entry point given YCWUA's existing USBR relationship and the limited competition from large consulting firms in rural Yuma County.</div><div class="tags"><span class="tag">Public Finance Advisory</span><span class="tag">Federal Grant Strategy</span><span class="tag">USBR Water Smart</span><span class="tag">BIL Programs</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 2</div><div class="pursuit-title">Water Entitlement Transition Advisory</div><div class="pursuit-body">YCWUA's long-term strategic challenge — converting senior irrigation entitlements to domestic/municipal use for Somerton, San Luis, and growing Yuma municipal demand — is a complex water rights, financial, and stakeholder engagement problem. Deloitte's water policy advisory capabilities can support YCWUA in structuring the transition, negotiating with USBR on supplementary contract terms, and communicating the change to agricultural water users.</div><div class="tags"><span class="tag">Water Policy Advisory</span><span class="tag">Entitlement Transition</span><span class="tag">Stakeholder Engagement</span><span class="tag">USBR Negotiation</span></div></div>
+  </div>
+
+  <!-- ══════════════════ RWCD ══════════════════ -->
+  <div id="tab-rwcd" class="tab-panel">
+    <div class="section-hdr">Roosevelt Water Conservation District (RWCD)</div>
+    <div class="stats">
+      <div class="stat"><span class="stat-val">~$5.6M</span><div class="stat-lbl">Est. Revenue — LOW Confidence (third-party estimate only; no official financials found)</div></div>
+      <div class="stat"><span class="stat-val">~200K+</span><div class="stat-lbl">Population Served (portions of Chandler, Gilbert, Mesa)</div></div>
+      <div class="stat"><span class="stat-val">~40K acres</span><div class="stat-lbl">SE Maricopa County Irrigation Service Area</div></div>
+      <div class="stat"><span class="stat-val">$12M</span><div class="stat-lbl">New Admin &amp; Operations Complex (recently completed)</div></div>
+    </div>
+    <div class="sub-hdr">Agency Overview</div>
+    <p class="bt">Roosevelt Water Conservation District (RWCD) is a municipal corporation and political subdivision of the State of Arizona, established in 1917. It is an irrigation district serving approximately 40,000 acres in southeast Maricopa County, with its service area overlapping the rapidly urbanizing cities of Chandler, Gilbert, and Mesa. RWCD holds a 5.6% entitlement to annual surface water delivered from SRP's Salt and Verde River system and is transitioning from predominantly agricultural to urban customers — shifting from ~500 agricultural users to over 2,000 urban customers in under 7 years. Financial data note: RWCD's official website (rwcd.net) has minimal publicly available financial documents. Revenue estimate of ~$5.6M is from third-party sources (ZoomInfo/Kona Equity) only. A public records request to RWCD or Maricopa County assessor review is required to confirm. RWCD is currently involved in litigation with the City of Chandler over the 2002 domestic water agreement. Headquartered at 2344 S. Higley Rd, Gilbert, AZ 85295.</p>
+    <div class="sub-hdr">Key Projects &amp; Initiatives</div>
+    <div class="two-col">
+      <div class="cell"><div class="cell-title">Urbanization Management — Agricultural-to-Urban Transition</div><div class="cell-body">RWCD has transitioned from ~500 agricultural users to over 2,000+ urban customers in under 7 years. Serving rapidly growing residential and commercial customers in Chandler, Gilbert, and Mesa requires infrastructure adaptation from agricultural canal delivery to urban distribution systems. This transition is RWCD's defining operational challenge.</div></div>
+      <div class="cell"><div class="cell-title">New Administration &amp; Operations Complex</div><div class="cell-body">RWCD recently completed a new $12M, 24,000 sq ft Administration &amp; Operations Complex in Gilbert (Concord General Contracting, competitive bid). The facility signals organizational modernization and improved operational capacity. Capital was financed through property taxes and water sales — no WIFA loans or revenue bonds identified.</div></div>
+      <div class="cell"><div class="cell-title">Water Entitlement &amp; Chandler Litigation</div><div class="cell-body">RWCD has/had a water service agreement with the City of Chandler (2002–2086) for domestic water delivery. Ongoing litigation with Chandler over enforcement of the agreement has reached the Arizona Supreme Court. Outcome will significantly impact RWCD's revenue, customer base, and long-term strategic direction.</div></div>
+      <div class="cell"><div class="cell-title">Infrastructure O&amp;M &amp; Customer Service Modernization</div><div class="cell-body">Canal maintenance and water delivery infrastructure reliability are ongoing operational priorities. RWCD implemented a neighborhood liaison program and reduced field report backlog by 80% — signals customer service modernization investment at a small but growing district. SRP surface water entitlement (5.6% of annual delivery) is RWCD's primary water supply asset.</div></div>
+    </div>
+    <div class="sub-hdr">Key Challenge Areas</div>
+    <div class="ch-grid">
+      <div class="ch-cell"><strong>Active Litigation — Chandler Domestic Water Agreement</strong> — Ongoing litigation with City of Chandler over the 2002 domestic water agreement (Arizona Supreme Court). Outcome materially affects RWCD's revenue, customer base, and long-term viability. This is the single biggest uncertainty for RWCD engagement.</div>
+      <div class="ch-cell"><strong>Financial Transparency — No Official Financials Available</strong> — RWCD's official website has minimal financial disclosure. Revenue estimate (~$5.6M) is from third-party sources only. A public records request is required to confirm actual financials. LOW confidence rating for all financial figures.</div>
+      <div class="ch-cell"><strong>Small Scale &amp; Limited Procurement Infrastructure</strong> — Estimated ~$5.6M revenue and ~13 employees (per third-party estimates). No public vendor portal. No PlanetBids presence. Competitive bids only for capital projects. Scale is too small for most Deloitte advisory engagements.</div>
+      <div class="ch-cell"><strong>Agricultural-to-Urban Transition Complexity</strong> — Managing the physical infrastructure transition from agricultural canal delivery to urban distribution while simultaneously managing the Chandler litigation, urbanization growth, and financial sustainability creates an unusually complex operating environment for a small district.</div>
+    </div>
+    <div class="sub-hdr">Known Partners &amp; Third Parties</div>
+    <div class="partners">SRP — surface water entitlement delivery (5.6% of annual delivery) &nbsp;•&nbsp; City of Chandler — water service agreement partner (and litigation counterparty) &nbsp;•&nbsp; City of Gilbert, City of Mesa — service area overlap &nbsp;•&nbsp; Maricopa County — property tax collection and assessor records &nbsp;•&nbsp; Concord General Contracting — $12M admin complex contractor</div>
+    <div class="sub-hdr">Procurement Mechanics</div>
+    <div class="partners">No public vendor portal or bid board identified on RWCD website (rwcd.net — minimal online presence) &nbsp;•&nbsp; Competitive bid delivery used for capital projects (e.g., $12M admin complex via Concord General Contracting) &nbsp;•&nbsp; Not on PlanetBids &nbsp;•&nbsp; Contact for procurement inquiries: (480) 988-9581 &nbsp;•&nbsp; No dedicated procurement page found &nbsp;•&nbsp; Procurement likely informal for routine purchases given ~13 employee scale</div>
+    <div class="sub-hdr">Deloitte Assessment</div>
+    <div class="pursuit"><div class="pursuit-num">Overall Assessment</div><div class="pursuit-title">Lower Priority — Engagement Pending Litigation Resolution &amp; Financial Confirmation</div><div class="pursuit-body">RWCD is the lowest-priority entity on the AZ list based on: (1) smallest estimated revenue (~$5.6M, LOW confidence); (2) active Arizona Supreme Court litigation with Chandler creating strategic uncertainty; (3) no public procurement infrastructure; (4) minimal financial transparency. Recommended action: monitor Arizona Supreme Court case outcome on the Chandler domestic water agreement — if Chandler prevails, RWCD's revenue base could decline significantly; if RWCD prevails, the district becomes a more stable engagement target. A public records request to RWCD for audited financial statements would also help confirm whether the revenue scale justifies engagement planning.</div><div class="tags"><span class="tag">Monitor Only</span><span class="tag">Litigation Risk</span><span class="tag">Financial Verification Needed</span><span class="tag">Post-Litigation Re-Assess</span></div></div>
+  </div>
+
+  <!-- ══════════════════ COMPARISON ══════════════════ -->
+  <div id="tab-comparison" class="tab-panel">
+    <div class="section-hdr">Comparison &amp; Recommended Pursuit Sequencing — Arizona</div>
+
+    <div class="sub-hdr">Side-by-Side Entity Comparison</div>
+    <table class="comp-table">
+      <thead><tr><th>Dimension</th><th>SRP</th><th>CAP / CAWCD</th><th>Metro Water (MDWID)</th><th>YCWUA</th><th>RWCD</th></tr></thead>
+      <tbody>
+        <tr><td>Entity Type</td><td>Private water corp + public power district; acreage-based elected boards</td><td>Public special taxing district; 15-member elected Board; pure water wholesaler</td><td>AZ special district; 5-member elected Board; largest AZ domestic water improvement district</td><td>Private 501(c)(4) non-profit; USBR Yuma Project operator since 1951</td><td>Municipal corp / AZ political subdivision; elected Board; irrigation district transitioning to urban</td></tr>
+        <tr><td>Primary Function</td><td>Hybrid water wholesaler + electric utility; primarily known as power company</td><td>Pure wholesale — raw CO River water to municipalities, ag districts, tribes; no end-user delivery</td><td>Retail water provider — NW/NE/SW metro Tucson; 19,500 connections; 6 service areas</td><td>Wholesale/bulk operator — Yuma Project Valley Division; ag + City of Yuma municipal</td><td>Irrigation district transitioning to urban; SRP surface water delivery to ag + new residential customers</td></tr>
+        <tr><td>Operating Revenue</td><td>$4.15B total / $25.5M water-only (FY2024, PwC audited)</td><td>$309.9M (CY2024, CLA audited)</td><td>~$28–30M (FY2025 budget; MEDIUM confidence)</td><td>~$13.0M (FY2024 Form 990; HIGH confidence)</td><td>~$5.6M (third-party estimate; LOW confidence)</td></tr>
+        <tr><td>Total Assets</td><td>$20.4B gross utility plant (FY2024)</td><td>Capital reserve target $444M; federally owned infrastructure with CAWCD O&M</td><td>$42.21M cash balance (proxy); WIFA bond financing history</td><td>$55.9M (FY2024, Form 990)</td><td>N/D — no public financials; $12M new admin complex recently completed</td></tr>
+        <tr><td>Population Served</td><td>~2M+ (Phoenix metro, water + electric)</td><td>~6M indirectly (80% of AZ population) via M&I subcontractors</td><td>~50K (Tucson metro, 19,500 connections)</td><td>Yuma area ag + City of Yuma municipal (~100K+)</td><td>~200K+ (portions of Chandler, Gilbert, Mesa)</td></tr>
+        <tr><td>Defining Challenge</td><td>$6.4B capital program for 7,000 MW renewables; unprecedented Phoenix metro load growth</td><td>Post-2026 Colorado River operating guideline renegotiation — existential for CAWCD mission</td><td>NWRRDS project completion (mid-2026); CAP supply access; aging infrastructure vs. small revenue</td><td>CO River shortage management; agricultural-to-domestic water entitlement transition</td><td>Active litigation with Chandler (AZ Supreme Court); agricultural-to-urban transition; financial opacity</td></tr>
+        <tr><td>Bond Rating</td><td>N/A (not rated — not a bond issuer as a water entity)</td><td>Investment-grade (WIFA/Revenue bonds); $444M capital reserve building</td><td>Fitch AA- (stable)</td><td>N/A (501(c)(4) non-profit)</td><td>N/A</td></tr>
+        <tr><td>Procurement Gateway</td><td>srpnet.com/doing-business/suppliers — closed bids; eRFx for energy; relationship-driven</td><td>ebids.cap-az.com — vendor registration required; Engineering + Purchasing divisions</td><td>metrowater.com/construction-center/procurement-bid-opportunities — informal; cooperative purchasing</td><td>No public portal; ycwua.org under redesign; (928) 627-8824</td><td>No public portal; rwcd.net minimal; (480) 988-9581; competitive bids for capital only</td></tr>
+        <tr><td>Key Competitors</td><td>Black &amp; Veatch, Burns &amp; McDonnell, AECOM, Carollo (capital program engineering)</td><td>CDM Smith, Carollo Engineers, Brown &amp; Caldwell, HDR (engineering-focused)</td><td>Carollo Engineers, Brown &amp; Caldwell (engineering); local AZ firms via Tucson cooperative purchasing</td><td>USBR preferred federal contractors; few professional services competitors identified</td><td>Concord General Contracting (capital); few if any advisory competitors given scale</td></tr>
+        <tr><td>Deloitte Entry Ease</td><td>Moderate-Low — closed procurement; relationship-driven; advisory lane distinct from engineering</td><td>Moderate — eBids accessible; post-2026 advisory is compelling differentiator vs. engineering firms</td><td>Moderate — informal procurement; NWRRDS completion is entry point; WIFA/BIL funding advisory</td><td>Low — no public portal; informal procurement; rural geography; small scale</td><td>Very Low — no portal; active litigation; minimal financial transparency; lowest revenue</td></tr>
+        <tr><td>Deloitte Priority</td><td><span class="pri-1">#1 PRIORITY</span></td><td><span class="pri-1">#1 PRIORITY</span></td><td><span class="pri-2">#2 PRIORITY</span></td><td><span class="pri-3">#3 LOWER</span></td><td><span class="pri-3">#3 LOWER</span></td></tr>
+        <tr><td>Top Deloitte Angle</td><td>Capital PMO ($6.4B) + OT Cybersecurity + Grid Analytics</td><td>Post-2026 Scenario Planning + OT Cybersecurity + Federal Funding Advisory</td><td>Federal Funding Advisory + CIP PMO + ERP/EAM Modernization</td><td>Federal Grant Strategy (USBR Water Smart/BIL) + Entitlement Transition Advisory</td><td>Monitor Only — re-assess post-Chandler litigation resolution</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-hdr" style="margin-top:32px;">Cross-Entity Opportunities — Where Multiple AZ Entities Share the Same Deloitte Offering</div>
+    <table class="comp-table">
+      <thead><tr><th>Deloitte Offering</th><th>Applicable Entities</th><th>Why It Works Across Entities</th><th>Recommended Approach</th></tr></thead>
+      <tbody>
+        <tr><td>OT/ICS Cybersecurity</td><td>SRP + CAP/CAWCD (+ Phoenix Water, Tucson Water if added later)</td><td>Both operate large-scale SCADA/ICS across critical water and/or power infrastructure. Water sector is top ransomware target nationally. EPA guidance creating formal OT assessment requirements.</td><td>Joint thought leadership play — white paper or roundtable targeting AZ water sector simultaneously. Builds Deloitte Cyber visibility in a single motion across the market.</td></tr>
+        <tr><td>Federal Funding Advisory</td><td>CAP/CAWCD + Metro Water (+ future Phoenix Water, Tucson Water)</td><td>Both have active federal partnerships (USBR/BIL) and capital programs that benefit from optimized federal funding strategy. Metro Water relies on WIFA/BIL; CAP relies on USBR cost-sharing.</td><td>Develop a reusable AZ Water Federal Funding playbook — applicable across all 5 entities and future additions. Position Deloitte as the go-to advisor for navigating federal water funding complexity in AZ.</td></tr>
+        <tr><td>Post-2026 CO River Scenario Planning</td><td>CAP/CAWCD (primary) → expands to SRP customers, Metro Water, YCWUA</td><td>All 5 entities have Colorado River exposure — either directly (CAP) or through downstream supply chains (SRP's municipal customers, Metro Water's CAP wheeling, YCWUA's senior rights).</td><td>Lead with CAWCD as primary client. Structure the engagement to explicitly expand to CAP subcontractors (Phoenix Water, Tucson Water, Metro Water) as Phase 2 — creating a multi-client advisory program from a single initial engagement.</td></tr>
+        <tr><td>ERP/EAM Modernization</td><td>CAP/CAWCD + Metro Water</td><td>Both operate aging enterprise systems while expanding capital programs. CAP's SCADA and operational systems across 336 miles; Metro Water's NWRRDS integration needs.</td><td>Position as a bundled offering — "Integrated Water Operations Platform" — targeting both entities with a common methodology but entity-specific implementation. Reduces sales cycle by demonstrating cross-entity applicability.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-hdr" style="margin-top:32px;">Recommended Pursuit Sequencing</div>
+    <div class="action-box">
+      <div class="action-timing">Immediate</div>
+      <div class="action-title">Register on All Procurement Portals &amp; Build Intelligence Pipeline</div>
+      <div class="action-body">Register on SRP supplier portal (srpnet.com/doing-business/suppliers) and procurePHX. Register on CAP eBids portal (ebids.cap-az.com) — two separate registrations for Engineering and Purchasing divisions. Register on Metro Water procurement page (metrowater.com). Subscribe to CAWCD Board agendas (cap-az.com) for procurement signals. Monitor SRP investor relations (srpnet.com/doing-business/investor-relations) for bond issuance and capital program updates. Contact YCWUA directly at (928) 627-8824 for procurement process information.</div>
+      <div class="tags"><span class="tag">Procurement Registration</span><span class="tag">Portal Monitoring</span><span class="tag">Intelligence Capture</span><span class="tag">Board Agenda Tracking</span></div>
+    </div>
+    <div class="action-box">
+      <div class="action-timing">Near-Term: Q2–Q3 2026</div>
+      <div class="action-title">OT/ICS Cybersecurity — Joint Entry Across SRP + CAP Simultaneously</div>
+      <div class="action-body">OT/SCADA cybersecurity is the most universally applicable Deloitte offering across all AZ water entities — and aligns directly with Deloitte Cyber's capabilities. A proactive risk assessment offering tied to EPA guidance, NIST CSF, and escalating water sector ransomware threats is the fastest path to a beachhead engagement. A joint AZ water-power sector thought leadership event (white paper, roundtable) targeting SRP and CAWCD simultaneously builds Deloitte's credibility across the AZ water market in a single motion — without requiring separate sales cycles for each entity.</div>
+      <div class="tags"><span class="tag">Deloitte Cyber</span><span class="tag">OT/ICS Security</span><span class="tag">NIST CSF</span><span class="tag">Thought Leadership</span><span class="tag">SRP + CAP Joint</span></div>
+    </div>
+    <div class="action-box">
+      <div class="action-timing">Mid-Term: H2 2026</div>
+      <div class="action-title">CAP/CAWCD — Post-2026 Colorado River Scenario Planning &amp; Strategic Advisory</div>
+      <div class="action-body">The NEPA/DEIS process for post-2026 CO River operating guidelines will reach critical decision points in H2 2026. CAWCD's General Manager and Finance Director will need sophisticated financial scenario modeling, stakeholder engagement support, and long-range capital planning as guidelines are finalized. Deloitte Strategy &amp; Analytics should initiate relationship-building with CAWCD leadership now — at AWRA conferences, WIFA stakeholder events, and the Arizona Water Summit — to position before procurement is formalized. This engagement naturally expands to Phoenix Water, Tucson Water, Metro Water, and other CAP subcontractors as Phase 2.</div>
+      <div class="tags"><span class="tag">Strategy &amp; Analytics</span><span class="tag">Scenario Planning</span><span class="tag">Water Policy Advisory</span><span class="tag">CAP Subcontractor Expansion</span></div>
+    </div>
+    <div class="action-box">
+      <div class="action-timing">Mid-Term: H2 2026</div>
+      <div class="action-title">SRP — Capital Program PMO &amp; Owner's Advisor</div>
+      <div class="action-body">As SRP's $6.4B bond-financed capital program accelerates — 7,000 MW renewables, 1,000 MW pumped hydro, 1,500 MW storage, and T&D upgrades — the need for independent program management, project controls, and owner's advisor support will grow rapidly. Deloitte G&I should begin building relationships with SRP's Capital Programs leadership now, positioning as a strategic PMO partner clearly differentiated from Black &amp; Veatch, Burns &amp; McDonnell, and AECOM competing for design and construction work. SRP's procurement model strongly favors relationships — direct outreach to SRP's supplier diversity and capital programs teams is the most effective path in.</div>
+      <div class="tags"><span class="tag">Capital PMO</span><span class="tag">Owner's Advisor</span><span class="tag">G&I Practice</span><span class="tag">Program Controls</span><span class="tag">Relationship-First</span></div>
+    </div>
+    <div class="action-box">
+      <div class="action-timing">Near-Term: Q3 2026</div>
+      <div class="action-title">Metro Water — Federal Funding Advisory &amp; NWRRDS Post-Completion</div>
+      <div class="action-body">With NWRRDS completing mid-2026, Metro Water will transition from project delivery to operations and begin planning the next CIP phase. This is an ideal window to engage Metro Water's Board and management on federal funding optimization (BIL/WIFA), next-phase CIP prioritization, and technology integration (NWRRDS systems + existing distribution). Entry point is accessible — Metro Water's informal procurement model and cooperative purchasing approach means relationship-building and a well-timed unsolicited proposal are viable paths in.</div>
+      <div class="tags"><span class="tag">Public Finance Advisory</span><span class="tag">BIL/WIFA Funding</span><span class="tag">CIP Advisory</span><span class="tag">Post-NWRRDS Transition</span></div>
+    </div>
+  </div>
+
+  <footer>Confidential — Internal Use Only &nbsp;|&nbsp; Deloitte LLP &nbsp;|&nbsp; May 2026 &nbsp;|&nbsp; Research based on publicly available documents. Not for distribution.</footer>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>

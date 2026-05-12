@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Intelligence Brief — Utah Regional Water Districts</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1F2B5B;--green:#86BC25;--white:#fff;--ltgray:#F4F5F7;--midgray:#CCCCCC;--dkgray:#3A3A3A;--ltgreen:#EEF5D8;--border:#D8DCE8;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--dkgray);background:#ECEEF5;line-height:1.6;}
+nav{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:3px solid var(--green);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:8px;height:52px;overflow-x:auto;}
+.nav-brand{font-weight:700;font-size:12px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;margin-right:16px;}
+.tab-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.6);font-size:12px;font-weight:500;padding:6px 14px;border-radius:4px;white-space:nowrap;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.tab-btn:hover{color:#fff;background:rgba(255,255,255,.08);}
+.tab-btn.active{color:#fff;background:rgba(134,188,37,.25);border-bottom:2px solid var(--green);}
+.page{max-width:1100px;margin:0 auto;padding:28px 24px 80px;}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+.cover{background:var(--navy);border-radius:6px;padding:40px 48px 36px;margin-bottom:32px;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--green);}
+.cover-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:10px;}
+.cover h1{font-family:'Libre Baskerville',serif;font-size:32px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:8px;}
+.cover-sub{font-size:14px;color:rgba(255,255,255,.6);margin-bottom:16px;}
+.cover-meta{display:flex;gap:20px;font-size:11px;color:rgba(255,255,255,.4);}
+.cover-meta span{display:flex;align-items:center;gap:5px;}
+.dot{width:3px;height:3px;border-radius:50%;background:var(--green);}
+.exec-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+.exec-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--navy);border-radius:4px;padding:20px;}
+.exec-card.highlight{border-top-color:var(--green);}
+.exec-card h3{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;}
+.exec-card p,.exec-card li{font-size:12.5px;line-height:1.65;color:var(--dkgray);}
+.exec-card ul{padding-left:16px;}
+.exec-card li{margin-bottom:4px;}
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-bottom:24px;border-radius:4px;overflow:hidden;}
+.kpi{background:var(--navy);padding:16px 12px;text-align:center;}
+.kpi-val{font-family:'Libre Baskerville',serif;font-size:20px;font-weight:700;color:var(--green);display:block;margin-bottom:4px;}
+.kpi-lbl{font-size:10px;color:rgba(255,255,255,.6);line-height:1.4;}
+.kpi-entity{font-size:11px;font-weight:600;color:rgba(255,255,255,.4);margin-top:4px;}
+.opp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+.opp-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--green);padding:16px 18px;border-radius:0 4px 4px 0;}
+.opp-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.opp-body{font-size:12px;color:var(--dkgray);line-height:1.6;}
+.opp-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+.opp-tag{background:var(--ltgreen);color:#3a6000;font-size:10px;font-weight:600;padding:2px 8px;border-radius:3px;}
+.priority-table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:12.5px;}
+.priority-table thead tr{background:var(--navy);}
+.priority-table thead th{color:#fff;font-weight:600;padding:10px 12px;text-align:left;font-size:11px;}
+.priority-table tbody tr:nth-child(odd){background:var(--ltgray);}
+.priority-table tbody tr:nth-child(even){background:#fff;}
+.priority-table td{padding:10px 12px;border:1px solid var(--border);vertical-align:top;line-height:1.55;}
+.priority-table td:first-child{font-weight:700;color:var(--navy);white-space:nowrap;}
+.conf-high{color:#2E7D32;font-weight:700;font-size:11px;}
+.conf-med{color:#E65100;font-weight:700;font-size:11px;}
+.conf-low{color:#C62828;font-weight:700;font-size:11px;}
+.section-hdr{background:var(--navy);color:#fff;font-size:14px;font-weight:700;padding:12px 20px;border-radius:4px;margin:0 0 24px;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:28px;border-radius:4px;overflow:hidden;border:1px solid var(--navy);}
+.stat{background:var(--navy);padding:18px 14px;text-align:center;}
+.stat-val{font-family:'Libre Baskerville',serif;font-size:22px;font-weight:700;color:var(--green);display:block;margin-bottom:6px;}
+.stat-lbl{font-size:10px;color:rgba(255,255,255,.6);line-height:1.4;}
+.sub-hdr{font-size:14px;font-weight:700;color:var(--navy);border-bottom:2px solid var(--midgray);padding-bottom:7px;margin:28px 0 12px;}
+p.bt{font-size:13px;line-height:1.7;color:var(--dkgray);margin-bottom:14px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px;}
+.cell{border:1px solid var(--border);padding:14px 16px;background:#fff;}
+.cell-title{font-size:12.5px;font-weight:700;color:var(--green);margin-bottom:6px;line-height:1.35;}
+.cell-body{font-size:12px;color:var(--dkgray);line-height:1.65;}
+.ch-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px;}
+.ch-cell{border:1px solid var(--border);padding:12px 14px;background:#fff;font-size:12px;line-height:1.6;}
+.ch-cell strong{color:var(--navy);}
+.partners{background:var(--ltgray);border:1px solid var(--border);border-left:3px solid var(--green);padding:12px 16px;font-size:12px;line-height:1.7;margin-bottom:8px;border-radius:0 4px 4px 0;}
+.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px;}
+.news-cell{border:1px solid var(--border);padding:14px 16px;background:#fff;}
+.news-title{font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.news-body{font-size:12px;color:var(--dkgray);line-height:1.65;}
+.rfp-table{width:100%;border-collapse:collapse;margin-bottom:8px;font-size:12px;}
+.rfp-table thead tr{background:var(--navy);}
+.rfp-table thead th{color:#fff;font-weight:600;padding:9px 12px;text-align:left;font-size:11px;}
+.rfp-table tbody tr:nth-child(odd){background:var(--ltgray);}
+.rfp-table tbody tr:nth-child(even){background:#fff;}
+.rfp-table td{padding:9px 12px;border:1px solid var(--border);vertical-align:top;line-height:1.55;}
+.rfp-table td:first-child{width:80px;text-align:center;}
+.rfp-table td:nth-child(2){width:200px;font-weight:600;color:var(--navy);}
+.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+.bp{background:rgba(31,43,91,.1);color:var(--navy);}
+.ba{background:rgba(134,188,37,.15);color:#4a7000;}
+.bpi{background:rgba(255,165,0,.12);color:#8a5200;}
+.baw{background:rgba(0,128,0,.1);color:#005200;}
+.pursuit{border:1px solid var(--border);border-left:4px solid var(--navy);background:#fff;padding:18px 20px;margin-bottom:10px;border-radius:0 4px 4px 0;}
+.pursuit-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:4px;}
+.pursuit-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.3;}
+.pursuit-body{font-size:12.5px;line-height:1.7;color:var(--dkgray);margin-bottom:10px;}
+.tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{background:var(--ltgreen);color:#3a6000;font-size:10px;font-weight:700;padding:2px 9px;border-radius:3px;}
+.comp-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px;}
+.comp-table thead tr{background:var(--navy);}
+.comp-table thead th{color:#fff;font-weight:700;padding:10px 12px;text-align:left;font-size:11px;}
+.comp-table tbody tr:nth-child(odd){background:var(--ltgray);}
+.comp-table tbody tr:nth-child(even){background:#fff;}
+.comp-table td{padding:10px 12px;border:1px solid var(--border);vertical-align:top;line-height:1.55;}
+.comp-table td:first-child{font-weight:700;color:var(--navy);width:130px;white-space:nowrap;}
+.action-box{background:#fff;border:1px solid var(--border);border-radius:4px;padding:18px 20px;margin-bottom:10px;}
+.action-timing{display:inline-block;background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:3px;margin-bottom:8px;}
+.action-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.action-body{font-size:12.5px;line-height:1.7;color:var(--dkgray);margin-bottom:10px;}
+.pri-1{background:#1F2B5B;color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:700;}
+.pri-2{background:#2E5B99;color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:700;}
+.pri-3{background:#86BC25;color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:700;}
+.note-box{background:#FFF8E1;border:1px solid #FFD54F;border-left:4px solid #F9A825;padding:12px 16px;border-radius:0 4px 4px 0;font-size:12px;line-height:1.6;margin-bottom:16px;color:var(--dkgray);}
+.note-box strong{color:#7A5800;}
+footer{text-align:center;padding:20px;font-size:11px;color:#999;border-top:1px solid var(--midgray);margin-top:48px;}
+@media(max-width:700px){.stats,.kpi-row{grid-template-columns:1fr 1fr;}.two-col,.ch-grid,.news-grid,.exec-grid,.opp-grid{grid-template-columns:1fr;}.nav-brand{display:none;}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">UT Water Brief</div>
+    <button class="tab-btn active" onclick="showTab('exec')">Executive Summary</button>
+    <button class="tab-btn" onclick="showTab('cuwcd')">CUWCD</button>
+    <button class="tab-btn" onclick="showTab('jvwcd')">JVWCD</button>
+    <button class="tab-btn" onclick="showTab('wcwcd')">WCWCD</button>
+    <button class="tab-btn" onclick="showTab('wbwcd')">WBWCD</button>
+    <button class="tab-btn" onclick="showTab('mwdsls')">MWDSLS</button>
+    <button class="tab-btn" onclick="showTab('comparison')">Comparison &amp; Sequencing</button>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="cover">
+    <div class="cover-label">Client Intelligence Brief</div>
+    <h1>Utah Regional Water Districts</h1>
+    <div class="cover-sub">CUWCD · JVWCD · WCWCD · Weber Basin (WBWCD) · Metropolitan Water District of Salt Lake &amp; Sandy (MWDSLS)</div>
+    <div class="cover-meta">
+      <span><span class="dot"></span>May 2026</span>
+      <span><span class="dot"></span>Confidential — Internal Use Only</span>
+      <span><span class="dot"></span>Deloitte LLP</span>
+    </div>
+  </div>
+
+  <div class="note-box"><strong>Note on Revenue Figures:</strong> Revenue figures for WBWCD and MWDSLS are sourced from the PPT research provided (ranges and budget figures from official district sources). CUWCD, JVWCD, and WCWCD figures are independently verified against official audited financial statements. All figures should be treated as best-available estimates pending independent verification where noted.</div>
+
+  <!-- EXEC SUMMARY -->
+  <div id="tab-exec" class="tab-panel active">
+    <div class="section-hdr">Executive Summary — Utah Water Market</div>
+    <div class="kpi-row">
+      <div class="kpi"><span class="kpi-val">$110.3M</span><div class="kpi-lbl">Operating Revenue (audited)</div><div class="kpi-entity">CUWCD (FY2025)</div></div>
+      <div class="kpi"><span class="kpi-val">$75.7M</span><div class="kpi-lbl">Operating Revenue (audited)</div><div class="kpi-entity">JVWCD (FY2025)</div></div>
+      <div class="kpi"><span class="kpi-val">~$47–108M</span><div class="kpi-lbl">Revenue (budgeted; range FY23–FY25)</div><div class="kpi-entity">WBWCD</div></div>
+      <div class="kpi"><span class="kpi-val">~$24.6M</span><div class="kpi-lbl">Operating Revenue (2024)</div><div class="kpi-entity">MWDSLS</div></div>
+      <div class="kpi"><span class="kpi-val">$26.1M</span><div class="kpi-lbl">Operating Revenue (audited)</div><div class="kpi-entity">WCWCD (2024)</div></div>
+    </div>
+    <div class="exec-grid">
+      <div class="exec-card highlight">
+        <h3>Market Overview</h3>
+        <p>Utah's water district market is anchored by CUWCD ($110.3M operating revenue, $2.1B total assets) as the largest conservancy district in the state, followed by JVWCD ($75.7M) serving Salt Lake County's fastest-growing cities. WBWCD operates the largest secondary irrigation system in the western U.S. and serves 5 counties. MWDSLS is a key wholesale provider for Salt Lake City and Sandy City. WCWCD serves the fastest-growing county in the nation — St. George and Washington County. All five entities face the same core challenges: population growth, aging infrastructure, Great Salt Lake health, and long-term water supply development.</p>
+      </div>
+      <div class="exec-card">
+        <h3>Key Market Dynamics</h3>
+        <ul>
+          <li>Utah is one of the fastest-growing states in the U.S. — all 5 entities face sustained demand growth</li>
+          <li>Great Salt Lake decline is an explicit strategic priority for JVWCD, CUWCD, and WBWCD</li>
+          <li>Wasatch Fault seismic risk creates infrastructure resilience urgency across Salt Lake Valley entities</li>
+          <li>JVWCD's Digital Twin pilot (Sept. 2025) is the most current confirmed technology investment signal</li>
+          <li>WBWCD received a $33.3M federal/state grant award — BIL/IRA funding active in Utah</li>
+          <li>MWDSLS has a $47.5M FY2025 capital budget with mixed federal/bond/rate funding — complex financing advisory opportunity</li>
+          <li>WCWCD's Lake Powell Pipeline is Utah's most consequential long-term water supply project</li>
+        </ul>
+      </div>
+      <div class="exec-card">
+        <h3>Revenue Confidence Summary</h3>
+        <ul>
+          <li><span class="conf-high">HIGH</span> — CUWCD: $110.3M (audited financial statements, cuwcd.gov, FY2025)</li>
+          <li><span class="conf-high">HIGH</span> — JVWCD: $75.7M (audited financial statements, jvwcd.gov, FY2025)</li>
+          <li><span class="conf-med">MEDIUM</span> — WBWCD: $73.76M total revenue FY23 / $108M budgeted FY25 (from PPT; official budget documents cited; ranges used due to year-over-year variability)</li>
+          <li><span class="conf-med">MEDIUM</span> — MWDSLS: $24.6M operating revenue 2024 / $111.4M budgeted FY2026 (from PPT citing 2024/2023 financial statements; large gap between operating revenue and total budget reflects capital project funding)</li>
+          <li><span class="conf-high">HIGH</span> — WCWCD: $26.1M operating revenue / $111.6M total revenue (2024 audited, Hinton Burdick, wcwcd.gov)</li>
+        </ul>
+      </div>
+      <div class="exec-card">
+        <h3>Procurement Access Summary</h3>
+        <ul>
+          <li><strong>CUWCD</strong> — cuwcd.gov/bids.htm + Projectmates portal (cuwcd.projectmates.com) + UtahBids.net aggregation</li>
+          <li><strong>JVWCD</strong> — jvwcd.gov/public/projects; separate Consultant and Contractor tracks per project; active SOQs confirmed Sept. 2025</li>
+          <li><strong>WCWCD</strong> — wcwcd.gov/procurement; standard Utah Procurement Code</li>
+          <li><strong>WBWCD</strong> — weberbasin.com/PublicResources/PublicNotices; public notices and bidding documents</li>
+          <li><strong>MWDSLS</strong> — Utah Procurement Code; bids and solicitations page (link in PPT); formal procurement structure</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sub-hdr">Top Deloitte Opportunities — Utah Water Market</div>
+    <div class="opp-grid">
+      <div class="opp-card">
+        <div class="opp-title">1. Digital Twin &amp; Technology Advisory — JVWCD (Immediate Entry Point)</div>
+        <div class="opp-body">JVWCD's September 2025 Digital Twin Pilot award at SERWTP is a live, confirmed technology investment signal. Deloitte Digital Engineering can scale the pilot to a district-wide digital infrastructure strategy — an entry point engineering firms cannot easily occupy. Active SOQ for Strategic &amp; Legislative Communications also live now.</div>
+        <div class="opp-tags"><span class="opp-tag">Digital Engineering</span><span class="opp-tag">Digital Twin</span><span class="opp-tag">JVWCD</span></div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-title">2. Capital PMO &amp; Financial Advisory — CUWCD ($303.8M Capital Projects Fund)</div>
+        <div class="opp-body">CUWCD's $303.8M Capital Projects Fund balance and $398M annual budget are the largest in the UT portfolio. Central Water Project delivery, Olmsted replacement, and CUPCA compliance create sustained PMO and financial advisory demand — an advisory lane open vs. engineering firms competing for design/build.</div>
+        <div class="opp-tags"><span class="opp-tag">Capital PMO</span><span class="opp-tag">G&I Practice</span><span class="opp-tag">CUWCD</span></div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-title">3. Federal Funding &amp; Capital Financing — MWDSLS + WBWCD</div>
+        <div class="opp-body">MWDSLS's FY2026 capital funding mixes rate revenue, bond proceeds, federal grants, and federal loans — a strong signal they need advisory support on planning, delivery, compliance, and grant-backed execution. WBWCD received $33.3M in federal/state grants and carries AAA/AA+ ratings. Both are primed for Public Finance Advisory engagement.</div>
+        <div class="opp-tags"><span class="opp-tag">Public Finance Advisory</span><span class="opp-tag">MWDSLS</span><span class="opp-tag">WBWCD</span></div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-title">4. Seismic Resilience Advisory — JVWCD (Active Procurements)</div>
+        <div class="opp-body">JVWCD has two active seismic-related procurements: Jordan Aqueduct Seismic Resiliency Study and JVWTP Basins 1-2 Seismic Upgrades. Deloitte Risk Advisory can lead a comprehensive seismic resilience strategy across critical assets serving 775K people on the Wasatch Fault — distinct from structural engineering firms competing for design work.</div>
+        <div class="opp-tags"><span class="opp-tag">Risk Advisory</span><span class="opp-tag">Seismic Resilience</span><span class="opp-tag">JVWCD</span></div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-title">5. Lake Powell Pipeline Advisory — WCWCD</div>
+        <div class="opp-body">WCWCD is the lead agency for the proposed Lake Powell Pipeline — Utah's most consequential long-term water supply project. Multi-decade program management, NEPA/EIS stakeholder engagement, interstate negotiations, and financial modeling advisory are all needed as the project advances. Near-term entry: impact fee studies and rate design.</div>
+        <div class="opp-tags"><span class="opp-tag">G&I Practice</span><span class="opp-tag">Public Finance Advisory</span><span class="opp-tag">WCWCD</span></div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-title">6. Conservation Analytics &amp; Demand Management — All 5 Entities</div>
+        <div class="opp-body">All 5 Utah entities face water demand growth outpacing supply in a high-growth, water-scarce state. CUWCD's 25% conservation target by 2050, JVWCD's 11,064 AF projected gap, and WCWCD's 11,400 AF conservation goal all require data infrastructure, program design, and performance measurement. A reusable Deloitte Analytics offering across all 5 entities creates cross-sell momentum.</div>
+        <div class="opp-tags"><span class="opp-tag">Analytics &amp; AI</span><span class="opp-tag">Conservation Strategy</span><span class="opp-tag">All 5 Entities</span></div>
+      </div>
+    </div>
+    <div class="sub-hdr">Entity Priority Rankings for Deloitte Engagement</div>
+    <table class="priority-table">
+      <thead><tr><th>Priority</th><th>Entity</th><th>Operating Revenue</th><th>Confidence</th><th>Top Deloitte Angle</th><th>Entry Ease</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pri-1">#1 PRIORITY</span></td><td><strong>JVWCD</strong></td><td>$75.7M (FY2025, audited)</td><td><span class="conf-high">HIGH</span></td><td>Digital Twin Advisory + Seismic Resilience + Financial Visibility + Stakeholder Comms (active SOQs)</td><td>High — Digital Twin pilot + active SOQs = live entry points right now</td></tr>
+        <tr><td><span class="pri-1">#1 PRIORITY</span></td><td><strong>CUWCD</strong></td><td>$110.3M (FY2025, audited)</td><td><span class="conf-high">HIGH</span></td><td>Capital PMO ($303.8M CWP Fund) + Financial Planning + Conservation Analytics + OT Cybersecurity</td><td>Moderate — capital PMO and financial advisory are open lanes vs. engineering firms</td></tr>
+        <tr><td><span class="pri-2">#2 PRIORITY</span></td><td><strong>WBWCD</strong></td><td>$73.76M FY23 / ~$108M budgeted FY25</td><td><span class="conf-med">MEDIUM</span></td><td>Federal Funding Advisory ($33.3M grant; AAA rated) + Secondary Irrigation Efficiency + OT Cybersecurity</td><td>Moderate — public notices portal accessible; $33.3M federal grant signals advisory appetite</td></tr>
+        <tr><td><span class="pri-2">#2 PRIORITY</span></td><td><strong>MWDSLS</strong></td><td>$24.6M operating revenue / $111.4M FY2026 budget</td><td><span class="conf-med">MEDIUM</span></td><td>Capital Program Advisory ($47.5M FY25 capital budget) + Federal Grant Compliance + LCR Compliance</td><td>Moderate — Utah Procurement Code; mixed federal/bond/rate funding creates clear advisory needs</td></tr>
+        <tr><td><span class="pri-2">#2 PRIORITY</span></td><td><strong>WCWCD</strong></td><td>$26.1M operating / $111.6M total (2024, audited)</td><td><span class="conf-high">HIGH</span></td><td>Lake Powell Pipeline Advisory + Rate/Impact Fee Design + Growth Management Strategy</td><td>Moderate — procurement page accessible; pipeline advisory compelling but long-horizon</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CUWCD -->
+  <div id="tab-cuwcd" class="tab-panel">
+    <div class="section-hdr">Central Utah Water Conservancy District (CUWCD)</div>
+    <div class="stats">
+      <div class="stat"><span class="stat-val">$110.3M</span><div class="stat-lbl">FY2025 Operating Revenue — HIGH (Audited, cuwcd.gov)</div></div>
+      <div class="stat"><span class="stat-val">$267.3M</span><div class="stat-lbl">FY2025 Total Revenue (incl. capital/non-operating)</div></div>
+      <div class="stat"><span class="stat-val">$2.1B</span><div class="stat-lbl">Total Assets (June 30, 2025)</div></div>
+      <div class="stat"><span class="stat-val">$398M</span><div class="stat-lbl">Approved FY2025–26 Budget</div></div>
+    </div>
+    <div class="sub-hdr">Agency Overview</div>
+    <p class="bt">CUWCD is the largest water district in Utah, delivering clean water to customers across seven counties — Salt Lake, Uintah, Duchesne, Juab, Wasatch, Summit, and Utah. Established in 1964, CUWCD serves as the local repayment agency and operator of the Central Utah Project (CUP), a vast federal water infrastructure system. FY2025 operating revenue $110.3M; total revenue $267.3M; total assets $2.1B; net position $1,292.5M (2025 Audited Financial Statements, cuwcd.gov). Budget $398M (FY2025–26). Directly delivers water to 20 entities (14 municipalities + 6 improvement/conservation districts). Fitch AA+ rated. Operates 3 water treatment facilities, 2 hydroelectric plants, 9 reservoirs.</p>
+    <div class="sub-hdr">Key Projects &amp; Initiatives</div>
+    <div class="two-col">
+      <div class="cell"><div class="cell-title">Central Water Project (CWP) — $303.8M Capital Projects Fund</div><div class="cell-body">CWP Fund balance $303.8M at June 30, 2025. Primary vehicle for new water infrastructure — conveyance, storage, and treatment capacity expansion. The Olmsted replacement work (aging infrastructure) is a major active component. Total governmental fund balance: $453.5M (General $45.6M, CUPCA $18.8M, CWP $39.5M, Debt Service $45.8M, Capital Projects $303.8M).</div></div>
+      <div class="cell"><div class="cell-title">Conservation &amp; Demand Management — 25% Reduction Target by 2050</div><div class="cell-body">2025 Water Conservation Plan (adopted 2025) targets 25% per-capita water use reduction by 2050. Conservation positioned as necessary but insufficient — new supply development also required. Regional conservation collaboration with cities/agencies; aggressive non-functional turf reduction across 7 counties.</div></div>
+      <div class="cell"><div class="cell-title">Jordanelle Hydroelectric &amp; Renewable Energy</div><div class="cell-body">CUWCD operates the Jordanelle Hydroelectric Plant as a separate enterprise fund — generating power revenue diversification from water deliveries. June Sucker Recovery Agreement Fund is a private purpose trust fund reflecting CUWCD's federal environmental obligations under CUPCA. Hydroelectric operations support financial sustainability and environmental stewardship mandate.</div></div>
+      <div class="cell"><div class="cell-title">New Water Supply Development &amp; Regional Collaboration</div><div class="cell-body">CUWCD positions itself as a regional convener across its 20+ customer agencies. New supply sources actively being developed — conservation alone insufficient per district's own strategic framework. Regional collaboration with municipalities, USBR, and ADWR is a declared strategic pillar. Great Salt Lake health and resilience is an explicitly stated environmental priority.</div></div>
+    </div>
+    <div class="sub-hdr">Key Challenge Areas</div>
+    <div class="ch-grid">
+      <div class="ch-cell"><strong>Water Supply Development — Long-Term Demand Growth</strong> — Utah County faces sustained population growth. CUWCD explicitly acknowledges conservation alone is insufficient. New supply development requires decades of planning and capital investment.</div>
+      <div class="ch-cell"><strong>Aging Infrastructure &amp; Olmsted Replacement</strong> — CUP infrastructure requires replacement and rehabilitation. Olmsted replacement is an active capital priority. Managing dispersed dams, reservoirs, treatment plants, and pipelines across 7 counties creates sustained O&M complexity.</div>
+      <div class="ch-cell"><strong>Federal CUPCA Partnership &amp; USBR Relationship</strong> — Operates under CUPCA (1992) with DOI CUPCA program manager. Federal budget pressures and CUPCA cost-sharing requirements create multi-year capital program uncertainty.</div>
+      <div class="ch-cell"><strong>Great Salt Lake Resilience &amp; Environmental Obligations</strong> — GSL health is an explicit strategic priority. June Sucker Recovery Agreement Fund reflects federal compliance obligations. Climate change and drought increase complexity for 7-county water supply planning.</div>
+      <div class="ch-cell"><strong>Financial Sustainability — Debt Service &amp; Capital Reserve</strong> — Managing $398M annual budget, five distinct government funds, Jordanelle enterprise fund, and CUPCA cost-sharing requires sophisticated financial planning as capital program scale grows.</div>
+      <div class="ch-cell"><strong>Cybersecurity &amp; Operational Technology</strong> — Operates critical infrastructure including dams, hydropower plants, treatment facilities, and pipelines across 7 counties. SCADA and ICS across distributed infrastructure create OT cybersecurity exposure consistent with national water sector risk trends.</div>
+    </div>
+    <div class="sub-hdr">Known Partners &amp; Third Parties</div>
+    <div class="partners">U.S. Department of Interior / CUPCA Program Manager &nbsp;•&nbsp; U.S. Bureau of Reclamation (USBR) &nbsp;•&nbsp; Utah Division of Water Resources (DWRe) &nbsp;•&nbsp; 14 municipal + 6 improvement/conservation district customers &nbsp;•&nbsp; Utah Water Finance Agency — bond issuance &nbsp;•&nbsp; Fitch Ratings (AA+) &nbsp;•&nbsp; Projectmates — construction program management (cuwcd.projectmates.com)</div>
+    <div class="sub-hdr">Recent News &amp; Developments</div>
+    <div class="news-grid">
+      <div class="news-cell"><div class="news-title">FY2025 Audited Financial Statements — Net Position $1.29B</div><div class="news-body">2025 Audited Financial Statements confirmed: operating revenue $110.3M; total revenue $267.3M; total assets $2.1B; net position $1,292.5M. Governmental fund balance: $453.5M. Available at cuwcd.gov/resources/financial.</div></div>
+      <div class="news-cell"><div class="news-title">FY2025–26 Budget Approved at $398M</div><div class="news-body">Approved FY2025–26 budget of $398M (up from $382M in FY2024–25) reflects sustained capital investment in CUP infrastructure, new supply development, and conservation programs. Available at cuwcd.gov/resources/financial.</div></div>
+      <div class="news-cell"><div class="news-title">2025 Water Conservation Plan Adopted</div><div class="news-body">25% per-capita water use reduction target by 2050 established. Regional conservation collaboration with cities/agencies and non-functional turf reduction are primary demand levers across 7 counties.</div></div>
+      <div class="news-cell"><div class="news-title">Projectmates Construction Portal Active</div><div class="news-body">CUWCD uses Projectmates Program Information System for construction program management (cuwcd.projectmates.com). Procurement managed through cuwcd.gov/bids.htm and UtahBids.net aggregation — signals structured capital program delivery.</div></div>
+    </div>
+    <div class="sub-hdr">Recent RFPs &amp; Procurement</div>
+    <table class="rfp-table"><thead><tr><th>Status</th><th>Opportunity</th><th>Detail</th></tr></thead><tbody>
+      <tr><td><span class="badge bp">PORTAL</span></td><td>CUWCD Bids &amp; RFPs</td><td><strong>cuwcd.gov/bids.htm</strong> + cuwcd.projectmates.com + utahbids.net. Contractor qualifications at cuwcd.gov. Not on PlanetBids.</td></tr>
+      <tr><td><span class="badge ba">ACTIVE</span></td><td>Central Water Project — Capital Construction</td><td>CWP Fund balance $303.8M reflects active capital pipeline. Ongoing solicitations for construction, engineering, and program management tied to CUP infrastructure. Monitor cuwcd.gov/bids.htm and Projectmates portal.</td></tr>
+      <tr><td><span class="badge bpi">PIPELINE</span></td><td>Olmsted Replacement &amp; Infrastructure Rehab</td><td>Aging CUP infrastructure rehabilitation — including Olmsted replacement — is a declared capital priority. Engineering, design, and CM solicitations anticipated.</td></tr>
+      <tr><td><span class="badge bpi">PIPELINE</span></td><td>Conservation Technology &amp; Analytics</td><td>25% reduction target by 2050 will drive demand for technology, data analytics, and program design support across 7 counties and 20+ member agencies.</td></tr>
+    </tbody></table>
+    <div class="sub-hdr">Deloitte Pursuit Angles</div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 1</div><div class="pursuit-title">Capital Program PMO &amp; Owner's Advisor — CWP and CUP Infrastructure</div><div class="pursuit-body">$303.8M Capital Projects Fund balance and $398M annual budget make CUWCD the largest revenue opportunity in the UT portfolio. Central Water Project, Olmsted replacement, and CUP infrastructure rehabilitation create sustained PMO, project controls, and owner's advisor demand — distinct from Bowen Collins and engineering firms competing for design/build. CUWCD's Projectmates portal signals structured capital delivery appetite.</div><div class="tags"><span class="tag">Capital PMO</span><span class="tag">Owner's Advisor</span><span class="tag">G&I Practice</span><span class="tag">Program Controls</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 2</div><div class="pursuit-title">Financial Planning, Debt Strategy &amp; CUPCA Compliance</div><div class="pursuit-body">CUWCD manages a complex financial structure: $398M budget, $1.29B net position, five government funds, Jordanelle enterprise fund, CUPCA cost-sharing obligations with DOI, and AA+ revenue bonds. Deloitte Public Finance Advisory can support multi-year financial modeling, debt capacity analysis, CUPCA compliance planning, and rate design as capital program grows.</div><div class="tags"><span class="tag">Public Finance Advisory</span><span class="tag">Debt Strategy</span><span class="tag">CUPCA Compliance</span><span class="tag">Rate Design</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 3</div><div class="pursuit-title">Conservation Analytics &amp; Data Infrastructure — 25% Target by 2050</div><div class="pursuit-body">2025 Conservation Plan's 25% per-capita reduction target across 7 counties and 20+ member agencies requires sophisticated data infrastructure, program design, demand forecasting, and performance tracking. Deloitte Analytics &amp; AI can support CUWCD in building the data and program management infrastructure to measure, report, and accelerate conservation outcomes.</div><div class="tags"><span class="tag">Analytics &amp; AI</span><span class="tag">Conservation Strategy</span><span class="tag">Data Infrastructure</span><span class="tag">Program Design</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 4</div><div class="pursuit-title">Cybersecurity &amp; OT Risk — Distributed Critical Infrastructure</div><div class="pursuit-body">CUWCD operates 3 water treatment facilities, 2 hydroelectric plants, 9 reservoirs, and a geographically dispersed pipeline system across 7 counties. ICS, SCADA, and dam safety monitoring across this distributed infrastructure create significant OT/ICS exposure. Deloitte Cyber can lead a risk assessment and NIST CSF alignment tailored to CUWCD's unique combination of hydropower and water delivery infrastructure.</div><div class="tags"><span class="tag">Deloitte Cyber</span><span class="tag">OT/ICS Security</span><span class="tag">NIST CSF</span><span class="tag">Dam Safety Systems</span></div></div>
+  </div>
+
+  <!-- JVWCD -->
+  <div id="tab-jvwcd" class="tab-panel">
+    <div class="section-hdr">Jordan Valley Water Conservancy District (JVWCD)</div>
+    <div class="stats">
+      <div class="stat"><span class="stat-val">$75.7M</span><div class="stat-lbl">FY2025 Operating Revenue — HIGH (Audited, jvwcd.gov)</div></div>
+      <div class="stat"><span class="stat-val">$820.5M</span><div class="stat-lbl">Total Assets (FY2025)</div></div>
+      <div class="stat"><span class="stat-val">775K</span><div class="stat-lbl">Customers Served (2024 Annual Report)</div></div>
+      <div class="stat"><span class="stat-val">AA+</span><div class="stat-lbl">Bond Rating — Both S&P Global and Fitch Ratings</div></div>
+    </div>
+    <div class="sub-hdr">Agency Overview</div>
+    <p class="bt">JVWCD is primarily a wholesaler of water to cities and improvement districts within Salt Lake County — one of the fastest-growing areas in the U.S. Established 1951. Delivers ~90% wholesale to 17–18 member agencies; retail ~10% (8,500+ connections). Serves 775K+ people. FY2025 operating revenue $75.7M; total assets $820.5M; net position $422M (2025 Financial Statements, jvwcd.gov). Both S&P and Fitch assign AA+. 160 employees. January 2024 Strategic Plan establishes 8 focus areas including Financial Visibility and Enterprise Resiliency. Office relocation planned January 2026.</p>
+    <div class="sub-hdr">Key Projects &amp; Initiatives</div>
+    <div class="two-col">
+      <div class="cell"><div class="cell-title">Capital Improvement Program — Active Multi-Project Pipeline (Confirmed Sept. 2025)</div><div class="cell-body">Active CIP: 2025 Pipeline Replacement (Woodstock Area), Jordan Aqueduct Seismic Resiliency Study, Rosecrest Pipeline Capacity Upgrades, SW Aqueduct Reach 2, 10200S/3600W Booster Pump Station, 5700W/10200S Booster Pump Station Upgrades, JVWTP Basins 1-2 Seismic &amp; Capacity Upgrades, JVWTP Filter &amp; Chemical Feed Upgrades, SERWTP Disinfection CT Improvements, Casto &amp; Dry Creek Springs Treatment Plant, 11800S Zone C Reservoirs. Source: jvwcd.gov/public/projects (verified September 2025).</div></div>
+      <div class="cell"><div class="cell-title">Digital Twin Pilot at SERWTP — Awarded September 2025</div><div class="cell-body">JVWCD awarded a Digital Twin Pilot contract at Southeast Regional Water Treatment Plant (Notice of Award September 10, 2025 — confirmed at jvwcd.gov/public/projects). Combined with active AMI across retail system and 2025 Business Data Analyst hiring, confirms active technology modernization momentum. Most current confirmed technology investment signal in the UT portfolio.</div></div>
+      <div class="cell"><div class="cell-title">Strategic Plan (Jan. 2024) — 8 Focus Areas</div><div class="cell-body">Eight strategic focus areas: (1) Product Quality &amp; Operational Optimization; (2) Customer Satisfaction &amp; Stakeholder Support; (3) Employee &amp; Leadership Development; (4) Financial Visibility; (5) Infrastructure Strategy &amp; Performance; (6) Enterprise Resiliency; (7) Water Resource Sustainability; (8) Community Sustainability. 'Financial Visibility' and 'Enterprise Resiliency' as named pillars signal openness to external advisory.</div></div>
+      <div class="cell"><div class="cell-title">2024 Water Conservation Plan &amp; Great Salt Lake</div><div class="cell-body">2024 Water Conservation Plan Update (adopted November 2024) projects 11,064 AF supply-demand gap by 2030 under current conservation rates (reducible to 2,770 AF with widescale efficiency). Conservation programs explicitly benefit Great Salt Lake health. JVWCD operates a 30–50 year supply planning horizon. Distributed to all 17 member agencies, counties served, and media.</div></div>
+    </div>
+    <div class="sub-hdr">Key Challenge Areas</div>
+    <div class="ch-grid">
+      <div class="ch-cell"><strong>Salt Lake County Growth &amp; Supply Development</strong> — 2024 Conservation Plan projects 11,064 AF supply-demand gap by 2030. New supply development requires decades of advance planning; JVWCD managing a 30–50 year horizon.</div>
+      <div class="ch-cell"><strong>Seismic Risk — Wasatch Fault</strong> — Multiple active CIP projects address seismic risk (Jordan Aqueduct Seismic Resiliency Study; JVWTP Basins 1-2 Seismic &amp; Capacity Upgrades). Wasatch Fault poses acute risk to infrastructure serving 775K people.</div>
+      <div class="ch-cell"><strong>Aging Infrastructure &amp; Treatment Plant Upgrades</strong> — Multiple active CIP projects address aging infrastructure across JVWTP, SERWTP, booster pump stations, reservoir construction, and pipeline replacements.</div>
+      <div class="ch-cell"><strong>Lead &amp; Copper Rule Compliance</strong> — FY2025/26 budget priorities explicitly include preparing for LCR revision — signal of upcoming capital and operational compliance investment.</div>
+    </div>
+    <div class="sub-hdr">Known Partners &amp; Third Parties</div>
+    <div class="partners">17–18 wholesale member agencies including South Jordan, West Jordan, Draper, Riverton, Herriman, Bluffdale, Midvale, Murray, Cottonwood Heights &nbsp;•&nbsp; Utah Water Finance Agency — bond issuance &nbsp;•&nbsp; S&P Global Ratings and Fitch Ratings (both AA+) &nbsp;•&nbsp; U.S. Bureau of Reclamation — CUP water supply &nbsp;•&nbsp; Utah Division of Water Resources &nbsp;•&nbsp; Wasatch Front Regional Council — population projections &nbsp;•&nbsp; Kem C. Gardner Policy Institute</div>
+    <div class="sub-hdr">Recent News &amp; Developments</div>
+    <div class="news-grid">
+      <div class="news-cell"><div class="news-title">Digital Twin Pilot Awarded at SERWTP — Sept. 10, 2025</div><div class="news-body">Notice of Award September 10, 2025 (confirmed jvwcd.gov/public/projects). Most current confirmed technology investment signal in the UT portfolio — direct entry point for Deloitte Digital Engineering.</div></div>
+      <div class="news-cell"><div class="news-title">SOQ for Strategic &amp; Legislative Communications — Sept. 15, 2025</div><div class="news-body">JVWCD issued SOQ for Strategic and Legislative Communications Services September 15, 2025 (confirmed jvwcd.gov/public/projects). Live procurement signal for communications and stakeholder advisory capabilities.</div></div>
+      <div class="news-cell"><div class="news-title">Strategic Plan Adopted January 2024 — 8 Focus Areas</div><div class="news-body">'Financial Visibility' and 'Infrastructure Strategy and Performance' as named pillars signal openness to external advisory support. Plan publicly available at jvwcd.gov/about.</div></div>
+      <div class="news-cell"><div class="news-title">2024 Conservation Plan Update — November 2024</div><div class="news-body">Projects 11,064 AF supply-demand gap by 2030 under current rates. Distributed to all 17 member agencies. Confirms JVWCD's role as regional conservation convener across Salt Lake Valley.</div></div>
+    </div>
+    <div class="sub-hdr">Recent RFPs &amp; Procurement</div>
+    <table class="rfp-table"><thead><tr><th>Status</th><th>Opportunity</th><th>Detail</th></tr></thead><tbody>
+      <tr><td><span class="badge bp">PORTAL</span></td><td>JVWCD Public Projects Page</td><td><strong>jvwcd.gov/public/projects</strong> — separate Consultant and Contractor tracks per project. Not on PlanetBids. Utah Procurement Code.</td></tr>
+      <tr><td><span class="badge ba">ACTIVE</span></td><td>Jordan Aqueduct Seismic Resiliency Study</td><td>Active Consultant/Contractor solicitation (confirmed Sept. 2025). Critical seismic risk assessment for regional conveyance serving 775K people.</td></tr>
+      <tr><td><span class="badge ba">ACTIVE</span></td><td>Casto &amp; Dry Creek Springs Treatment Plant</td><td>SOQ issued September 12, 2025. New treatment plant — Consultant + Contractor tracks both active.</td></tr>
+      <tr><td><span class="badge ba">ACTIVE</span></td><td>Strategic &amp; Legislative Communications — SOQ</td><td>SOQ issued September 15, 2025 — live procurement for communications and stakeholder advisory. Directly relevant to Deloitte public affairs advisory.</td></tr>
+      <tr><td><span class="badge baw">AWARDED</span></td><td>Digital Twin Pilot at SERWTP</td><td>Notice of Award September 10, 2025. Technology modernization entry point confirmed.</td></tr>
+    </tbody></table>
+    <div class="sub-hdr">Deloitte Pursuit Angles</div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 1</div><div class="pursuit-title">Digital Twin &amp; Technology Advisory — Scale SERWTP Pilot District-Wide</div><div class="pursuit-body">JVWCD's September 2025 Digital Twin Pilot award at SERWTP is the most direct current technology investment signal in the UT portfolio. Deloitte Digital Engineering can position as a strategic advisory partner for scaling the pilot to a district-wide digital infrastructure strategy — covering JVWTP, SWGWTP, aqueduct system, AMI data, and distribution network. The combination of Digital Twin, active AMI, and Business Data Analyst hiring creates a clear advisory entry point engineering firms cannot easily occupy.</div><div class="tags"><span class="tag">Digital Engineering</span><span class="tag">Digital Twin</span><span class="tag">Analytics &amp; AI</span><span class="tag">Asset Management</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 2</div><div class="pursuit-title">Seismic Risk Assessment &amp; Infrastructure Resilience Advisory</div><div class="pursuit-body">Two active seismic-related procurements: Jordan Aqueduct Seismic Resiliency Study and JVWTP Basins 1-2 Seismic Upgrades. Deloitte Risk Advisory can support JVWCD with a comprehensive seismic resilience strategy: vulnerability assessment across all critical assets, business continuity planning, emergency response protocols, and multi-year capital prioritization for seismic upgrades — distinct from structural engineering firms competing for design work.</div><div class="tags"><span class="tag">Risk Advisory</span><span class="tag">Seismic Resilience</span><span class="tag">Business Continuity</span><span class="tag">Capital Prioritization</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 3</div><div class="pursuit-title">Strategic Planning &amp; Financial Visibility Support</div><div class="pursuit-body">JVWCD's 2024 Strategic Plan explicitly names 'Financial Visibility' as one of its 8 focus areas. Deloitte Finance &amp; Performance can support JVWCD in building financial visibility infrastructure for capital program performance reporting, complex funding mix management (property taxes + water sales + reserves + bonds), and long-range financial projections to the board, member agencies, and rating agencies.</div><div class="tags"><span class="tag">Finance &amp; Performance</span><span class="tag">Financial Visibility</span><span class="tag">Strategic Planning</span><span class="tag">Capital Reporting</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 4</div><div class="pursuit-title">Stakeholder Engagement &amp; Legislative Communications (Live SOQ)</div><div class="pursuit-body">JVWCD's September 2025 SOQ for Strategic and Legislative Communications Services is a confirmed live procurement signal. This directly aligns with Deloitte's Public Sector Communications and Stakeholder Advisory capabilities. A near-term relationship built through this engagement can expand into broader strategic advisory tied to the 2024 Strategic Plan implementation.</div><div class="tags"><span class="tag">Stakeholder Engagement</span><span class="tag">Legislative Strategy</span><span class="tag">Communications Advisory</span><span class="tag">Member Agency Relations</span></div></div>
+  </div>
+
+  <!-- WCWCD -->
+  <div id="tab-wcwcd" class="tab-panel">
+    <div class="section-hdr">Washington County Water Conservancy District (WCWCD)</div>
+    <div class="stats">
+      <div class="stat"><span class="stat-val">$26.1M</span><div class="stat-lbl">2024 Operating Revenue — HIGH (Hinton Burdick Audited, wcwcd.gov)</div></div>
+      <div class="stat"><span class="stat-val">$111.6M</span><div class="stat-lbl">Total Revenue 2024 (incl. capital, grants, impact fees)</div></div>
+      <div class="stat"><span class="stat-val">$722.7M</span><div class="stat-lbl">Total Assets (December 31, 2024)</div></div>
+      <div class="stat"><span class="stat-val">213.7K</span><div class="stat-lbl">People Served (2025) — Fastest-Growing County in UT</div></div>
+    </div>
+    <div class="sub-hdr">Agency Overview</div>
+    <p class="bt">WCWCD is a not-for-profit public agency established in 1962 to manage Washington County's water needs in southern Utah — one of the fastest-growing regions in the U.S. Provides wholesale water to Washington City and 8 municipalities under contractual agreements; also operates 2 retail water systems. 2024 Audited Financial Statements (Hinton Burdick, FY ended Dec. 31, 2024): operating revenue $26.1M; total revenue $111.6M; total assets $722.7M; net position $644M. Note: $26.1M reflects water rate/operational income; $111.6M total includes capital contributions, impact fees, grants, and property taxes. AA+ (Fitch) / AA (S&P). Manages $1B+ in infrastructure capable of producing 60M+ gallons per day.</p>
+    <div class="sub-hdr">Key Projects &amp; Initiatives</div>
+    <div class="two-col">
+      <div class="cell"><div class="cell-title">Lake Powell Pipeline Project — Regional Supply Planning</div><div class="cell-body">WCWCD is the lead agency for the proposed Lake Powell Pipeline (lpputah.org) — a major water supply augmentation project that would bring Colorado River water from Lake Powell to Washington County. The project represents the most significant long-term water supply development effort in southern Utah. Current sources are finite; pipeline development requires decades.</div></div>
+      <div class="cell"><div class="cell-title">Active Capital Projects — Quail Creek WTP &amp; Pump Stations</div><div class="cell-body">Quail to Cottam Pump Stations Project bids opened November 26, 2024 (Bowen Collins &amp; Associates as engineer, confirmed from wcwcd.gov). Hydrologic Services SOQ active November 2024. Three governmental fund structure: General Fund, Special Revenue Fund (Virgin River Program), Capital Projects Fund — combined $255M balance.</div></div>
+      <div class="cell"><div class="cell-title">20-Year Water Plan — 11,400 AF Conservation Target by 2042</div><div class="cell-body">20-Year Plan (adopted 2024) projects conservation will reduce water demand of pre-2023 connections by 11,400 acre-feet between 2022 and 2042. Four pillars: regulation, pricing, incentives, and education. Regional Reuse System (recycled water for non-potable uses) is an active infrastructure program. Sand Hollow Reservoir provides 300,000+ acre-feet underground storage capacity.</div></div>
+      <div class="cell"><div class="cell-title">Regional Reuse System &amp; Secondary Water</div><div class="cell-body">WCWCD operates a Regional Reuse System delivering recycled water for non-potable uses — key demand management in an arid, rapidly growing region. Secondary water systems support agricultural and landscape irrigation. Hydropower plants at dam facilities provide energy revenue diversification.</div></div>
+    </div>
+    <div class="sub-hdr">Key Challenge Areas</div>
+    <div class="ch-grid">
+      <div class="ch-cell"><strong>Rapid Population Growth</strong> — St. George and Washington County consistently rank among the top fastest-growing counties nationally. WCWCD must plan, finance, and build water supply and infrastructure faster than almost any other Intermountain West water district.</div>
+      <div class="ch-cell"><strong>Colorado River Exposure &amp; Lake Powell Pipeline</strong> — Washington County relies on Virgin River and underground storage as primary current sources. Long-term demand growth requires the Lake Powell Pipeline — but NEPA, CO River shortage conditions, and interstate compact complexities create significant timeline risk.</div>
+      <div class="ch-cell"><strong>Capital Funding Complexity</strong> — Three revenue streams: water rates (operations), limited property taxes (watershed/environmental), and impact fees (new infrastructure). Managing these streams across a rapidly growing service area requires sophisticated rate design, impact fee studies, and financial planning.</div>
+      <div class="ch-cell"><strong>Regulatory Complexity — Water Rights &amp; Interstate</strong> — Southern Utah water development requires navigating water rights, Virgin River Compact obligations, Lake Powell Pipeline NEPA/EIS permitting, and coordination with Nevada and Arizona under the Virgin River Basin Compact.</div>
+    </div>
+    <div class="sub-hdr">Known Partners &amp; Third Parties</div>
+    <div class="partners">Washington City and 8 municipalities (contractual wholesale) &nbsp;•&nbsp; Hinton Burdick CPAs (auditor) &nbsp;•&nbsp; Fitch AA+ / S&P AA &nbsp;•&nbsp; U.S. Bureau of Reclamation — Lake Powell Pipeline review; CO River compact &nbsp;•&nbsp; Utah Division of Water Resources — Virgin River Basin planning &nbsp;•&nbsp; Nevada and Arizona — Virgin River Compact &nbsp;•&nbsp; Bowen Collins &amp; Associates — confirmed engineering partner (Quail to Cottam, Nov. 2024) &nbsp;•&nbsp; Utah Water Finance Agency</div>
+    <div class="sub-hdr">Recent RFPs &amp; Procurement</div>
+    <table class="rfp-table"><thead><tr><th>Status</th><th>Opportunity</th><th>Detail</th></tr></thead><tbody>
+      <tr><td><span class="badge bp">PORTAL</span></td><td>WCWCD Procurement Page</td><td><strong>wcwcd.gov/procurement</strong>. Standard Utah Procurement Code. Not on PlanetBids.</td></tr>
+      <tr><td><span class="badge baw">AWARDED</span></td><td>Quail to Cottam Pump Stations</td><td>Bids opened November 26, 2024. Bowen Collins &amp; Associates as engineer of record. Confirms active capital project delivery and engineering firm relationships.</td></tr>
+      <tr><td><span class="badge baw">AWARDED</span></td><td>Hydrologic Services SOQ</td><td>SOQ deadline November 7, 2024. Hydrology advisory relevant to supply planning and Lake Powell Pipeline.</td></tr>
+      <tr><td><span class="badge bpi">PIPELINE</span></td><td>Lake Powell Pipeline — Program Management &amp; Advisory</td><td>As Lake Powell Pipeline advances through NEPA review, program management, stakeholder engagement, financial planning, and environmental advisory will be needed. Monitor lpputah.org and WCWCD Board notices.</td></tr>
+    </tbody></table>
+    <div class="sub-hdr">Deloitte Pursuit Angles</div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 1</div><div class="pursuit-title">Lake Powell Pipeline — Program Management, Stakeholder Engagement &amp; Financial Advisory</div><div class="pursuit-body">The Lake Powell Pipeline is WCWCD's defining long-term strategic project — Washington County's water future depends on it. Requires multi-decade program management, NEPA/EIS stakeholder engagement, interstate negotiations with Nevada and Arizona, federal coordination with Bureau of Reclamation, financial modeling across multiple funding scenarios, and public communications. Deloitte G&I, Strategy &amp; Analytics, and Public Finance Advisory are collectively well-positioned — distinct from engineering firms competing for design and construction.</div><div class="tags"><span class="tag">Capital PMO</span><span class="tag">Lake Powell Pipeline</span><span class="tag">Stakeholder Engagement</span><span class="tag">Public Finance Advisory</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 2</div><div class="pursuit-title">Rate Design, Impact Fee Studies &amp; Financial Planning</div><div class="pursuit-body">WCWCD manages three revenue streams across one of the fastest-growing water service territories in the U.S. Impact fee studies (required every 5 years under Utah Code), rate design, and multi-year financial planning become increasingly complex as development continues. Deloitte Public Finance Advisory can support impact fee analyses, cost-of-service rate studies, capital financing plans, and long-range financial projections — directly tied to capital program sustainability and bond rating maintenance (AA+/AA).</div><div class="tags"><span class="tag">Public Finance Advisory</span><span class="tag">Rate Design</span><span class="tag">Impact Fee Studies</span><span class="tag">Financial Planning</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 3</div><div class="pursuit-title">Growth Management Strategy &amp; Conservation Program Design</div><div class="pursuit-body">Washington County's position as one of the fastest-growing counties in the U.S. creates unique planning challenges: demand is growing faster than almost any other Intermountain West water district while the Lake Powell Pipeline is years away. WCWCD's 20-Year Plan targets 11,400 AF demand reduction through conservation. Deloitte Strategy &amp; Analytics and Human Capital can support a demand management strategy bridging conservation and supply development.</div><div class="tags"><span class="tag">Strategy &amp; Analytics</span><span class="tag">Conservation Program Design</span><span class="tag">Demand Management</span><span class="tag">Growth Planning</span></div></div>
+  </div>
+
+  <!-- WBWCD -->
+  <div id="tab-wbwcd" class="tab-panel">
+    <div class="section-hdr">Weber Basin Water Conservancy District (WBWCD)</div>
+    <div class="note-box"><strong>Data Source Note:</strong> Revenue and financial figures for WBWCD are sourced from the PPT research provided, which cites official WBWCD budget documents and Summary of Operations (2024). Key sources: Tentative Budget for year ending June 30, 2025; Summary of Operations 2024. Revenue ranges reflect year-over-year variability in water sales and capital funding. Recommend independent verification against audited financial statements available at weberbasin.com or Utah State Auditor's website.</div>
+    <div class="stats">
+      <div class="stat"><span class="stat-val">$73.76M</span><div class="stat-lbl">Total Annual Revenue FY2023 (MEDIUM — from PPT citing WBWCD budget docs)</div></div>
+      <div class="stat"><span class="stat-val">~$108M</span><div class="stat-lbl">Total Revenue Budgeted FY2025</div></div>
+      <div class="stat"><span class="stat-val">$599.4M</span><div class="stat-lbl">Total Assets &amp; Deferred Outflows (2024)</div></div>
+      <div class="stat"><span class="stat-val">710K</span><div class="stat-lbl">People Served Across 5 Counties</div></div>
+    </div>
+    <div class="sub-hdr">Agency Overview</div>
+    <p class="bt">Weber Basin Water Conservancy District (WBWCD) is a wholesale and retail water provider serving 5 counties in northern Utah: Box Elder, Davis, Morgan, Summit, and Weber. WBWCD supplies 5 categories of water: Wholesale &amp; Retail Secondary Irrigation, Wholesale &amp; Retail Agriculture Irrigation, Groundwater Replacement, Treated Municipal &amp; Industrial, and Untreated Municipal &amp; Industrial. Notably, WBWCD operates the largest secondary irrigation system in the western United States. Financial figures from PPT (citing official WBWCD budget documents): FY2023 total annual revenue $73.76M; FY2025 budgeted sales $47.3M; FY2025 total budgeted revenue $108M; FY2024 net position $380.5M; 2024 total assets &amp; deferred outflows $599.4M. WBWCD holds AAA (Fitch) and AA+ (S&P) bond ratings — among the strongest in the Utah water sector. Received a $33.3M federal &amp; state grant award.</p>
+    <div class="sub-hdr">Key Projects &amp; Initiatives</div>
+    <div class="two-col">
+      <div class="cell"><div class="cell-title">Largest Secondary Irrigation System in the Western U.S.</div><div class="cell-body">WBWCD operates the largest secondary (non-potable) irrigation system in the western United States — a significant infrastructure asset serving agricultural and residential landscape irrigation across 5 counties. Running this system more efficiently and managing drought-driven supply constraints is a declared strategic priority. Secondary water efficiency also directly benefits Great Salt Lake health.</div></div>
+      <div class="cell"><div class="cell-title">Capital Program — Protect Infrastructure Reliability</div><div class="cell-body">WBWCD's strategic priorities include protecting the reliability of major water infrastructure. FY2024 net position $380.5M; total assets &amp; deferred outflows $599.4M. Total revenues/transfers/use of reserves budgeted at $251.8M for FY2025 — reflecting a large, active capital program. AAA/AA+ ratings provide excellent capital market access for infrastructure investment.</div></div>
+      <div class="cell"><div class="cell-title">Federal &amp; State Grant Program — $33.3M Award</div><div class="cell-body">WBWCD has received a $33.3M federal and state grant award (cited in PPT research). This signal confirms WBWCD's active engagement with federal grant programs — likely through USBR Water Smart, BIL/IIJA water efficiency programs, or Utah Division of Water Resources state grants. Active federal grant management creates demand for grant compliance, reporting, and future application advisory.</div></div>
+      <div class="cell"><div class="cell-title">Demand Reduction &amp; Conservation</div><div class="cell-body">WBWCD's strategic priorities include reducing water demand through conservation, managing drought and supply constraints, and protecting water quality and watersheds. As one of only a handful of U.S. districts operating a western-scale secondary irrigation system, WBWCD's conservation programs have direct Great Salt Lake health implications — an increasingly high-profile state and federal priority.</div></div>
+    </div>
+    <div class="sub-hdr">Key Challenge Areas</div>
+    <div class="ch-grid">
+      <div class="ch-cell"><strong>Drought &amp; Supply Constraints</strong> — Managing drought conditions across 5 counties while maintaining reliability for a large secondary irrigation system and municipal/industrial supply is a central operational challenge. Climate change increases drought frequency and severity in the Great Basin.</div>
+      <div class="ch-cell"><strong>Secondary Irrigation Efficiency</strong> — Operating the largest secondary irrigation system in the western U.S. creates ongoing efficiency improvement challenges. Technology modernization, leak detection, smart irrigation controls, and demand management are ongoing capital and operational priorities.</div>
+      <div class="ch-cell"><strong>Capital Funding Without Over-Relying on Taxes</strong> — WBWCD's strategic priorities explicitly include funding the capital program without over-reliance on property taxes. Balancing rate revenue, bond proceeds, federal grants ($33.3M award), and reserves requires sophisticated capital financing strategy.</div>
+      <div class="ch-cell"><strong>Water Quality &amp; Watershed Protection</strong> — Protecting water quality across 5 counties while serving growth requires ongoing monitoring, treatment investment, and watershed management. PFAS and emerging contaminant compliance is an increasing regulatory pressure across all UT water entities.</div>
+    </div>
+    <div class="sub-hdr">Known Partners &amp; Third Parties</div>
+    <div class="partners">Box Elder, Davis, Morgan, Summit, and Weber counties &nbsp;•&nbsp; Fitch Ratings (AAA) and S&P Global Ratings (AA+) — strongest ratings in the UT water sector &nbsp;•&nbsp; U.S. Bureau of Reclamation — water supply partner &nbsp;•&nbsp; Utah Division of Water Resources — state regulatory partner &nbsp;•&nbsp; Federal &amp; state grant programs ($33.3M award) &nbsp;•&nbsp; Great Salt Lake stakeholders</div>
+    <div class="sub-hdr">Recent RFPs &amp; Procurement</div>
+    <table class="rfp-table"><thead><tr><th>Status</th><th>Opportunity</th><th>Detail</th></tr></thead><tbody>
+      <tr><td><span class="badge bp">PORTAL</span></td><td>WBWCD Public Notices &amp; Bids</td><td>Information and bidding documents at <strong>weberbasin.com/PublicResources/PublicNotices</strong>. Utah Procurement Code governs. Not on PlanetBids.</td></tr>
+      <tr><td><span class="badge bpi">PIPELINE</span></td><td>Secondary Irrigation System Efficiency</td><td>Running secondary water more efficiently is a declared strategic priority. Technology, data analytics, and operational improvement advisory anticipated as WBWCD invests in the largest secondary irrigation system in the western U.S.</td></tr>
+      <tr><td><span class="badge bpi">PIPELINE</span></td><td>Federal Grant Compliance &amp; Future Applications</td><td>$33.3M federal/state grant award requires ongoing compliance tracking and reporting. Future grant applications likely. Deloitte Public Finance Advisory can support grant management, compliance, and future BIL/IIJA funding strategy.</td></tr>
+      <tr><td><span class="badge bpi">PIPELINE</span></td><td>Capital Program — Infrastructure Reliability</td><td>$251.8M total budgeted revenues/transfers/use of reserves (FY2025) reflects a large capital program. Engineering and advisory solicitations anticipated as infrastructure reliability investment continues. Monitor weberbasin.com/PublicResources/PublicNotices.</td></tr>
+    </tbody></table>
+    <div class="sub-hdr">Deloitte Pursuit Angles</div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 1</div><div class="pursuit-title">Federal Funding Strategy &amp; Grant Compliance — Building on $33.3M Award</div><div class="pursuit-body">WBWCD's $33.3M federal and state grant award confirms active engagement with federal grant programs and organizational readiness to receive and manage large grants. Deloitte Public Finance Advisory can support: (1) grant compliance and reporting for the existing $33.3M award; (2) future grant application strategy for BIL/IIJA water efficiency and secondary irrigation programs; (3) overall capital financing strategy to avoid over-reliance on property taxes. WBWCD's AAA/AA+ ratings give it strong positioning for additional grant and bond financing — advisory support can maximize this advantage.</div><div class="tags"><span class="tag">Public Finance Advisory</span><span class="tag">Federal Grant Strategy</span><span class="tag">BIL/IIJA Programs</span><span class="tag">Grant Compliance</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 2</div><div class="pursuit-title">Secondary Irrigation Efficiency &amp; Smart Water Technology</div><div class="pursuit-body">WBWCD operates the largest secondary irrigation system in the western U.S. — running it more efficiently is a declared strategic priority. Deloitte Digital Engineering and Analytics &amp; AI can support WBWCD in developing a Smart Secondary Irrigation strategy: leak detection analytics, smart irrigation control integration, demand forecasting, and performance dashboards. This is a distinctive capability vs. the traditional engineering firms that manage physical infrastructure work — and directly ties to Great Salt Lake health outcomes that are increasingly high-profile at the state and federal level.</div><div class="tags"><span class="tag">Digital Engineering</span><span class="tag">Analytics &amp; AI</span><span class="tag">Smart Irrigation</span><span class="tag">Great Salt Lake</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 3</div><div class="pursuit-title">Capital Financing Strategy — Diversifying Away from Tax Dependence</div><div class="pursuit-body">WBWCD explicitly lists "fund a large capital program without over-relying on taxes" as a strategic priority — a direct signal for Deloitte Public Finance Advisory. With AAA/AA+ ratings and an active federal grant program, WBWCD has significant financing optionality: green bonds, revenue bonds, SRF loans, WIFA loans, and federal WIFIA (not WIFA) loans are all available. Deloitte can support a multi-year capital financing plan that diversifies WBWCD's funding mix and reduces property tax burden.</div><div class="tags"><span class="tag">Public Finance Advisory</span><span class="tag">Capital Financing</span><span class="tag">Green Bonds</span><span class="tag">Tax Diversification</span></div></div>
+  </div>
+
+  <!-- MWDSLS -->
+  <div id="tab-mwdsls" class="tab-panel">
+    <div class="section-hdr">Metropolitan Water District of Salt Lake &amp; Sandy (MWDSLS)</div>
+    <div class="note-box"><strong>Data Source Note:</strong> Revenue and financial figures for MWDSLS are sourced from the PPT research provided, which cites the 2024 and 2023 Financial Statements and FY2026 budget. Key figures: 2024 operating revenue $24.6M; FY2026 budgeted revenue $111.4M; $47.5M FY2025 capital budget. The large gap between operating revenue ($24.6M) and budgeted revenue ($111.4M) reflects capital project funding, bond proceeds, and federal grants included in the budget. Recommend independent verification against official MWDSLS financial statements available at the Utah State Auditor's website or mwdsls.specialdistrict.org.</div>
+    <div class="stats">
+      <div class="stat"><span class="stat-val">$24.6M</span><div class="stat-lbl">2024 Operating Revenue (MEDIUM — from PPT citing 2024/2023 Financial Statements)</div></div>
+      <div class="stat"><span class="stat-val">$111.4M</span><div class="stat-lbl">FY2026 Budgeted Revenue (incl. bond proceeds, grants)</div></div>
+      <div class="stat"><span class="stat-val">$574M</span><div class="stat-lbl">Total Assets (2024)</div></div>
+      <div class="stat"><span class="stat-val">400K+</span><div class="stat-lbl">People Served (Salt Lake City &amp; Sandy City area)</div></div>
+    </div>
+    <div class="sub-hdr">Agency Overview</div>
+    <p class="bt">Metropolitan Water District of Salt Lake &amp; Sandy (MWDSLS) is a wholesale treated water supplier serving Salt Lake City and Sandy City in the Salt Lake Valley. It supplies roughly 50–75% of Sandy City's water supply and is a key Wasatch Front conveyance and treatment operator. MWDSLS serves over 400,000 people. Financial figures from PPT (citing 2024 and 2023 financial statements): 2024 operating revenue $24.6M; 2024 net position $246M; 2024 total assets $574M; 2024 total assets and deferred outflows $590M; FY2026 budgeted revenue $111.4M; FY2025 capital budget $47.5M; FY2026 projected capital $35.7–$37M. FY2026 capital funding sourced from rate revenue, bond proceeds, federal grants, and federal loans — a strong signal of complex financing advisory needs. MWDSLS appears to operate under the Utah Procurement Code.</p>
+    <div class="sub-hdr">Key Projects &amp; Initiatives</div>
+    <div class="two-col">
+      <div class="cell"><div class="cell-title">$47.5M FY2025 Capital Budget — Major Projects Active</div><div class="cell-body">MWDSLS has a $47.5M FY2025 capital budget — significant relative to $24.6M operating revenue, signaling a capital-intensive growth and infrastructure phase. FY2026 capital projected at $35.7–$37M. Capital funding from rate revenue, bond proceeds, federal grants, and federal loans. The PPT notes this funding mix as a strong signal that MWDSLS may need advisory support on planning, delivery, compliance, and grant-backed execution.</div></div>
+      <div class="cell"><div class="cell-title">Lead &amp; Copper Rule Revision Preparation</div><div class="cell-body">2024 operating priorities explicitly include preparing for the Lead and Copper Rule revision — a signal of upcoming capital and operational compliance investment. LCR revision requires service line inventory across MWDSLS's Salt Lake City and Sandy City service area, material assessment, and potential treatment or infrastructure changes. LCR compliance advisory is a repeatable Deloitte offering applicable across multiple UT water entities simultaneously.</div></div>
+      <div class="cell"><div class="cell-title">Alternative Funding Pursuit — Federal Grants &amp; Loans</div><div class="cell-body">2024 operating priorities include "pursuing alternative funding" — a direct signal that MWDSLS is actively seeking grant and loan financing beyond traditional rate revenue. FY2026 capital funding explicitly includes federal grants and federal loans alongside rate revenue and bond proceeds. Deloitte Public Finance Advisory is directly aligned with this declared priority.</div></div>
+      <div class="cell"><div class="cell-title">Firm Water Supply &amp; Infrastructure Stewardship</div><div class="cell-body">MWDSLS's stated strategic priorities: firm water supply; infrastructure stewardship; water quality and conservation; regulatory readiness; financial and safety discipline. The combination of infrastructure stewardship and financial discipline as declared priorities creates an advisory opening for Deloitte's asset management and financial advisory capabilities.</div></div>
+    </div>
+    <div class="sub-hdr">Key Challenge Areas</div>
+    <div class="ch-grid">
+      <div class="ch-cell"><strong>Capital Program Scale vs. Operating Revenue</strong> — FY2025 capital budget ($47.5M) significantly exceeds operating revenue ($24.6M). Managing this capital-intensive program requires sophisticated project controls, federal grant compliance, and multi-year financing strategy — areas where external advisory adds significant value.</div>
+      <div class="ch-cell"><strong>Federal Grant Compliance &amp; Reporting</strong> — With federal grants included in the FY2026 capital funding mix, MWDSLS faces federal grant compliance and reporting requirements. Grant-funded capital projects require specialized compliance tracking, performance reporting, and audit preparation.</div>
+      <div class="ch-cell"><strong>Lead &amp; Copper Rule Compliance</strong> — LCR revision preparation is explicitly cited as a 2024 operating priority. Service line inventory, material assessment, and potential infrastructure changes create both capital and operational compliance challenges.</div>
+      <div class="ch-cell"><strong>Water Quality &amp; Regulatory Readiness</strong> — MWDSLS serves as a key Wasatch Front treatment operator. Maintaining water quality standards for Salt Lake City and Sandy City while managing PFAS and emerging contaminant compliance represents ongoing regulatory complexity.</div>
+    </div>
+    <div class="sub-hdr">Known Partners &amp; Third Parties</div>
+    <div class="partners">Salt Lake City — primary wholesale customer &nbsp;•&nbsp; Sandy City — wholesale customer (~50–75% of Sandy's water supply) &nbsp;•&nbsp; Utah Water Finance Agency — bond issuance vehicle &nbsp;•&nbsp; U.S. Bureau of Reclamation — water supply partner &nbsp;•&nbsp; Utah Division of Water Resources — state regulatory partner &nbsp;•&nbsp; Federal grant agencies (USBR, EPA SRF/WIFIA) — alternative funding sources &nbsp;•&nbsp; Central Utah Water Conservancy District — CUP water supply coordination</div>
+    <div class="sub-hdr">Recent RFPs &amp; Procurement</div>
+    <table class="rfp-table"><thead><tr><th>Status</th><th>Opportunity</th><th>Detail</th></tr></thead><tbody>
+      <tr><td><span class="badge bp">PORTAL</span></td><td>MWDSLS Bids &amp; Solicitations</td><td>Bids and solicitations page available (link from PPT research). Operates under Utah Procurement Code. FY2026 capital budget of $35.7–$37M drives ongoing procurement activity.</td></tr>
+      <tr><td><span class="badge bpi">PIPELINE</span></td><td>Capital Program — Engineering &amp; Construction Management</td><td>$47.5M FY2025 capital budget generates demand for design, engineering, and construction management services. Monitor MWDSLS solicitations page and Utah Public Notice website (utah.gov/pmn) for upcoming capital project procurements.</td></tr>
+      <tr><td><span class="badge bpi">PIPELINE</span></td><td>Federal Grant Management &amp; Compliance</td><td>Federal grants included in FY2026 capital funding mix. Federal grant compliance, reporting, and performance tracking advisory anticipated. Deloitte Public Finance Advisory directly applicable.</td></tr>
+      <tr><td><span class="badge bpi">PIPELINE</span></td><td>Lead &amp; Copper Rule Compliance &amp; Service Line Inventory</td><td>LCR revision preparation cited as 2024 priority. Service line inventory, material assessment, and compliance planning advisory anticipated. Monitor MWDSLS procurement page and LCR implementation timeline.</td></tr>
+    </tbody></table>
+    <div class="sub-hdr">Deloitte Pursuit Angles</div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 1</div><div class="pursuit-title">Capital Program Advisory &amp; Federal Grant Management</div><div class="pursuit-body">MWDSLS's FY2026 capital funding explicitly mixes rate revenue, bond proceeds, federal grants, and federal loans — a direct signal that advisory support on capital program planning, delivery, grant compliance, and grant-backed execution is needed. The $47.5M FY2025 capital budget significantly exceeds operating revenue ($24.6M), creating a capital-intensive operating environment where external program management and financial advisory add significant value. Deloitte G&I and Public Finance Advisory can provide an integrated capital program advisory offering: PMO support, federal grant compliance, and financing strategy optimization.</div><div class="tags"><span class="tag">Capital PMO</span><span class="tag">G&I Practice</span><span class="tag">Federal Grant Management</span><span class="tag">Public Finance Advisory</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 2</div><div class="pursuit-title">Lead &amp; Copper Rule Compliance Advisory</div><div class="pursuit-body">MWDSLS explicitly listed LCR revision preparation as a 2024 operating priority — and this compliance challenge is shared across multiple UT water entities (JVWCD also has LCR in its FY2025/26 budget priorities). Deloitte can develop a reusable LCR compliance advisory offering applicable to both MWDSLS and JVWCD simultaneously: service line inventory management, material assessment, public communication strategy, and compliance planning. Developing this as a UT water sector offering creates cross-sell opportunities across the UT portfolio.</div><div class="tags"><span class="tag">Regulatory Compliance</span><span class="tag">LCR Advisory</span><span class="tag">Service Line Inventory</span><span class="tag">Cross-Sell UT Portfolio</span></div></div>
+    <div class="pursuit"><div class="pursuit-num">Pursuit Angle 3</div><div class="pursuit-title">Alternative Funding Strategy — "Pursuing Alternative Funding" Priority</div><div class="pursuit-body">MWDSLS's 2024 operating priorities explicitly include "pursuing alternative funding" — a declared organizational priority that directly aligns with Deloitte Public Finance Advisory. MWDSLS's capital program scale and the complexity of its FY2026 funding mix (rate revenue + bonds + federal grants + federal loans) create clear advisory needs: WIFIA loan applications, EPA SRF loan structuring, BIL/IIJA grant identification, and multi-year capital financing optimization. Deloitte can position as the go-to advisor for "alternative funding" — delivering on MWDSLS's own stated priority.</div><div class="tags"><span class="tag">Public Finance Advisory</span><span class="tag">WIFIA Loans</span><span class="tag">BIL/IIJA Grants</span><span class="tag">Alternative Financing</span></div></div>
+  </div>
+
+  <!-- COMPARISON -->
+  <div id="tab-comparison" class="tab-panel">
+    <div class="section-hdr">Comparison &amp; Recommended Pursuit Sequencing — Utah</div>
+    <div class="sub-hdr">Side-by-Side Entity Comparison</div>
+    <table class="comp-table">
+      <thead><tr><th>Dimension</th><th>CUWCD</th><th>JVWCD</th><th>WCWCD</th><th>WBWCD</th><th>MWDSLS</th></tr></thead>
+      <tbody>
+        <tr><td>Operating Revenue</td><td>$110.3M (FY2025, audited)</td><td>$75.7M (FY2025, audited)</td><td>$26.1M operating / $111.6M total (2024, audited)</td><td>$73.76M FY23 / ~$108M budgeted FY25 (PPT; MEDIUM)</td><td>$24.6M operating / $111.4M budgeted FY26 (PPT; MEDIUM)</td></tr>
+        <tr><td>Total Assets</td><td>$2.1B (June 30, 2025)</td><td>$820.5M (FY2025)</td><td>$722.7M (Dec. 31, 2024)</td><td>$599.4M total assets &amp; deferred outflows (2024)</td><td>$574M (2024)</td></tr>
+        <tr><td>Population Served</td><td>~2M across 7 counties</td><td>~775K (Salt Lake County)</td><td>~213.7K (Washington County)</td><td>~710K (5 counties: Box Elder, Davis, Morgan, Summit, Weber)</td><td>400K+ (Salt Lake City &amp; Sandy City area)</td></tr>
+        <tr><td>Entity Type</td><td>Largest UT conservancy district; CUP operator; 7 counties; Fitch AA+</td><td>Primary Salt Lake County wholesale/retail; 17-18 member agencies; S&P + Fitch AA+</td><td>Southern Utah wholesale + retail; fastest-growing UT county; Fitch AA+ / S&P AA</td><td>5-county wholesale + retail; largest secondary irrigation system in western U.S.; AAA/AA+</td><td>Wholesale treated water to Salt Lake City &amp; Sandy; key Wasatch Front treatment operator</td></tr>
+        <tr><td>Defining Challenge</td><td>CUP capital program delivery; aging infrastructure; supply development; CUPCA compliance</td><td>Seismic risk (Wasatch Fault); Salt Lake County growth; 30–50 yr supply planning</td><td>Lake Powell Pipeline development; fastest-growing U.S. county; CO River constraints</td><td>Secondary irrigation efficiency; drought/supply constraints; capital funding without tax over-reliance</td><td>Capital program ($47.5M FY25) exceeds operating revenue ($24.6M); federal grant compliance; LCR revision</td></tr>
+        <tr><td>Hottest Near-Term Need</td><td>Capital PMO; financial planning; conservation analytics; OT cybersecurity</td><td>Digital Twin expansion; seismic resilience; financial visibility; stakeholder engagement (live SOQs)</td><td>Lake Powell Pipeline advisory; rate/impact fee design; growth management strategy</td><td>Federal grant compliance ($33.3M award); secondary irrigation efficiency; capital financing strategy</td><td>Capital program advisory; federal grant management; LCR compliance advisory</td></tr>
+        <tr><td>Bond Rating</td><td>Fitch AA+</td><td>S&P AA+ / Fitch AA+</td><td>Fitch AA+ / S&P AA</td><td>Fitch AAA / S&P AA+ — highest rated in UT portfolio</td><td>N/D from PPT research</td></tr>
+        <tr><td>Procurement Gateway</td><td>cuwcd.gov/bids.htm + cuwcd.projectmates.com + utahbids.net</td><td>jvwcd.gov/public/projects — Consultant and Contractor tracks per project; active SOQs Sept. 2025</td><td>wcwcd.gov/procurement — standard Utah Procurement Code</td><td>weberbasin.com/PublicResources/PublicNotices — public notices and bid documents</td><td>Utah Procurement Code; bids and solicitations page (from PPT)</td></tr>
+        <tr><td>Key Competitors</td><td>Bowen Collins &amp; Associates, USG (engineering); federal consulting firms for CUPCA work</td><td>Carollo Engineers, HDR, Stantec, Jacobs (seismic/treatment engineering)</td><td>Bowen Collins &amp; Associates (confirmed); CDM Smith, Stantec</td><td>Standard UT water engineering firms; few confirmed from public research</td><td>Standard UT water engineering firms; EPA/federal compliance consultants</td></tr>
+        <tr><td>Deloitte Entry Ease</td><td>Moderate — capital PMO and financial advisory are open lanes vs. engineering firms</td><td>High — Digital Twin pilot + active SOQs = live entry points right now; highest near-term priority</td><td>Moderate — procurement page accessible; Lake Powell advisory compelling but long-horizon</td><td>Moderate — $33.3M grant award is live hook; public notices portal accessible</td><td>Moderate — explicit "alternative funding" and LCR priorities are direct advisory hooks</td></tr>
+        <tr><td>Deloitte Priority</td><td><span class="pri-1">#1 PRIORITY</span></td><td><span class="pri-1">#1 PRIORITY</span></td><td><span class="pri-2">#2 PRIORITY</span></td><td><span class="pri-2">#2 PRIORITY</span></td><td><span class="pri-2">#2 PRIORITY</span></td></tr>
+        <tr><td>Top Deloitte Angle</td><td>Capital PMO + Financial Planning + Conservation Analytics</td><td>Digital Twin Advisory + Seismic Resilience + Financial Visibility</td><td>Lake Powell Pipeline Advisory + Rate/Impact Fee Design</td><td>Federal Funding Strategy ($33.3M grant) + Secondary Irrigation Efficiency + Capital Financing</td><td>Capital Program Advisory + Federal Grant Management + LCR Compliance</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-hdr" style="margin-top:32px;">Cross-Entity Opportunities — Where Multiple UT Entities Share the Same Deloitte Offering</div>
+    <table class="comp-table">
+      <thead><tr><th>Deloitte Offering</th><th>Applicable Entities</th><th>Why It Works Across Entities</th><th>Recommended Approach</th></tr></thead>
+      <tbody>
+        <tr><td>Federal Funding Advisory &amp; Grant Management</td><td>WBWCD ($33.3M award) + MWDSLS (active federal grant pursuit) + WCWCD (BIL/WIFA) + CUWCD (CUPCA)</td><td>All 5 entities have active or declared federal funding relationships. BIL/IIJA water efficiency programs, EPA SRF/WIFIA loans, and USBR grant programs create a common funding landscape across the UT water portfolio.</td><td>Develop a reusable "UT Water Federal Funding Playbook" — identify all available federal programs for each entity, assess eligibility, and build grant application pipelines. Position Deloitte as the go-to federal funding advisor across the UT water sector.</td></tr>
+        <tr><td>Lead &amp; Copper Rule (LCR) Compliance</td><td>MWDSLS (explicit 2024 priority) + JVWCD (explicit FY2025/26 budget priority)</td><td>Both MWDSLS and JVWCD have explicitly listed LCR revision preparation as a current priority — at the same time. Service line inventory, material assessment, compliance planning, and public communication are common deliverables across both entities.</td><td>Develop a bundled LCR Compliance Advisory offering for both entities simultaneously. Reduce sales cycle by demonstrating cross-entity applicability and economies of scale on the engagement. Position as a sector-wide UT water LCR specialist.</td></tr>
+        <tr><td>Conservation Analytics &amp; Demand Management</td><td>CUWCD (25% by 2050) + JVWCD (11,064 AF gap by 2030) + WCWCD (11,400 AF by 2042) + WBWCD (secondary irrigation efficiency)</td><td>All 4 entities have published, specific conservation goals with measurable targets. All face the same core challenge: demand growth outpacing supply in a high-growth, water-scarce state. Great Salt Lake health is explicitly tied to conservation outcomes for JVWCD, CUWCD, and WBWCD.</td><td>Develop a "UT Water Conservation Analytics Platform" — a reusable data infrastructure and program measurement offering applicable across all 4 entities. Use CUWCD or JVWCD as the lead client to pilot, then expand across the UT portfolio.</td></tr>
+        <tr><td>OT/ICS Cybersecurity</td><td>CUWCD (dams + hydropower + treatment) + JVWCD (aqueduct + treatment plants) + WBWCD (5-county infrastructure)</td><td>All three operate large-scale SCADA/ICS across critical water infrastructure. Water sector is the top ransomware target nationally. EPA guidance increasingly requiring formal OT risk assessments.</td><td>Joint thought leadership play — white paper or roundtable targeting UT water sector simultaneously. Builds Deloitte Cyber visibility across the UT water market in a single motion. Can be combined with the AZ water sector play for a broader Intermountain West water cybersecurity initiative.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-hdr" style="margin-top:32px;">Recommended Pursuit Sequencing</div>
+    <div class="action-box">
+      <div class="action-timing">Immediate</div>
+      <div class="action-title">Register on All Procurement Portals &amp; Capture Intelligence</div>
+      <div class="action-body">Register on CUWCD bids page (cuwcd.gov/bids.htm) and Projectmates portal (cuwcd.projectmates.com). Monitor UtahBids.net for CUWCD, JVWCD, and WCWCD solicitations. Register on JVWCD projects page (jvwcd.gov/public/projects). Register on WCWCD procurement page (wcwcd.gov/procurement). Monitor WBWCD public notices (weberbasin.com/PublicResources/PublicNotices). Locate and bookmark MWDSLS solicitations page (from PPT: mwdsls.specialdistrict.org). Subscribe to Utah Public Notice website (utah.gov/pmn) for Board meeting agendas across all 5 entities. Monitor lpputah.org for Lake Powell Pipeline procurement signals.</div>
+      <div class="tags"><span class="tag">Procurement Registration</span><span class="tag">Portal Monitoring</span><span class="tag">Intelligence Capture</span><span class="tag">Board Agenda Tracking</span></div>
+    </div>
+    <div class="action-box">
+      <div class="action-timing">Near-Term: Q2–Q3 2026</div>
+      <div class="action-title">JVWCD — Digital Twin Advisory &amp; Communications Services Entry (Live SOQs Now)</div>
+      <div class="action-body">JVWCD is the highest near-term priority: the September 2025 Digital Twin Pilot award at SERWTP and the active SOQ for Strategic &amp; Legislative Communications Services are live, confirmed procurement signals right now. Deloitte Digital Engineering should engage JVWCD immediately — positioning to expand the SERWTP pilot to a district-wide digital infrastructure strategy. The Communications Services SOQ is an immediate opportunity for Deloitte's public sector advisory capabilities. Begin relationship-building with JVWCD's General Manager/CEO and CIP leadership at Utah water sector events (Utah Water Users Workshop, APWA Utah). Also engage JVWCD on Seismic Resilience advisory — two active seismic-related procurements are open.</div>
+      <div class="tags"><span class="tag">Digital Engineering</span><span class="tag">Digital Twin</span><span class="tag">Communications Advisory</span><span class="tag">Seismic Resilience</span><span class="tag">Live SOQs</span></div>
+    </div>
+    <div class="action-box">
+      <div class="action-timing">Near-Term: Q2–Q3 2026</div>
+      <div class="action-title">WBWCD &amp; MWDSLS — Federal Funding Advisory (Hook: $33.3M Grant + Declared Priority)</div>
+      <div class="action-body">WBWCD's $33.3M federal/state grant award is a live hook — the organization has demonstrated grant-receiving capability and will need ongoing compliance support and future grant strategy. MWDSLS explicitly lists "pursuing alternative funding" as a 2024 operating priority and has federal grants in its FY2026 capital funding mix. Develop a UT Water Federal Funding Advisory offering targeting both entities simultaneously. The LCR compliance advisory — applicable to both MWDSLS and JVWCD — is a second near-term entry point that can be developed as a bundled offering for initial outreach.</div>
+      <div class="tags"><span class="tag">Public Finance Advisory</span><span class="tag">Federal Grant Strategy</span><span class="tag">WBWCD</span><span class="tag">MWDSLS</span><span class="tag">LCR Compliance</span></div>
+    </div>
+    <div class="action-box">
+      <div class="action-timing">Mid-Term: H2 2026</div>
+      <div class="action-title">CUWCD — Capital PMO &amp; Financial Advisory</div>
+      <div class="action-body">CUWCD's $303.8M Capital Projects Fund balance and $398M annual budget make it the largest revenue opportunity in the UT portfolio. Central Water Project delivery, Olmsted replacement, and CUP infrastructure rehabilitation create sustained PMO and owner's advisor demand. Deloitte G&I should initiate relationship-building with CUWCD's capital programs and finance leadership now — positioning as a strategic PMO partner distinct from Bowen Collins and other engineering firms competing for design/build work. The 2025 Water Conservation Plan's 25% target also creates a mid-term opening for Analytics &amp; AI on conservation data infrastructure.</div>
+      <div class="tags"><span class="tag">Capital PMO</span><span class="tag">Owner's Advisor</span><span class="tag">G&I Practice</span><span class="tag">Conservation Analytics</span><span class="tag">Financial Planning</span></div>
+    </div>
+    <div class="action-box">
+      <div class="action-timing">Mid-Term: H2 2026</div>
+      <div class="action-title">WCWCD — Lake Powell Pipeline Advisory &amp; Rate/Fee Studies</div>
+      <div class="action-body">Washington County is the fastest-growing county in Utah — and WCWCD's long-term water future depends on the Lake Powell Pipeline. Deloitte G&I and Public Finance Advisory should begin building a relationship with WCWCD's General Manager and Board now — positioning for pipeline program management, stakeholder engagement, and financial planning advisory as the project advances. Near-term entry: impact fee studies (required every 5 years under Utah Code) and cost-of-service rate design are more immediately actionable entry points that can build the client relationship ahead of the larger pipeline engagement.</div>
+      <div class="tags"><span class="tag">Lake Powell Pipeline</span><span class="tag">Public Finance Advisory</span><span class="tag">Rate Design</span><span class="tag">Impact Fee Studies</span><span class="tag">G&I Practice</span></div>
+    </div>
+  </div>
+
+  <footer>Confidential — Internal Use Only &nbsp;|&nbsp; Deloitte LLP &nbsp;|&nbsp; May 2026 &nbsp;|&nbsp; Research based on publicly available documents and provided PPT research. Not for distribution.</footer>
+</div>
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CA State Water Project — 29 Contractors Market Landscape</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1F2B5B; --green:#86BC25; --dkgray:#3A3A3A; --ltgray:#F4F5F7;
+  --midgray:#CCCCCC; --border:#D8DCE8; --ltgreen:#EEF5D8; --white:#fff;
+  --gold:#E8A020; --ltgold:#FFF8E1; --blue2:#2E5B99;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--dkgray);background:#ECEEF5;line-height:1.6;}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:3px solid var(--green);}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:4px;height:52px;overflow-x:auto;scrollbar-width:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-brand{font-weight:700;font-size:11px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;margin-right:10px;flex-shrink:0;}
+.tab-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.6);font-size:11px;font-weight:500;padding:5px 11px;border-radius:4px;white-space:nowrap;font-family:'DM Sans',sans-serif;transition:all .15s;flex-shrink:0;}
+.tab-btn:hover{color:#fff;background:rgba(255,255,255,.08);}
+.tab-btn.active{color:#fff;background:rgba(134,188,37,.25);border-bottom:2px solid var(--green);}
+
+/* ── LAYOUT ── */
+.page{max-width:1280px;margin:0 auto;padding:24px 20px 80px;}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+
+/* ── COVER ── */
+.cover{background:var(--navy);border-radius:6px;padding:36px 44px 32px;margin-bottom:28px;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--green);}
+.cover h1{font-family:'Libre Baskerville',serif;font-size:28px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:7px;}
+.cover-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:8px;}
+.cover-sub{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:14px;}
+.cover-meta{display:flex;flex-wrap:wrap;gap:14px;font-size:11px;color:rgba(255,255,255,.4);}
+.dot{width:3px;height:3px;border-radius:50%;background:var(--green);display:inline-block;margin-right:4px;}
+
+/* ── STATS ── */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-bottom:24px;border-radius:4px;overflow:hidden;}
+.stat{background:var(--navy);padding:16px 12px;text-align:center;}
+.stat-val{font-family:'Libre Baskerville',serif;font-size:20px;font-weight:700;color:var(--green);display:block;margin-bottom:4px;}
+.stat-lbl{font-size:10px;color:rgba(255,255,255,.6);line-height:1.4;}
+
+/* ── SECTION HDR ── */
+.section-hdr{background:var(--navy);color:#fff;font-size:13px;font-weight:700;padding:11px 18px;border-radius:4px;margin:0 0 20px;}
+.section-hdr span{color:var(--green);margin-left:8px;font-size:11px;font-weight:400;}
+
+/* ── SUB HDR ── */
+.sub-hdr{font-size:13px;font-weight:700;color:var(--navy);border-bottom:2px solid var(--midgray);padding-bottom:6px;margin:22px 0 12px;}
+
+/* ── BODY TEXT ── */
+p.bt{font-size:13px;line-height:1.75;color:var(--dkgray);margin-bottom:12px;}
+
+/* ── OVERVIEW CARDS ── */
+.ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+.ov-card{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:16px 18px;}
+.ov-card h4{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
+.ov-card p,.ov-card li{font-size:12.5px;line-height:1.65;color:var(--dkgray);}
+.ov-card ul{padding-left:16px;}
+.ov-card li{margin-bottom:3px;}
+
+/* ── GEO SUMMARY ── */
+.geo-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+.geo-card{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--navy);border-radius:0 0 4px 4px;padding:14px 16px;}
+.geo-card.active-tab{border-top-color:var(--green);}
+.geo-title{font-size:11.5px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.geo-n{font-size:22px;font-weight:700;font-family:'Libre Baskerville',serif;color:var(--green);}
+.geo-desc{font-size:11px;color:var(--dkgray);line-height:1.5;margin-top:4px;}
+
+/* ── NOTE BOX ── */
+.note-box{background:var(--ltgold);border:1px solid #FFD54F;border-left:4px solid var(--gold);padding:11px 15px;border-radius:0 4px 4px 0;font-size:12px;line-height:1.6;margin-bottom:16px;color:var(--dkgray);}
+.note-box strong{color:#7A5800;}
+
+/* ── CONTRACTOR CARDS ── */
+.contractor-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.c-header{background:var(--navy);padding:12px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+.c-name{font-size:13px;font-weight:700;color:var(--white);line-height:1.3;}
+.c-abbr{font-size:10px;color:rgba(255,255,255,.5);margin-top:2px;}
+.c-entitlement{text-align:right;flex-shrink:0;}
+.c-af{font-family:'Libre Baskerville',serif;font-size:18px;font-weight:700;color:var(--green);}
+.c-af-lbl{font-size:9px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;}
+.c-body{padding:14px 16px;}
+
+/* ── DATA ROWS ── */
+.dr{display:grid;grid-template-columns:110px 1fr;gap:6px;margin-bottom:7px;font-size:12px;align-items:start;}
+.dr-lbl{font-weight:600;color:var(--navy);font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding-top:1px;}
+.dr-val{color:var(--dkgray);line-height:1.55;}
+.dr-val a{color:var(--green);text-decoration:none;}
+.dr-val a:hover{text-decoration:underline;}
+
+/* ── FINANCIAL HIGHLIGHTS ── */
+.fin-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:10px 0;background:var(--navy);border-radius:3px;overflow:hidden;}
+.fin-cell{background:var(--navy);padding:10px 12px;text-align:center;}
+.fin-val{font-family:'Libre Baskerville',serif;font-size:16px;font-weight:700;color:var(--green);display:block;}
+.fin-lbl{font-size:9px;color:rgba(255,255,255,.55);line-height:1.3;margin-top:2px;}
+
+/* ── CONFIDENCE BADGES ── */
+.conf{font-size:9px;font-weight:700;padding:1px 6px;border-radius:2px;display:inline-block;margin-left:4px;vertical-align:middle;}
+.ch{background:rgba(46,125,50,.1);color:#2E7D32;}
+.cm{background:rgba(230,81,0,.1);color:#E65100;}
+.cl{background:rgba(198,40,40,.1);color:#C62828;}
+
+/* ── USE BADGE ── */
+.use{font-size:9px;font-weight:700;padding:1px 7px;border-radius:2px;display:inline-block;}
+.muni{background:rgba(31,43,91,.1);color:var(--navy);}
+.ag{background:rgba(134,188,37,.15);color:#3a6000;}
+.mixed{background:rgba(232,160,32,.12);color:#7A5800);}
+
+/* ── BAR ── */
+.bar-wrap{background:#e8ecf0;border-radius:2px;height:5px;margin:4px 0 8px;}
+.bar-fill{background:var(--green);border-radius:2px;height:5px;}
+
+/* ── KEY PROJECTS ── */
+.projects{margin-top:10px;border-top:1px solid var(--border);padding-top:10px;}
+.proj-lbl{font-size:10px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.proj-list{list-style:none;padding:0;}
+.proj-list li{font-size:11.5px;color:var(--dkgray);padding:3px 0 3px 14px;position:relative;line-height:1.5;border-bottom:1px solid var(--ltgray);}
+.proj-list li:last-child{border-bottom:none;}
+.proj-list li::before{content:'▶';font-size:7px;color:var(--green);position:absolute;left:0;top:6px;}
+
+/* ── ALL 29 TABLE ── */
+.all-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:16px;}
+.all-table thead tr{background:var(--navy);}
+.all-table thead th{color:#fff;font-weight:600;padding:8px 10px;text-align:left;font-size:11px;white-space:nowrap;}
+.all-table tbody tr:nth-child(odd){background:var(--ltgray);}
+.all-table tbody tr:nth-child(even){background:var(--white);}
+.all-table tbody tr:hover{background:#dce6f7;}
+.all-table td{padding:7px 10px;border:1px solid var(--border);vertical-align:top;line-height:1.45;}
+.all-table td:first-child{font-weight:700;color:var(--navy);text-align:center;width:28px;}
+.geo-badge{display:inline-block;font-size:9px;font-weight:700;padding:1px 6px;border-radius:2px;white-space:nowrap;}
+.g1{background:#E3F2FD;color:#0D47A1;}
+.g2{background:#E8F5E9;color:#1B5E20;}
+.g3{background:#FFF3E0;color:#E65100;}
+.g4{background:#FCE4EC;color:#880E4F;}
+.g5{background:#EDE7F6;color:#4A148C;}
+.g6{background:#F3E5F5;color:#6A1B9A;}
+
+footer{text-align:center;padding:20px;font-size:11px;color:#999;border-top:1px solid var(--midgray);margin-top:48px;}
+@media(max-width:800px){.stats{grid-template-columns:repeat(3,1fr);}.ov-grid,.geo-sum,.contractor-grid{grid-template-columns:1fr;}.fin-row{grid-template-columns:1fr 1fr;}.nav-brand{display:none;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">CA SWP · 29 Contractors</div>
+    <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+    <button class="tab-btn" onclick="showTab('norcal')">Northern CA <small>(3)</small></button>
+    <button class="tab-btn" onclick="showTab('bayarea')">Bay Area <small>(5)</small></button>
+    <button class="tab-btn" onclick="showTab('coast')">Central Coast <small>(2)</small></button>
+    <button class="tab-btn" onclick="showTab('valley')">San Joaquin Valley <small>(6)</small></button>
+    <button class="tab-btn" onclick="showTab('socal')">SoCal — LA/IE/Desert Mts. <small>(11)</small></button>
+    <button class="tab-btn" onclick="showTab('soCalDesert')">SoCal — Desert <small>(2)</small></button>
+    <button class="tab-btn" onclick="showTab('all29')">All 29 Table</button>
+  </div>
+</nav>
+
+<div class="page">
+
+<div class="cover">
+  <div class="cover-label">Market Landscape Brief · California State Water Project</div>
+  <h1>29 Long-Term Water Supply Contractors</h1>
+  <div class="cover-sub">Organized by geography · Ranked by Table A entitlement within each region · Financial data and key projects included · May 2026</div>
+  <div class="cover-meta">
+    <span><span class="dot"></span>May 2026</span>
+    <span><span class="dot"></span>Confidential — Internal Use Only</span>
+    <span><span class="dot"></span>Sources: CA DWR; State Water Contractors (swc.org); individual contractor ACFRs and budget documents; UC Davis California WaterBlog</span>
+  </div>
+</div>
+
+<!-- ══════════ OVERVIEW ══════════ -->
+<div id="tab-overview" class="tab-panel active">
+  <div class="section-hdr">Overview — The SWP Contractor Ecosystem</div>
+
+  <div class="stats">
+    <div class="stat"><span class="stat-val">29</span><div class="stat-lbl">Long-Term DWR Water Supply Contractors (contracts extended to 2085)</div></div>
+    <div class="stat"><span class="stat-val">4.17M AFY</span><div class="stat-lbl">Total Table A Entitlement across all 29 (max annual contracted volume)</div></div>
+    <div class="stat"><span class="stat-val">27M+</span><div class="stat-lbl">Californians served across 6 regions from Plumas County to San Diego</div></div>
+    <div class="stat"><span class="stat-val">30%</span><div class="stat-lbl">2026 Table A Allocation (NTC 26-01) — avg. year is ~60%; wet year up to 100%</div></div>
+    <div class="stat"><span class="stat-val">$16B+</span><div class="stat-lbl">Estimated cost of Delta Conveyance Project — the SWP's defining capital challenge</div></div>
+  </div>
+
+  <div class="sub-hdr">The State Water Project</div>
+  <p class="bt">The California State Water Project (SWP) is the nation's largest state-built water storage and conveyance system — a 705-mile network of canals, pipelines, reservoirs, and hydroelectric facilities managed by the California Department of Water Resources (DWR). The 29 long-term water supply contractors signed contracts with DWR in the 1960s, each defining a maximum annual entitlement (the "Table A" amount). Actual deliveries vary annually: the 2026 allocation is 30% of Table A; the long-term average is ~60%; critically dry years can see 0–5%. Original contracts expired in 2035; DWR Director approved extension to 2085 in December 2018. Five contractors use SWP water primarily for agricultural purposes; 24 primarily for municipal and industrial use.</p>
+
+  <div class="sub-hdr">Geographic Distribution — Six Regions</div>
+  <div class="geo-sum">
+    <div class="geo-card"><div class="geo-title">🌲 Northern California</div><div class="geo-n">3</div><div class="geo-desc">Butte County, Yuba City, Feather Water District. Sacramento Valley. Smallest contractors in the SWP. Primarily agricultural / groundwater recharge. Combined Table A: ~25,000 AFY (est.).</div></div>
+    <div class="geo-card"><div class="geo-title">🌉 San Francisco Bay Area</div><div class="geo-n">5</div><div class="geo-desc">Zone 7, ACWD, Valley Water, Solano County, Napa County. Combined Table A: ~299K AFY. Valley Water is the largest Bay Area SWP contractor at 100,000 AFY and $1B+ annual budget.</div></div>
+    <div class="geo-card"><div class="geo-title">🌊 Central California Coast</div><div class="geo-n">2</div><div class="geo-desc">Central Coast Water Authority (Santa Barbara) and San Luis Obispo County. SWP water via Coastal Branch aqueduct. Combined Table A: ~70K AFY. 616K people served.</div></div>
+    <div class="geo-card"><div class="geo-title">🌾 San Joaquin Valley</div><div class="geo-n">6</div><div class="geo-desc">KCWA (#2 largest SWP contractor), Tulare Lake Basin, Dudley Ridge, Empire West Side, Oak Flat, Kings County. Dominated by KCWA at 982,730 AFY — primarily agricultural use for Kern County.</div></div>
+    <div class="geo-card"><div class="geo-title">🏙️ SoCal — LA / IE / High Desert</div><div class="geo-n">11</div><div class="geo-desc">MWD (#1 at 1.9M AFY), AVEK, SCVWA, SBVMWD, SGVMWD, Palmdale WD, Mojave WA, CLAWA, Littlerock Creek, Ventura County, SGPWA. Largest group; combined Table A ~2.5M AFY (60% of all SWP).</div></div>
+    <div class="geo-card"><div class="geo-title">🏜️ SoCal — Desert</div><div class="geo-n">2</div><div class="geo-desc">Coachella Valley Water District and Desert Water Agency. Both receive SWP exchange water for groundwater replenishment — no direct aqueduct connection. Combined Table A: ~194K AFY.</div></div>
+  </div>
+
+  <div class="ov-grid">
+    <div class="ov-card">
+      <h4>Delta Conveyance Project (DCP) — The Defining Capital Challenge</h4>
+      <p>DWR's proposed twin-tunnel project to convey Sacramento River water beneath the Sacramento-San Joaquin Delta, bypassing fragile levees vulnerable to earthquake collapse. Would significantly improve supply reliability for all 29 SWP contractors. Cost: $16B+. Full environmental review ongoing; Draft EIR completed. Supported by most municipal SWP contractors. This is the single most consequential capital and policy issue affecting the entire SWP contractor community — its cost-sharing will affect all 29 agencies' finances for decades.</p>
+    </div>
+    <div class="ov-card">
+      <h4>Contract Extension to 2085 &amp; Financial Framework</h4>
+      <p>Original SWP contracts expired in 2035. DWR Director approved Water Supply Contract Extension Amendment in December 2018 (effective January 1, 2024), extending contracts to 2085. This allows DWR to issue 30-year+ revenue bonds to finance SWP capital improvements — critical for financing the Delta Conveyance Project and ongoing infrastructure needs. All 29 contractors pay all SWP capital and operating costs proportionally based on their Table A amounts. Contractors' SWP payments are a significant operating cost line item for many agencies.</p>
+    </div>
+    <div class="ov-card">
+      <h4>Note on Financial Data</h4>
+      <p>Revenue and budget data varies significantly in availability across the 29 contractors. Large agencies (MWD, Valley Water, CVWD, Zone 7) publish detailed ACFRs with audited financials. Mid-size agencies vary — many publish ACFRs but exact figures require manual extraction. Small agricultural districts (Dudley Ridge, Oak Flat, Empire West Side, Tulare Lake Basin) have very limited public financial disclosure. Where exact audited figures are confirmed from official sources, confidence is noted as <span class="conf ch">HIGH</span>. Budget estimates are noted as <span class="conf cm">MEDIUM</span>. Third-party estimates only are noted as <span class="conf cl">LOW</span>. No figures are generated without a cited source.</p>
+    </div>
+    <div class="ov-card">
+      <h4>2026 Allocation Context</h4>
+      <p>The 2026 SWP allocation is 30% of Table A (NTC 26-01, January 2026). At 30%, total SWP deliveries to all 29 contractors are approximately 1.25 million acre-feet for 2026. The long-term average is ~60% (~2.5M AFY). 2006 was the last 100% allocation year. The 2025 allocation was 50%. Contractors supplement SWP supplies with local groundwater, recycled water, surface water, water banking, and transfers to manage shortfalls. All 29 contractors budget and plan around multi-year supply uncertainty — many maintain 1–3+ years of storage reserves.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ NORTHERN CA ══════════ -->
+<div id="tab-norcal" class="tab-panel">
+  <div class="section-hdr">Northern California<span>3 contractors · Sacramento Valley · Predominantly agricultural / groundwater recharge · Combined Table A: ~25,000 AFY (est.)</span></div>
+  <div class="note-box"><strong>Note:</strong> Butte County and Feather Water District are confirmed DWR long-term SWP contractors but are not members of the State Water Contractors Association (which has 27 members). Their Table A amounts are estimated from historical DWR documents. Exact figures should be verified directly with DWR.</div>
+
+  <div class="contractor-grid">
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Yuba City</div><div class="c-abbr">Yuba City Public Works / Water</div></div>
+        <div class="c-entitlement"><div class="c-af">9,600</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.23%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · City government SWP contractor</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">Yuba City, Sutter County · Sacramento Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">66,860</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">9,600 AFY max · ~5,760 AFY avg (60%) · 2,880 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$15–25M</span><div class="fin-lbl">Est. Water Utility Revenue<br><span class="conf cm">MEDIUM</span></div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Operating Costs<br>not publicly extracted</div></div>
+          <div class="fin-cell"><span class="fin-val">yubacity.net</span><div class="fin-lbl">ACFR &amp; Budget Source</div></div>
+        </div>
+        <div class="dr"><div class="dr-lbl">Web</div><div class="dr-val"><a href="https://www.yubacity.net" target="_blank">yubacity.net</a></div></div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li>SWP water delivery via North Bay Aqueduct / Feather River connections as supplemental municipal supply for growing Yuba City</li>
+            <li>Water system infrastructure maintenance and replacement per City capital program</li>
+            <li>Urban Water Management Plan compliance and water conservation programs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Butte County — Dept. of Water &amp; Resource Conservation</div><div class="c-abbr">Butte County / DWRC</div></div>
+        <div class="c-entitlement"><div class="c-af">~13,000</div><div class="c-af-lbl">AFY Table A (est.)</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.31%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use mixed">Mixed</span> · County government · Agricultural / groundwater recharge focus</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">Butte County · Oroville area · Sacramento Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">N/A (primarily agricultural use)</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">~13,000 AFY (est.) · ~7,800 AFY avg · ~3,900 AFY in 2026 — <span class="conf cl">LOW CONFIDENCE — verify with DWR</span></div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Revenue<br>not publicly extracted</div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Operating Costs</div></div>
+          <div class="fin-cell"><span class="fin-val">buttecounty.net</span><div class="fin-lbl">Budget Source</div></div>
+        </div>
+        <div class="dr"><div class="dr-lbl">Note</div><div class="dr-val">Not a member of State Water Contractors Association. Not listed on swc.org member agencies page. Confirmed as SWP contractor via DWR contractor contacts list (Oroville address). Table A amount estimated.</div></div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li>Groundwater recharge and banking using SWP water in Sacramento Valley aquifer systems</li>
+            <li>Agricultural water delivery in Butte County</li>
+            <li>Butte County Groundwater Sustainability Plan compliance (SGMA)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Feather Water District / Feather River Water Service Area</div><div class="c-abbr">FRWSA / Feather WD</div></div>
+        <div class="c-entitlement"><div class="c-af">~3,500</div><div class="c-af-lbl">AFY Table A (est.)</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.08%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use mixed">Mixed</span> · Small SWP contractor · Northern CA</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">Northern California · Feather River area</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">Small community</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">~3,500 AFY (est.) · <span class="conf cl">LOW CONFIDENCE — verify with DWR</span></div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Revenue (very limited disclosure)</div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Operating Costs</div></div>
+          <div class="fin-cell"><span class="fin-val">—</span><div class="fin-lbl">No public website identified</div></div>
+        </div>
+        <div class="dr"><div class="dr-lbl">Note</div><div class="dr-val">One of the 29 confirmed DWR long-term SWP contractors. Not a member of State Water Contractors Association. Very limited public information available. Smallest and least-documented contractor in the SWP portfolio.</div></div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li>Small-scale SWP water delivery in Northern California</li>
+            <li>Groundwater recharge / agricultural supplemental supply</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ BAY AREA ══════════ -->
+<div id="tab-bayarea" class="tab-panel">
+  <div class="section-hdr">San Francisco Bay Area<span>5 contractors · Combined Table A: ~299,000 AFY · ~3.4 million people served · Zone 7, ACWD, Valley Water, Solano County, Napa County</span></div>
+
+  <div class="contractor-grid">
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Santa Clara Valley Water District (Valley Water)</div><div class="c-abbr">Valley Water / SCVWD</div></div>
+        <div class="c-entitlement"><div class="c-af">100,000</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:2.4%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Wholesale + retail · Santa Clara County water, flood control, and groundwater agency</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">Santa Clara County · 1,305 sq mi · San Jose, Silicon Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">1,900,000 · Delivers to 15 retail water systems in Santa Clara County</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">100,000 AFY max · ~60,000 AFY avg · 30,000 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">$1.0B+</span><div class="fin-lbl">Annual Operating Budget<br><span class="conf ch">HIGH</span> · FY2024/25 adopted</div></div>
+          <div class="fin-cell"><span class="fin-val">AA+</span><div class="fin-lbl">Bond Rating<br>Fitch &amp; S&P</div></div>
+          <div class="fin-cell"><span class="fin-val">$7.9B</span><div class="fin-lbl">Water Supply CIP<br>FY2026–30 Five-Year Plan</div></div>
+        </div>
+        <div class="dr"><div class="dr-lbl">Source</div><div class="dr-val">FY2024/25 adopted budget at valleywater.org; CIP FY2026–2030 Five-Year Plan adopted May 2025</div></div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities (confirmed from valleywater.org)</div>
+          <ul class="proj-list">
+            <li><strong>Anderson Dam Tunnel Project</strong> — Active seismic retrofit; dam modifications to address seismic risk; on schedule for late 2029 completion</li>
+            <li><strong>Water Treatment Plant Master Plan Implementation</strong> — Scoping meeting held March 20, 2025; comprehensive long-term WTP upgrade program across multiple plants</li>
+            <li><strong>Distribution System Master Plan</strong> — 30-year implementation plan for raw and treated water distribution improvements</li>
+            <li><strong>SCADA Master Plan Implementation</strong> — Supervisory Control and Data Acquisition modernization program</li>
+            <li><strong>10-Year Pipeline Inspection &amp; Rehabilitation Program</strong> — Updated April 2025; 80 miles inspected, 1,000+ aging components replaced to date</li>
+            <li><strong>Upper Llagas Creek Flood Protection Phase 2B</strong> — 8-mile phase started September 2024; completion March 2027; provides 100-year flood protection for Morgan Hill</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Alameda County Flood Control &amp; Water Conservation District, Zone 7</div><div class="c-abbr">Zone 7 Water</div></div>
+        <div class="c-entitlement"><div class="c-af">80,619</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:1.93%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Wholesale water + flood control · Livermore-Amador Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">431 sq mi · Dublin, Livermore, Pleasanton, San Ramon · East Bay / Alameda County</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">260,000 · Delivers wholesale to 5 retail purveyors in Tri-Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">80,619 AFY max · ~48,371 AFY avg · 24,186 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">$125.8M</span><div class="fin-lbl">Total Revenues FY2023<br><span class="conf ch">HIGH</span> · Audited (zone7water.report/2023)</div></div>
+          <div class="fin-cell"><span class="fin-val">$106.8M</span><div class="fin-lbl">Total Expenses FY2023<br><span class="conf ch">HIGH</span> · Audited</div></div>
+          <div class="fin-cell"><span class="fin-val">AA+</span><div class="fin-lbl">Bond Rating (Fitch)<br>GFOA Certificate holder</div></div>
+        </div>
+        <div class="dr"><div class="dr-lbl">Revenue detail</div><div class="dr-val">FY2023: $125.8M total revenues (+$5.7M / +4.8% vs FY2022). Rate increases: 5.5%/year CY2023–2026 (Board approved Nov. 2022). 4% rate increase effective Jan. 1, 2024. Source: zone7water.report/2023/finance/ (audited annual report)</div></div>
+        <div class="dr"><div class="dr-lbl">5-yr rate plan</div><div class="dr-val">5.5% annual rate increases approved for wholesale water services CY 2023–2026; Board revisiting 2025–2026 schedule</div></div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Los Vaqueros Reservoir Expansion</strong> — Contributing funding to CCWD's reservoir expansion to 275,000 AF; critical drought storage for Bay Area</li>
+            <li><strong>Patterson Pass Water Treatment Plant — Ozone Upgrade</strong> — Active construction using 2018 Water Revenue Bonds; increases water quality and treatment capacity</li>
+            <li><strong>Flood Repair &amp; Maintenance Program</strong> — Ongoing; projects deferred from FY2023 being completed FY2024+</li>
+            <li><strong>Delta Conveyance Project Support</strong> — Zone 7 is an active supporter and SWP contractor in DCP planning and cost-sharing discussions</li>
+            <li><strong>Drought Management &amp; Water Banking</strong> — Building and maintaining groundwater bank reserves to supplement SWP supply in dry years</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Alameda County Water District</div><div class="c-abbr">ACWD</div></div>
+        <div class="c-entitlement"><div class="c-af">42,000</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:1.01%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Retail water district · Fremont, Hayward, Newark, Union City</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">105 sq mi · Fremont, Hayward, Newark, Union City · East Bay / Alameda County</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">356,000 · ~8,500 active accounts</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">42,000 AFY max · ~25,200 AFY avg · 12,600 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$100–150M</span><div class="fin-lbl">Est. Annual Revenue<br><span class="conf cm">MEDIUM</span> · ACFR at acwd.org</div></div>
+          <div class="fin-cell"><span class="fin-val">4%</span><div class="fin-lbl">Rate increase approved<br>Dec. 2024 (effective Mar. 2025 &amp; 2026)</div></div>
+          <div class="fin-cell"><span class="fin-val">$24M</span><div class="fin-lbl">Grants secured<br>primarily fishery projects</div></div>
+        </div>
+        <div class="dr"><div class="dr-lbl">Rate action</div><div class="dr-val">Board approved 4% increase to both service and commodity charges per year for two years (effective March 1, 2025 and March 1, 2026). Source: acwd.org/621/Water-Rates-Process, December 2024 Board meeting.</div></div>
+        <div class="dr"><div class="dr-lbl">Grants</div><div class="dr-val">~$24M in grants and reimbursements secured, primarily for mandated fishery projects in Alameda Creek (acwd.org, 2024)</div></div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Urban Water Management Plan &amp; Water Shortage Contingency Plan</strong> — Draft UWMP released 2025; public comment open until June 11, 2025</li>
+            <li><strong>Alameda Creek Fishery Restoration</strong> — Federally mandated; $24M+ in grants secured; ongoing multi-year program</li>
+            <li><strong>Capital Improvement Program</strong> — 25-year CIP focused on aging infrastructure replacement, regulatory compliance, and future demand</li>
+            <li><strong>Non-Functional Turf Removal Program</strong> — New state law compliance; ACWD providing customer outreach and incentives</li>
+            <li><strong>Rate Structure Modernization</strong> — 2024 workshops evaluated multiple customer classes, tiered rates, and drought surcharge mechanisms</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Solano County Water Agency</div><div class="c-abbr">SCWA</div></div>
+        <div class="c-entitlement"><div class="c-af">47,756</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:1.14%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use mixed">Mixed</span> · Wholesale water supply + flood management · Municipal and agricultural</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">909 sq mi · Solano County · UC Davis, Yolo County portions</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">445,500 · Delivers via North Bay Aqueduct to cities and agriculture in Solano County</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">47,756 AFY max · ~28,654 AFY avg · 14,327 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$30–60M</span><div class="fin-lbl">Est. Annual Budget<br><span class="conf cm">MEDIUM</span> · ACFR at scwa2.com</div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Operating Costs<br>not extracted</div></div>
+          <div class="fin-cell"><span class="fin-val">scwa2.com</span><div class="fin-lbl">Financial Source</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>North Bay Aqueduct Infrastructure</strong> — Ongoing maintenance and reliability improvements to the North Bay Aqueduct conveyance system serving Solano and Napa Counties</li>
+            <li><strong>Suisun Marsh Salinity Control</strong> — SCWA participates in managing salinity in the Suisun Marsh as part of SWP operations</li>
+            <li><strong>Agricultural Water Management</strong> — Manages SWP water delivery to agricultural users in Solano County alongside municipal supply</li>
+            <li><strong>Delta Conveyance Project</strong> — Active stakeholder in DCP planning; critical for long-term supply reliability through Solano County</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Napa County Flood Control and Water Conservation District</div><div class="c-abbr">Napa County / NCFCWCD</div></div>
+        <div class="c-entitlement"><div class="c-af">29,025</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.70%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · County flood control and water conservation district</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">797 sq mi · American Canyon, Calistoga, Napa, St. Helena, Yountville · Napa County</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">139,100 · Contract holder; delivers SWP water to City of Napa, Calistoga, American Canyon, and agricultural users</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">29,025 AFY max · ~17,415 AFY avg · 8,708 AFY in 2026 (30%) · North Bay Aqueduct delivery to Barwick Jamieson Canyon WTP</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$10–20M</span><div class="fin-lbl">Est. Annual Budget<br><span class="conf cm">MEDIUM</span></div></div>
+          <div class="fin-cell"><span class="fin-val">21 MGD</span><div class="fin-lbl">WTP Treatment Capacity<br>Barwick Jamieson Canyon WTP</div></div>
+          <div class="fin-cell"><span class="fin-val">countyofnapa.org</span><div class="fin-lbl">Financial Source</div></div>
+        </div>
+        <div class="dr"><div class="dr-lbl">Infrastructure</div><div class="dr-val">SWP water diverted at Barker Slough Pumping Plant (Vacaville), conveyed 21 miles via North Bay Aqueduct to Cordelia Forebay, then 6 miles to NBA Terminal Reservoirs. Treated at Barwick Jamieson Canyon WTP ($40M improvements project completed 2011, increasing capacity to 20 MGD). Source: cityofnapa.org</div></div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Barwick Jamieson Canyon WTP Operations</strong> — Pre-ozonation, conventional treatment, 20 MGD capacity; ongoing operational and maintenance investment</li>
+            <li><strong>North Bay Aqueduct Reliability</strong> — Coordinating with DWR and Solano County on aqueduct conveyance reliability improvements</li>
+            <li><strong>Carryover Water Management</strong> — Managing SWP carryover storage in San Luis Reservoir; critical drought buffer for Napa County</li>
+            <li><strong>Napa County Groundwater Sustainability</strong> — SGMA compliance coordination across Napa Valley subbasins</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════ CENTRAL COAST ══════════ -->
+<div id="tab-coast" class="tab-panel">
+  <div class="section-hdr">Central California Coast<span>2 contractors · Combined Table A: ~70,500 AFY · ~616,500 people served · SWP via Coastal Branch Aqueduct</span></div>
+
+  <div class="contractor-grid">
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Central Coast Water Authority</div><div class="c-abbr">CCWA</div></div>
+        <div class="c-entitlement"><div class="c-af">45,486</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:1.09%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Wholesale SWP water provider for Santa Barbara County</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">300 sq mi · Santa Barbara County · SWP water via Coastal Branch aqueduct (Coastal Branch Extension)</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">337,400 · Wholesale deliveries to City of Santa Barbara, Goleta Water District, Santa Maria, Lompoc, and others</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">45,486 AFY max · ~27,292 AFY avg · 13,646 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$20–40M</span><div class="fin-lbl">Est. Annual Revenue<br><span class="conf cm">MEDIUM</span> · ACFR at ccwa.com</div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Operating Costs<br>ACFR available</div></div>
+          <div class="fin-cell"><span class="fin-val">ccwa.com</span><div class="fin-lbl">Financial Source</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Coastal Branch Aqueduct Operations</strong> — Manages SWP Coastal Branch conveyance infrastructure from the California Aqueduct to Santa Barbara County</li>
+            <li><strong>Twitchell Reservoir &amp; Groundwater Recharge</strong> — Active groundwater banking via spreading operations in Santa Maria Valley</li>
+            <li><strong>Santa Barbara Desalination Plant</strong> — City of Santa Barbara operates a desalination plant as backup supply alongside CCWA SWP water; CCWA planning considers desalination as drought backup</li>
+            <li><strong>Delta Conveyance Project</strong> — Active SWP contractor participant; DCP reliability would significantly benefit Santa Barbara County supply</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">San Luis Obispo County Flood Control and Water Conservation District</div><div class="c-abbr">SLO County</div></div>
+        <div class="c-entitlement"><div class="c-af">25,000</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.60%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · County flood control and water conservation district</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">SLO County · 221,522 sq mi · San Luis Obispo County communities</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">279,100 · SWP water supplements local Nacimiento and Lopez reservoirs for SLO County</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">25,000 AFY max · ~15,000 AFY avg · 7,500 AFY in 2026 (30%) · Coastal Branch delivery</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$10–15M</span><div class="fin-lbl">Est. SWP-related Budget<br><span class="conf cm">MEDIUM</span></div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Operating Costs</div></div>
+          <div class="fin-cell"><span class="fin-val">slocounty.ca.gov</span><div class="fin-lbl">Financial Source</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>SWP Coastal Branch Delivery Operations</strong> — Manages SWP water distribution to San Luis Obispo County communities via Coastal Branch</li>
+            <li><strong>Nacimiento and Lopez Reservoir Coordination</strong> — Integrates SWP supply with local reservoir operations for supply reliability</li>
+            <li><strong>SLO County Groundwater Sustainability (SGMA)</strong> — Coordinating with local groundwater sustainability agencies on SGMA compliance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SAN JOAQUIN VALLEY ══════════ -->
+<div id="tab-valley" class="tab-panel">
+  <div class="section-hdr">San Joaquin Valley &amp; Central Valley<span>6 contractors · Dominated by KCWA (23.5% of all SWP) · Primarily agricultural · Combined Table A: ~1,133,000 AFY</span></div>
+  <div class="note-box"><strong>Note:</strong> This region is dominated by Kern County Water Agency at 982,730 AFY — the second largest SWP contractor. The remaining 5 contractors in this region are primarily agricultural-use districts with limited public financial disclosure.</div>
+
+  <div class="contractor-grid">
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Kern County Water Agency</div><div class="c-abbr">KCWA</div></div>
+        <div class="c-entitlement"><div class="c-af">982,730</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:23.5%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use mixed">Mixed</span> · Municipal + Agricultural · SWP local contracting entity for Kern County</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">8,163 sq mi · Kern County · Bakersfield area · Southern San Joaquin Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">882,200 · Serves 13 member units + Improvement District No. 4 for Bakersfield municipal water · Also serves agricultural land throughout Kern County</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">982,730 AFY max · ~589,638 AFY avg · ~294,819 AFY in 2026 (30%) · <strong>#2 largest SWP contractor — 23.5% of total SWP entitlement</strong></div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">ACFRs on request</span><div class="fin-lbl">Financial disclosure<br><span class="conf cm">MEDIUM</span> — request at kcwa.com</div></div>
+          <div class="fin-cell"><span class="fin-val">Fitch AA-</span><div class="fin-lbl">Bond Rating</div></div>
+          <div class="fin-cell"><span class="fin-val">5.7M AF</span><div class="fin-lbl">Kern Water Bank storage<br>largest groundwater bank in CA</div></div>
+        </div>
+        <div class="dr"><div class="dr-lbl">Revenue note</div><div class="dr-val">KCWA publishes ACFRs available on request at kcwa.com/resource-links/. Exact operating revenue not publicly posted online. Estimated annual budget in the $200–400M range including SWP cost pass-through to 13 member units. Fitch AA- rating confirmed.</div></div>
+        <div class="dr"><div class="dr-lbl">Groundwater bank</div><div class="dr-val">Kern County Water Agency manages one of California's most extensive groundwater banking programs — 5.7 million AF of stored credits. Kern Water Bank Authority (KWBA) manages the Kern Water Bank. Key partners include Dudley Ridge Water District, Cawelo Water District, and others.</div></div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Kern Groundwater Sustainability Plan (SGMA)</strong> — All 20 GSAs in the Kern County Subbasin finalized and approved coordinated GSP in December 2024; KCWA is a key player in SGMA compliance for Kern County</li>
+            <li><strong>Cross Valley Canal Operations</strong> — KCWA-built and operated 1975 canal enhancing SWP water delivery flexibility across Kern County</li>
+            <li><strong>Improvement District No. 4 (ID4)</strong> — KCWA's retail water service arm for Bakersfield; annual groundwater charge hearings held each March</li>
+            <li><strong>Kern Water Bank Operations</strong> — Active groundwater banking and recovery operations; 5.7M AF of stored credits are the primary drought resilience buffer for Kern County</li>
+            <li><strong>Delta Conveyance Project</strong> — KCWA is a major advocate for the Delta Conveyance Project as the critical long-term reliability investment for SWP deliveries to Kern County</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Tulare Lake Basin Water Storage District</div><div class="c-abbr">TLBWSD</div></div>
+        <div class="c-entitlement"><div class="c-af">87,471</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:2.1%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use ag">Agricultural</span> · Water storage district · Serves agricultural land in San Joaquin Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">290 sq mi · Kings County, Tulare County · Central San Joaquin Valley (former Tulare Lake basin)</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">N/A — serves agricultural land; no municipal population served</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">87,471 AFY max · ~52,483 AFY avg · 26,241 AFY in 2026 (30%) · One of the larger agricultural SWP contractors</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$5–15M</span><div class="fin-lbl">Est. District Operations<br><span class="conf cl">LOW</span></div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Financial disclosure<br>very limited online</div></div>
+          <div class="fin-cell"><span class="fin-val">—</span><div class="fin-lbl">No active public website found</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Agricultural Water Delivery</strong> — SWP water delivery to agricultural land in the former Tulare Lake basin area of Kings and Tulare Counties</li>
+            <li><strong>SGMA Compliance</strong> — Coordinating with Kings and Tulare County groundwater sustainability agencies under the Sustainable Groundwater Management Act</li>
+            <li><strong>Groundwater Banking</strong> — Uses SWP water for groundwater recharge during wet years to build reserves for dry-year agricultural supply</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Dudley Ridge Water District</div><div class="c-abbr">DRWD</div></div>
+        <div class="c-entitlement"><div class="c-af">45,350</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:1.09%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use ag">Agricultural</span> · Irrigation district · South Kings County agricultural land</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">59 sq mi · South Kings County · Southern San Joaquin Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">N/A — agricultural irrigation only</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">45,350 AFY max · ~27,210 AFY avg · 13,605 AFY in 2026 (30%) · Water primarily sold for groundwater banking via Kern Water Bank Authority (KWBA)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$2–5M</span><div class="fin-lbl">Est. District Operations<br><span class="conf cl">LOW</span></div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Financial disclosure limited</div></div>
+          <div class="fin-cell"><span class="fin-val">dudleyridgewd.org</span><div class="fin-lbl">Website</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Kern Water Bank Authority (KWBA) Participation</strong> — Dudley Ridge is a primary partner in KWBA; SWP water is delivered to KWBA for groundwater banking</li>
+            <li><strong>SGMA Compliance</strong> — Participating in Kings County groundwater sustainability planning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Kings County</div><div class="c-abbr">Kings County</div></div>
+        <div class="c-entitlement"><div class="c-af">9,305</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.22%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use mixed">Mixed</span> · County government · Municipal and agricultural</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">1,396 sq mi · Kings County · Hanford, Lemoore, Corcoran area</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">149,900</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">9,305 AFY max · ~5,583 AFY avg · 2,792 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">County budget</span><div class="fin-lbl">Financial info via Kings County budget<br><span class="conf cm">MEDIUM</span></div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">SWP-specific costs not extracted</div></div>
+          <div class="fin-cell"><span class="fin-val">countyofkings.com</span><div class="fin-lbl">Source</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Municipal and Agricultural Water Supply</strong> — Kings County SWP contract serves both municipal communities (Hanford, Lemoore) and agricultural users</li>
+            <li><strong>Kings County SGMA</strong> — SGMA compliance coordination for Kings County groundwater basins</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Oak Flat Water District</div><div class="c-abbr">OFWD</div></div>
+        <div class="c-entitlement"><div class="c-af">5,700</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.14%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use ag">Agricultural</span> · Small water storage district · San Joaquin Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">San Joaquin Valley · No residents served (SWC data) · Agricultural land</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">5,700 AFY max · ~3,420 AFY avg · 1,710 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Very limited disclosure<br><span class="conf cl">LOW</span></div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">No public website</div></div>
+          <div class="fin-cell"><span class="fin-val">—</span><div class="fin-lbl">No website identified</div></div>
+        </div>
+        <div class="projects"><div class="proj-lbl">Key Focus</div><ul class="proj-list"><li>Agricultural groundwater recharge / banking via SWP water in San Joaquin Valley</li></ul></div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Empire West Side Irrigation District</div><div class="c-abbr">EWSID</div></div>
+        <div class="c-entitlement"><div class="c-af">3,000</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.07%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use ag">Agricultural</span> · Small irrigation district · Kings County</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">12 sq mi · Kings County · San Joaquin Valley agricultural land</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">3,000 AFY max · ~1,800 AFY avg · 900 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$1–3M</span><div class="fin-lbl">Est. District Operations<br><span class="conf cl">LOW</span></div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Very limited disclosure</div></div>
+          <div class="fin-cell"><span class="fin-val">—</span><div class="fin-lbl">No website identified</div></div>
+        </div>
+        <div class="projects"><div class="proj-lbl">Key Focus</div><ul class="proj-list"><li>Agricultural irrigation in Kings County using SWP water from the California Aqueduct</li></ul></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════ SOCAL LA/IE/HD ══════════ -->
+<div id="tab-socal" class="tab-panel">
+  <div class="section-hdr">Southern California — LA / Inland Empire / High Desert / Mountains<span>11 contractors · MWD holds 45.8% of all SWP entitlements · Combined Table A: ~2.49M AFY · ~22M+ people</span></div>
+
+  <div class="contractor-grid">
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Metropolitan Water District of Southern California</div><div class="c-abbr">MWD / Met</div></div>
+        <div class="c-entitlement"><div class="c-af">1,911,500</div><div class="c-af-lbl">AFY Table A · #1 SWP contractor</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Largest treated water wholesaler in the United States · 26 member agencies</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">5,200 sq mi · Los Angeles, Orange, Riverside, San Bernardino, San Diego, Ventura Counties</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">19,000,000 · Wholesale only — delivers to 26 member agencies (14 cities, 11 municipal water districts, 1 county water authority)</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">1,911,500 AFY max (45.8% of all SWP) · ~1,146,900 AFY avg · ~573,450 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$2.04B</span><div class="fin-lbl">FY2024/25 Op. Revenue (budgeted)<br><span class="conf ch">HIGH</span> · Biennial Budget Book, July 2024</div></div>
+          <div class="fin-cell"><span class="fin-val">~$2.17B</span><div class="fin-lbl">FY2025/26 Op. Revenue (budgeted)<br><span class="conf ch">HIGH</span> · +$133M vs FY2024/25</div></div>
+          <div class="fin-cell"><span class="fin-val">Aa1/AA</span><div class="fin-lbl">Bond Rating<br>Moody's / S&P · $280M+ bonds planned</div></div>
+        </div>
+        <div class="dr"><div class="dr-lbl">Operating costs</div><div class="dr-val">FY2025/26 operating expenditures include: State Water Contract $703.9M; Departmental O&M $649.7M; Debt Service $353.5M; Supply Programs $90.9M; CO River Power $93.3M; Demand Management $61.1M. Source: FY2025/26 Fund Summary, adopted Biennial Budget Book.</div></div>
+        <div class="dr"><div class="dr-lbl">Rate actions</div><div class="dr-val">Water rates increased 8.5% effective January 1, 2025 and 8.5% effective January 1, 2026. SDCWA litigation settled June 2, 2025 — Board Chair described as "most significant change to Metropolitan's business model." New GM Adán Deshmukh named October 2025.</div></div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities (confirmed from FY2026 Budget &amp; Action Plan Summaries and mwdh2o.com)</div>
+          <ul class="proj-list">
+            <li><strong>Pure Water Southern California (PWSC)</strong> — Draft EIR released May 14, 2025; $205M+ federal/state grants secured (USBR $125.5M, State $80M, additional $26.2M Nov. 2024); 150 MGD program for 1.5M people at full scale</li>
+            <li><strong>CAMP4W — Climate Adaptation Master Plan for Water</strong> — Board-approved April 2025; new criteria-based capital investment framework; evaluating PWSC, Sites Reservoir, Delta Conveyance, and conservation investments through 2025–2026</li>
+            <li><strong>Enterprise Content Management (ECM) Phase II</strong> — $10.3M budgeted FY2025/26 (Action Plan Summaries p.315)</li>
+            <li><strong>Enterprise Data Analytics Platform</strong> — $3.3M budgeted FY2025/26 (Action Plan Summaries p.315)</li>
+            <li><strong>PCCP Rehabilitation 2024/2025</strong> — RFQ No. 1374; ~$70M estimated; ongoing rehabilitation of 830-mile distribution system</li>
+            <li><strong>Weymouth Admin &amp; Control Buildings Seismic Upgrades</strong> — Spec 1937; $28–35M estimated construction value</li>
+            <li><strong>AVEK High Desert Water Bank</strong> — $177.9M+ debt-financed; climate adaptation capital investment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">San Bernardino Valley Municipal Water District</div><div class="c-abbr">SBVMWD</div></div>
+        <div class="c-entitlement"><div class="c-af">102,600</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:2.46%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Wholesale water agency · Southwest San Bernardino County</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">353 sq mi · Colton, Loma Linda, Redlands, Rialto, San Bernardino County</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">661,500</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">102,600 AFY max · ~61,560 AFY avg · 30,780 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$50–80M</span><div class="fin-lbl">Est. Operating Revenue<br><span class="conf cm">MEDIUM</span> · ACFR at sbvmwd.com</div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Operating Costs<br>ACFR available at sbvmwd.com</div></div>
+          <div class="fin-cell"><span class="fin-val">sbvmwd.com</span><div class="fin-lbl">Financial Source</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Bunker Hill Basin Groundwater Management</strong> — SBVMWD manages groundwater storage within its service area; integrates SWP water for groundwater banking</li>
+            <li><strong>In-Lieu Recharge Programs</strong> — Spreading SWP water for groundwater replenishment to offset pumping in the Bunker Hill groundwater basin</li>
+            <li><strong>East Branch SWP Deliveries</strong> — Receives SWP water via the California Aqueduct East Branch to Inland Empire</li>
+            <li><strong>SGMA Compliance</strong> — San Bernardino Valley groundwater basin SGMA coordination</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Antelope Valley – East Kern Water Agency</div><div class="c-abbr">AVEK</div></div>
+        <div class="c-entitlement"><div class="c-af">144,844</div><div class="c-af-lbl">AFY Table A · #3 largest SWP contractor</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:3.47%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Wholesale water agency · Antelope Valley / East Kern</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">2,383 sq mi · California City, Palmdale, Lancaster, Kern County, Los Angeles County · Antelope Valley high desert</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">500,000 · One of the fastest-growing regions in Southern California</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">144,844 AFY max · ~86,906 AFY avg · ~43,453 AFY in 2026 (30%) · <strong>3rd largest SWP contractor by Table A</strong></div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$30–50M</span><div class="fin-lbl">Est. Annual Revenue<br><span class="conf cm">MEDIUM</span> · ACFR at avek.org</div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Operating Costs<br>ACFR available at avek.org</div></div>
+          <div class="fin-cell"><span class="fin-val">avek.org</span><div class="fin-lbl">Financial Source</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>AVEK High Desert Water Bank</strong> — $177.9M+ capital investment (funded by MWD debt); major groundwater banking program in Antelope Valley</li>
+            <li><strong>100% Table A Delivery 2023</strong> — AVEK delivered 100% of its Table A (144,844 AF) in 2023 for the first time since 2006; imported record volumes for groundwater banking</li>
+            <li><strong>Antelope Valley Groundwater Adjudication</strong> — AVEK participates in the long-standing Antelope Valley groundwater adjudication and manages SWP water accordingly</li>
+            <li><strong>SGMA Compliance</strong> — Antelope Valley area SGMA planning and coordination</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Santa Clarita Valley Water Agency</div><div class="c-abbr">SCVWA</div></div>
+        <div class="c-entitlement"><div class="c-af">95,200</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:2.28%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Retail + wholesale · Formed 2018 via consolidation of Castaic Lake Water Agency and Santa Clarita Water Division</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">195 sq mi · Newhall, Santa Clarita, Valencia, Los Angeles County · West Branch SWP delivery via Castaic Lake</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">275,800</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">95,200 AFY max · ~57,120 AFY avg · 28,560 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$150–200M</span><div class="fin-lbl">Est. Annual Budget<br><span class="conf cm">MEDIUM</span> · ACFR at yourscvwater.com</div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Operating Costs<br>ACFR available</div></div>
+          <div class="fin-cell"><span class="fin-val">yourscvwater.com</span><div class="fin-lbl">Financial Source</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Castaic Lake Water Storage</strong> — Key SWP off-stream reservoir on the West Branch; SCVWA manages water deliveries from Castaic Lake to Santa Clarita Valley</li>
+            <li><strong>Recycled Water Expansion</strong> — SCVWA expanding recycled water program to offset potable demand across Santa Clarita Valley</li>
+            <li><strong>Organizational Integration</strong> — SCVWA formed in 2018 via consolidation; ongoing infrastructure and systems integration from the two predecessor agencies</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Mojave Water Agency</div><div class="c-abbr">MWA</div></div>
+        <div class="c-entitlement"><div class="c-af">85,800</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:2.06%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Wholesale water agency · San Bernardino County High Desert</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">4,900 sq mi · Barstow, Adelanto, Apple Valley, Hesperia, Victorville, Yucca Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><td class="dr-val">476,800</td></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">85,800 AFY max · ~51,480 AFY avg · 25,740 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$30–50M</span><div class="fin-lbl">Est. Annual Revenue<br><span class="conf cm">MEDIUM</span> · ACFR at mojavewater.org</div></div>
+          <div class="fin-cell"><span class="fin-val">~125K AF</span><div class="fin-lbl">Record 2023 delivery<br>(100% allocation + transfers)</div></div>
+          <div class="fin-cell"><span class="fin-val">mojavewater.org</span><div class="fin-lbl">Financial Source</div></div>
+        </div>
+        <div class="dr"><div class="dr-lbl">2023 milestone</div><div class="dr-val">In 2023, MWA received 100% of its Table A allocation for the first time since 2006. Total deliveries reached ~125,000 AF — a record — including delivery of 25,000 AF to a neighboring contractor. Source: MWA press release, March 2024.</div></div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Mojave River Groundwater Banking</strong> — Active groundwater recharge in the Mojave River basin using SWP water; major drought resilience buffer for High Desert communities</li>
+            <li><strong>Victor Valley Wastewater Reclamation Authority Partnerships</strong> — Recycled water integration with wastewater agencies to supplement SWP supply</li>
+            <li><strong>High Desert Master Water Plan</strong> — Long-range supply planning for one of SoCal's fastest-growing regions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">San Gabriel Valley Municipal Water District</div><div class="c-abbr">SGVMWD</div></div>
+        <div class="c-entitlement"><div class="c-af">28,800</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.69%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Wholesale water agency · San Gabriel Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">29 sq mi · Alhambra, Azusa, Monterey Park, Sierra Madre · Los Angeles County</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">197,600</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">28,800 AFY max · ~17,280 AFY avg · 8,640 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$20–40M</span><div class="fin-lbl">Est. Operating Revenue<br><span class="conf cm">MEDIUM</span></div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">ACFR at sgvmwd.org</div></div>
+          <div class="fin-cell"><span class="fin-val">sgvmwd.org</span><div class="fin-lbl">Financial Source</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>San Gabriel Basin Groundwater Management</strong> — SWP water used for in-lieu recharge and direct groundwater replenishment in the San Gabriel groundwater basin</li>
+            <li><strong>East Branch SWP Deliveries</strong> — Receives SWP water via East Branch California Aqueduct to San Gabriel Valley</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Palmdale Water District</div><div class="c-abbr">PWD</div></div>
+        <div class="c-entitlement"><div class="c-af">21,300</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.51%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Retail water district · Palmdale, Antelope Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">187 sq mi · Palmdale, Antelope Valley area · Los Angeles County</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">131,200</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">21,300 AFY max · ~12,780 AFY avg · 6,390 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$30–50M</span><div class="fin-lbl">Est. Operating Revenue<br><span class="conf cm">MEDIUM</span></div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">ACFR at palmdalewater.org</div></div>
+          <div class="fin-cell"><span class="fin-val">palmdalewater.org</span><div class="fin-lbl">Financial Source</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li>Retail water service to growing Palmdale community; SWP water is a key supply source alongside local groundwater</li>
+            <li>Antelope Valley groundwater adjudication participation</li>
+            <li>Infrastructure rehabilitation and replacement for aging distribution system</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Ventura County Watershed Protection District</div><div class="c-abbr">VCWPD</div></div>
+        <div class="c-entitlement"><div class="c-af">20,000</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.48%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · County flood control and water conservation district · SWP supplemental supply for Ventura County</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">482 sq mi · Ventura County</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">472,776</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">20,000 AFY max · ~12,000 AFY avg · 6,000 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$10–20M</span><div class="fin-lbl">Est. SWP-related Budget<br><span class="conf cm">MEDIUM</span></div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Financial reports at vcpublicworks.org</div></div>
+          <div class="fin-cell"><span class="fin-val">vcpublicworks.org/wpd</span><div class="fin-lbl">Source</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li>SWP water as supplemental supply for Ventura County via MWD member agencies</li>
+            <li>Flood control and watershed protection programs for Ventura County</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">San Gorgonio Pass Water Agency</div><div class="c-abbr">SGPWA</div></div>
+        <div class="c-entitlement"><div class="c-af">17,300</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.41%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Wholesale water agency · Riverside County (San Gorgonio Pass area)</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">228 sq mi · Banning, Beaumont, Calimesa, Cherry Valley Area · Riverside County</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">90,000</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">17,300 AFY max · ~10,380 AFY avg · 5,190 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$10–20M</span><div class="fin-lbl">Est. Operating Revenue<br><span class="conf cm">MEDIUM</span></div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">ACFR at sgpwa.com</div></div>
+          <div class="fin-cell"><span class="fin-val">sgpwa.com</span><div class="fin-lbl">Source</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li>SWP water delivery via East Branch aqueduct to Banning and Beaumont area</li>
+            <li>Drought storage and groundwater replenishment for fast-growing San Gorgonio Pass communities</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Crestline – Lake Arrowhead Water Agency</div><div class="c-abbr">CLAWA</div></div>
+        <div class="c-entitlement"><div class="c-af">5,800</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.14%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Retail water agency · San Bernardino mountain communities</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">86 sq mi · Crestline, Lake Arrowhead area · San Bernardino Mountains</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">29,000 · Primary supply is local mountain springs and wells; SWP is backup</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">5,800 AFY max · ~3,480 AFY avg · 1,740 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$5–10M</span><div class="fin-lbl">Est. Operating Revenue<br><span class="conf cm">MEDIUM</span></div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">ACFR at clawa.org</div></div>
+          <div class="fin-cell"><span class="fin-val">clawa.org</span><div class="fin-lbl">Source</div></div>
+        </div>
+        <div class="projects"><div class="proj-lbl">Key Focus</div><ul class="proj-list"><li>SWP serves as backup supply for mountain communities; primary reliance on local springs and wells</li><li>Carryover water management in San Luis Reservoir to buffer dry years</li></ul></div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Littlerock Creek Irrigation District</div><div class="c-abbr">LCID</div></div>
+        <div class="c-entitlement"><div class="c-af">2,300</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:0.06%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use ag">Agricultural</span> · Small irrigation district · Antelope Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">16 sq mi · Pearblossom, Fort Tejon area · Los Angeles County</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">2,900 (combined agricultural and limited municipal)</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">2,300 AFY max · ~1,380 AFY avg · 690 AFY in 2026 (30%)</div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$1–3M</span><div class="fin-lbl">Est. District Ops<br><span class="conf cl">LOW</span></div></div>
+          <div class="fin-cell"><span class="fin-val">lrcid.com</span><div class="fin-lbl">Website</div></div>
+          <div class="fin-cell"><span class="fin-val">—</span><div class="fin-lbl">ACFR access unclear</div></div>
+        </div>
+        <div class="projects"><div class="proj-lbl">Key Focus</div><ul class="proj-list"><li>Agricultural and limited municipal water in Pearblossom area</li><li>Smallest SWP contractor by Table A in SoCal region</li></ul></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════ SOCAL DESERT ══════════ -->
+<div id="tab-soCalDesert" class="tab-panel">
+  <div class="section-hdr">Southern California — Desert<span>2 contractors · Combined Table A: ~194,100 AFY · No direct aqueduct connection — both receive SWP exchange water for groundwater replenishment</span></div>
+  <div class="note-box"><strong>Important distinction:</strong> Both CVWD and DWA receive SWP water via <strong>exchange arrangements</strong> — not direct delivery through the California Aqueduct. The Coachella Valley lacks a physical connection to SWP facilities through the surrounding mountains. Both agencies receive Colorado River exchange water credited as SWP water for groundwater replenishment purposes.</div>
+
+  <div class="contractor-grid">
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Coachella Valley Water District</div><div class="c-abbr">CVWD</div></div>
+        <div class="c-entitlement"><div class="c-af">138,350</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:3.31%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use mixed">Mixed</span> · Full-service agency: water supply, wastewater, flood control, and groundwater replenishment</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">1,000 sq mi · Coachella, Indio, Palm Desert, Palm Springs, Cathedral City, Desert Hot Springs · Riverside County</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">283,000 · Delivers SWP exchange water for groundwater replenishment in the Coachella Valley groundwater basin</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">138,350 AFY max · ~83,010 AFY avg · 41,505 AFY in 2026 (30%) · <strong>NOTE: Received via Salton Sea Exchange / Colorado River exchange — no direct aqueduct connection</strong></div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$200–250M</span><div class="fin-lbl">Est. Operating Revenue<br><span class="conf cm">MEDIUM</span> · Full-service district</div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Operating Costs<br>ACFR at cvwd.org</div></div>
+          <div class="fin-cell"><span class="fin-val">cvwd.org</span><div class="fin-lbl">Financial Source</div></div>
+        </div>
+        <div class="dr"><div class="dr-lbl">SWP delivery mechanism</div><div class="dr-val">CVWD has been an SWP contractor since March 29, 1963 but has no physical connection to SWP facilities (mountains prevent direct delivery). Receives SWP exchange water via Salton Sea Exchange for groundwater replenishment. The long-planned Coachella Canal connector tunnel remains cost-prohibitive. Source: cvwd.org</div></div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Coachella Valley Groundwater Replenishment</strong> — Using SWP exchange water and Colorado River water for groundwater replenishment to eliminate overdraft; critical for long-term sustainability of the Valley</li>
+            <li><strong>Salton Sea Issues</strong> — CVWD is a major stakeholder in Salton Sea management; declining lake levels affect agricultural drainage and public health</li>
+            <li><strong>Delta Conveyance Project</strong> — Active SWP contractor supporter; DCP would improve SWP reliability affecting CVWD's exchange water availability</li>
+            <li><strong>IID Water Transfer Program</strong> — Receiving transferred Colorado River water from Imperial Irrigation District for groundwater replenishment</li>
+            <li><strong>Recycled Water Expansion</strong> — CVWD operates one of the largest recycled water systems in the Coachella Valley to offset potable water demand</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <div class="c-header">
+        <div><div class="c-name">Desert Water Agency</div><div class="c-abbr">DWA</div></div>
+        <div class="c-entitlement"><div class="c-af">55,750</div><div class="c-af-lbl">AFY Table A</div></div>
+      </div>
+      <div class="c-body">
+        <div class="bar-wrap"><div class="bar-fill" style="width:1.34%"></div></div>
+        <div class="dr"><div class="dr-lbl">Type</div><div class="dr-val"><span class="use muni">Municipal</span> · Retail water agency · Palm Springs area · Western Coachella Valley</div></div>
+        <div class="dr"><div class="dr-lbl">Geography</div><div class="dr-val">327 sq mi · Palm Springs, Cathedral City, Desert Hot Springs · Riverside County</div></div>
+        <div class="dr"><div class="dr-lbl">Population</div><div class="dr-val">106,000</div></div>
+        <div class="dr"><div class="dr-lbl">Table A</div><div class="dr-val">55,750 AFY max · ~33,450 AFY avg · 16,725 AFY in 2026 (30%) · <strong>NOTE: Received via exchange for groundwater replenishment — no direct aqueduct delivery</strong></div></div>
+        <div class="fin-row">
+          <div class="fin-cell"><span class="fin-val">~$30–50M</span><div class="fin-lbl">Est. Operating Revenue<br><span class="conf cm">MEDIUM</span> · ACFR at dwa.org</div></div>
+          <div class="fin-cell"><span class="fin-val">N/D</span><div class="fin-lbl">Operating Costs<br>ACFR available at dwa.org</div></div>
+          <div class="fin-cell"><span class="fin-val">dwa.org</span><div class="fin-lbl">Financial Source</div></div>
+        </div>
+        <div class="projects">
+          <div class="proj-lbl">Key Projects &amp; Priorities</div>
+          <ul class="proj-list">
+            <li><strong>Whitewater River Spreading Grounds</strong> — Primary groundwater recharge facility using Colorado River / SWP exchange water; critical for Palm Springs area supply reliability</li>
+            <li><strong>Recycled Water Program</strong> — Expanding recycled water for golf courses and landscape irrigation to preserve potable water supplies in desert climate</li>
+            <li><strong>IID Water Transfer</strong> — DWA participates in Colorado River water transfers from Imperial Irrigation District for groundwater replenishment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ALL 29 TABLE ══════════ -->
+<div id="tab-all29" class="tab-panel">
+  <div class="section-hdr">All 29 SWP Contractors — Complete Summary Table</div>
+  <p class="bt" style="margin-bottom:14px;">Sorted by geographic region, then by Table A entitlement (largest to smallest) within each region. 2026 allocation: 30% of Table A (NTC 26-01). Long-term average: ~60% of Table A.</p>
+
+  <table class="all-table">
+    <thead>
+      <tr>
+        <th>#</th><th>Contractor</th><th>Region</th><th>Type</th>
+        <th>Table A Max (AFY)</th><th>% of SWP</th><th>Avg. Alloc. 60% (AFY)</th><th>2026 Alloc. 30% (AFY)</th>
+        <th>Pop. Served</th><th>Annual Revenue / Budget</th><th>Confidence</th><th>Website</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- NORTHERN CA -->
+      <tr><td colspan="12" style="background:#E3F2FD;font-weight:700;color:#0D47A1;padding:7px 10px;font-size:11px;">🌲 NORTHERN CALIFORNIA (3 contractors)</td></tr>
+      <tr><td>1</td><td style="font-weight:700;color:var(--navy);">Butte County — Dept. of Water &amp; Resource Conservation</td><td><span class="geo-badge g1">N. California</span></td><td><span class="use mixed">Mixed</span></td><td><strong>~13,000 (est.)</strong></td><td>~0.3%</td><td>~7,800</td><td>~3,900</td><td>N/A</td><td>N/D — budget docs at buttecounty.net</td><td><span class="conf cl">LOW</span></td><td>buttecounty.net/Water</td></tr>
+      <tr><td>2</td><td style="font-weight:700;color:var(--navy);">Yuba City</td><td><span class="geo-badge g1">N. California</span></td><td><span class="use muni">Muni</span></td><td><strong>9,600</strong></td><td>0.23%</td><td>5,760</td><td>2,880</td><td>66,860</td><td>~$15–25M (est.) · ACFR at yubacity.net</td><td><span class="conf cm">MEDIUM</span></td><td>yubacity.net</td></tr>
+      <tr><td>3</td><td style="font-weight:700;color:var(--navy);">Feather Water District / FRWSA</td><td><span class="geo-badge g1">N. California</span></td><td><span class="use mixed">Mixed</span></td><td><strong>~3,500 (est.)</strong></td><td>&lt;0.1%</td><td>~2,100</td><td>~1,050</td><td>Small</td><td>N/D — very limited disclosure</td><td><span class="conf cl">LOW</span></td><td>—</td></tr>
+      <!-- BAY AREA -->
+      <tr><td colspan="12" style="background:#E8F5E9;font-weight:700;color:#1B5E20;padding:7px 10px;font-size:11px;">🌉 SAN FRANCISCO BAY AREA (5 contractors)</td></tr>
+      <tr><td>4</td><td style="font-weight:700;color:var(--navy);">Santa Clara Valley Water District (Valley Water)</td><td><span class="geo-badge g2">Bay Area</span></td><td><span class="use muni">Muni</span></td><td><strong>100,000</strong></td><td>2.40%</td><td>60,000</td><td>30,000</td><td>1,900,000</td><td>$1.0B+ annual budget (FY2024/25 adopted) · AA+ (Fitch &amp; S&P)</td><td><span class="conf ch">HIGH</span></td><td>valleywater.org</td></tr>
+      <tr><td>5</td><td style="font-weight:700;color:var(--navy);">Alameda County Flood Control Zone 7 (Zone 7 Water)</td><td><span class="geo-badge g2">Bay Area</span></td><td><span class="use muni">Muni</span></td><td><strong>80,619</strong></td><td>1.93%</td><td>48,371</td><td>24,186</td><td>260,000</td><td>$125.8M total revenues FY2023 (audited) / $106.8M expenses · AA+ (Fitch)</td><td><span class="conf ch">HIGH</span></td><td>zone7water.com</td></tr>
+      <tr><td>6</td><td style="font-weight:700;color:var(--navy);">Solano County Water Agency (SCWA)</td><td><span class="geo-badge g2">Bay Area</span></td><td><span class="use mixed">Mixed</span></td><td><strong>47,756</strong></td><td>1.14%</td><td>28,654</td><td>14,327</td><td>445,500</td><td>~$30–60M est. · ACFR at scwa2.com</td><td><span class="conf cm">MEDIUM</span></td><td>scwa2.com</td></tr>
+      <tr><td>7</td><td style="font-weight:700;color:var(--navy);">Alameda County Water District (ACWD)</td><td><span class="geo-badge g2">Bay Area</span></td><td><span class="use muni">Muni</span></td><td><strong>42,000</strong></td><td>1.01%</td><td>25,200</td><td>12,600</td><td>356,000</td><td>~$100–150M est. · 4% rate increase Dec. 2024 · $24M grants secured · AA+ (Fitch)</td><td><span class="conf cm">MEDIUM</span></td><td>acwd.org</td></tr>
+      <tr><td>8</td><td style="font-weight:700;color:var(--navy);">Napa County Flood Control &amp; Water Conservation District</td><td><span class="geo-badge g2">Bay Area</span></td><td><span class="use muni">Muni</span></td><td><strong>29,025</strong></td><td>0.70%</td><td>17,415</td><td>8,708</td><td>139,100</td><td>~$10–20M est. · Financial reports at countyofnapa.org</td><td><span class="conf cm">MEDIUM</span></td><td>countyofnapa.org/flooddistrict</td></tr>
+      <!-- CENTRAL COAST -->
+      <tr><td colspan="12" style="background:#FFF3E0;font-weight:700;color:#E65100;padding:7px 10px;font-size:11px;">🌊 CENTRAL CALIFORNIA COAST (2 contractors)</td></tr>
+      <tr><td>9</td><td style="font-weight:700;color:var(--navy);">Central Coast Water Authority (CCWA)</td><td><span class="geo-badge g3">Central Coast</span></td><td><span class="use muni">Muni</span></td><td><strong>45,486</strong></td><td>1.09%</td><td>27,292</td><td>13,646</td><td>337,400</td><td>~$20–40M est. · ACFR at ccwa.com</td><td><span class="conf cm">MEDIUM</span></td><td>ccwa.com</td></tr>
+      <tr><td>10</td><td style="font-weight:700;color:var(--navy);">San Luis Obispo County Flood Control District</td><td><span class="geo-badge g3">Central Coast</span></td><td><span class="use muni">Muni</span></td><td><strong>25,000</strong></td><td>0.60%</td><td>15,000</td><td>7,500</td><td>279,100</td><td>~$10–15M est. · Financial reports at slocounty.ca.gov</td><td><span class="conf cm">MEDIUM</span></td><td>slocounty.ca.gov</td></tr>
+      <!-- SAN JOAQUIN VALLEY -->
+      <tr><td colspan="12" style="background:#FCE4EC;font-weight:700;color:#880E4F;padding:7px 10px;font-size:11px;">🌾 SAN JOAQUIN VALLEY &amp; CENTRAL VALLEY (6 contractors)</td></tr>
+      <tr><td>11</td><td style="font-weight:700;color:var(--navy);">Kern County Water Agency (KCWA) ★ #2 largest SWP contractor</td><td><span class="geo-badge g4">San Joaquin</span></td><td><span class="use mixed">Mixed</span></td><td><strong>982,730</strong></td><td>23.5%</td><td>589,638</td><td>294,819</td><td>882,200</td><td>ACFRs available on request at kcwa.com · Fitch AA- · 5.7M AF groundwater bank</td><td><span class="conf cm">MEDIUM</span></td><td>kcwa.com</td></tr>
+      <tr><td>12</td><td style="font-weight:700;color:var(--navy);">Tulare Lake Basin Water Storage District (TLBWSD)</td><td><span class="geo-badge g4">San Joaquin</span></td><td><span class="use ag">Ag</span></td><td><strong>87,471</strong></td><td>2.10%</td><td>52,483</td><td>26,241</td><td>N/A (Ag)</td><td>~$5–15M est. · Very limited public disclosure</td><td><span class="conf cl">LOW</span></td><td>—</td></tr>
+      <tr><td>13</td><td style="font-weight:700;color:var(--navy);">Dudley Ridge Water District (DRWD)</td><td><span class="geo-badge g4">San Joaquin</span></td><td><span class="use ag">Ag</span></td><td><strong>45,350</strong></td><td>1.09%</td><td>27,210</td><td>13,605</td><td>N/A (Ag)</td><td>~$2–5M est. · KWBA groundwater banking · Limited disclosure</td><td><span class="conf cl">LOW</span></td><td>dudleyridgewd.org</td></tr>
+      <tr><td>14</td><td style="font-weight:700;color:var(--navy);">Kings County</td><td><span class="geo-badge g4">San Joaquin</span></td><td><span class="use mixed">Mixed</span></td><td><strong>9,305</strong></td><td>0.22%</td><td>5,583</td><td>2,792</td><td>149,900</td><td>County budget docs at countyofkings.com</td><td><span class="conf cm">MEDIUM</span></td><td>countyofkings.com</td></tr>
+      <tr><td>15</td><td style="font-weight:700;color:var(--navy);">Oak Flat Water District (OFWD)</td><td><span class="geo-badge g4">San Joaquin</span></td><td><span class="use ag">Ag</span></td><td><strong>5,700</strong></td><td>0.14%</td><td>3,420</td><td>1,710</td><td>N/A (Ag)</td><td>N/D · Very limited disclosure · No website</td><td><span class="conf cl">LOW</span></td><td>—</td></tr>
+      <tr><td>16</td><td style="font-weight:700;color:var(--navy);">Empire West Side Irrigation District (EWSID)</td><td><span class="geo-badge g4">San Joaquin</span></td><td><span class="use ag">Ag</span></td><td><strong>3,000</strong></td><td>0.07%</td><td>1,800</td><td>900</td><td>N/A (Ag)</td><td>~$1–3M est. · Very limited disclosure</td><td><span class="conf cl">LOW</span></td><td>—</td></tr>
+      <!-- SOCAL LA/IE/HD -->
+      <tr><td colspan="12" style="background:#EDE7F6;font-weight:700;color:#4A148C;padding:7px 10px;font-size:11px;">🏙️ SOUTHERN CALIFORNIA — LA / INLAND EMPIRE / HIGH DESERT / MOUNTAINS (11 contractors)</td></tr>
+      <tr><td>17</td><td style="font-weight:700;color:var(--navy);">Metropolitan Water District of Southern CA (MWD) ★ #1 largest SWP contractor</td><td><span class="geo-badge g5">SoCal LA/IE</span></td><td><span class="use muni">Muni</span></td><td><strong>1,911,500</strong></td><td>45.8%</td><td>1,146,900</td><td>573,450</td><td>19,000,000</td><td>~$2.04B op. revenue FY2024/25 (biennial budget, HIGH) / ~$2.17B FY2025/26 · Aa1/AA rated</td><td><span class="conf ch">HIGH</span></td><td>mwdh2o.com</td></tr>
+      <tr><td>18</td><td style="font-weight:700;color:var(--navy);">Antelope Valley – East Kern Water Agency (AVEK) ★ #3 largest</td><td><span class="geo-badge g5">SoCal LA/IE</span></td><td><span class="use muni">Muni</span></td><td><strong>144,844</strong></td><td>3.47%</td><td>86,906</td><td>43,453</td><td>500,000</td><td>~$30–50M est. · ACFR at avek.org · 100% Table A delivered in 2023</td><td><span class="conf cm">MEDIUM</span></td><td>avek.org</td></tr>
+      <tr><td>19</td><td style="font-weight:700;color:var(--navy);">San Bernardino Valley Municipal Water District (SBVMWD)</td><td><span class="geo-badge g5">SoCal LA/IE</span></td><td><span class="use muni">Muni</span></td><td><strong>102,600</strong></td><td>2.46%</td><td>61,560</td><td>30,780</td><td>661,500</td><td>~$50–80M est. · ACFR at sbvmwd.com</td><td><span class="conf cm">MEDIUM</span></td><td>sbvmwd.com</td></tr>
+      <tr><td>20</td><td style="font-weight:700;color:var(--navy);">Santa Clarita Valley Water Agency (SCVWA)</td><td><span class="geo-badge g5">SoCal LA/IE</span></td><td><span class="use muni">Muni</span></td><td><strong>95,200</strong></td><td>2.28%</td><td>57,120</td><td>28,560</td><td>275,800</td><td>~$150–200M est. annual budget · ACFR at yourscvwater.com</td><td><span class="conf cm">MEDIUM</span></td><td>yourscvwater.com</td></tr>
+      <tr><td>21</td><td style="font-weight:700;color:var(--navy);">Mojave Water Agency (MWA)</td><td><span class="geo-badge g5">SoCal LA/IE</span></td><td><span class="use muni">Muni</span></td><td><strong>85,800</strong></td><td>2.06%</td><td>51,480</td><td>25,740</td><td>476,800</td><td>~$30–50M est. · ACFR at mojavewater.org</td><td><span class="conf cm">MEDIUM</span></td><td>mojavewater.org</td></tr>
+      <tr><td>22</td><td style="font-weight:700;color:var(--navy);">San Gabriel Valley Municipal Water District (SGVMWD)</td><td><span class="geo-badge g5">SoCal LA/IE</span></td><td><span class="use muni">Muni</span></td><td><strong>28,800</strong></td><td>0.69%</td><td>17,280</td><td>8,640</td><td>197,600</td><td>~$20–40M est. · ACFR at sgvmwd.org</td><td><span class="conf cm">MEDIUM</span></td><td>sgvmwd.org</td></tr>
+      <tr><td>23</td><td style="font-weight:700;color:var(--navy);">Palmdale Water District (PWD)</td><td><span class="geo-badge g5">SoCal LA/IE</span></td><td><span class="use muni">Muni</span></td><td><strong>21,300</strong></td><td>0.51%</td><td>12,780</td><td>6,390</td><td>131,200</td><td>~$30–50M est. · ACFR at palmdalewater.org</td><td><span class="conf cm">MEDIUM</span></td><td>palmdalewater.org</td></tr>
+      <tr><td>24</td><td style="font-weight:700;color:var(--navy);">Ventura County Watershed Protection District (VCWPD)</td><td><span class="geo-badge g5">SoCal LA/IE</span></td><td><span class="use muni">Muni</span></td><td><strong>20,000</strong></td><td>0.48%</td><td>12,000</td><td>6,000</td><td>472,776</td><td>~$10–20M est. · Financial reports at vcpublicworks.org/wpd</td><td><span class="conf cm">MEDIUM</span></td><td>vcpublicworks.org/wpd</td></tr>
+      <tr><td>25</td><td style="font-weight:700;color:var(--navy);">San Gorgonio Pass Water Agency (SGPWA)</td><td><span class="geo-badge g5">SoCal LA/IE</span></td><td><span class="use muni">Muni</span></td><td><strong>17,300</strong></td><td>0.41%</td><td>10,380</td><td>5,190</td><td>90,000</td><td>~$10–20M est. · ACFR at sgpwa.com</td><td><span class="conf cm">MEDIUM</span></td><td>sgpwa.com</td></tr>
+      <tr><td>26</td><td style="font-weight:700;color:var(--navy);">Crestline – Lake Arrowhead Water Agency (CLAWA)</td><td><span class="geo-badge g5">SoCal LA/IE</span></td><td><span class="use muni">Muni</span></td><td><strong>5,800</strong></td><td>0.14%</td><td>3,480</td><td>1,740</td><td>29,000</td><td>~$5–10M est. · ACFR at clawa.org</td><td><span class="conf cm">MEDIUM</span></td><td>clawa.org</td></tr>
+      <tr><td>27</td><td style="font-weight:700;color:var(--navy);">Littlerock Creek Irrigation District (LCID)</td><td><span class="geo-badge g5">SoCal LA/IE</span></td><td><span class="use ag">Ag</span></td><td><strong>2,300</strong></td><td>0.06%</td><td>1,380</td><td>690</td><td>2,900</td><td>~$1–3M est. · Limited disclosure · lrcid.com</td><td><span class="conf cl">LOW</span></td><td>lrcid.com</td></tr>
+      <!-- SOCAL DESERT -->
+      <tr><td colspan="12" style="background:#F3E5F5;font-weight:700;color:#6A1B9A;padding:7px 10px;font-size:11px;">🏜️ SOUTHERN CALIFORNIA — DESERT (2 contractors · SWP exchange water only — no direct aqueduct connection)</td></tr>
+      <tr><td>28</td><td style="font-weight:700;color:var(--navy);">Coachella Valley Water District (CVWD)</td><td><span class="geo-badge g6">SoCal Desert</span></td><td><span class="use mixed">Mixed</span></td><td><strong>138,350</strong></td><td>3.31%</td><td>83,010</td><td>41,505</td><td>283,000</td><td>~$200–250M est. (full-service district: water + wastewater + flood) · ACFR at cvwd.org</td><td><span class="conf cm">MEDIUM</span></td><td>cvwd.org</td></tr>
+      <tr><td>29</td><td style="font-weight:700;color:var(--navy);">Desert Water Agency (DWA)</td><td><span class="geo-badge g6">SoCal Desert</span></td><td><span class="use muni">Muni</span></td><td><strong>55,750</strong></td><td>1.34%</td><td>33,450</td><td>16,725</td><td>106,000</td><td>~$30–50M est. · ACFR at dwa.org</td><td><span class="conf cm">MEDIUM</span></td><td>dwa.org</td></tr>
+      <!-- TOTALS -->
+      <tr style="background:var(--navy);">
+        <td style="color:var(--green);font-weight:700;">—</td>
+        <td style="color:var(--green);font-weight:700;">TOTAL — All 29 Contractors</td>
+        <td>—</td><td>—</td>
+        <td style="color:var(--green);font-weight:700;">~4,170,000 AFY</td>
+        <td style="color:var(--green);font-weight:700;">100%</td>
+        <td style="color:var(--green);font-weight:700;">~2,502,000</td>
+        <td style="color:var(--green);font-weight:700;">~1,251,000</td>
+        <td style="color:var(--green);font-weight:700;">~27,000,000</td>
+        <td style="color:rgba(255,255,255,.6);font-size:10px;">HIGH confidence: MWD (~$2B), Zone 7 ($125.8M), Valley Water ($1B+). Others estimated.</td>
+        <td>—</td><td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="bt" style="margin-top:10px;font-style:italic;font-size:11px;color:#888;">Sources: State Water Contractors Association (swc.org/member-agencies) — confirmed data for 27 of 29 contractors; CA Dept. of Water Resources SWP Management (water.ca.gov) — all 29 confirmed; DWR Notices to Contractors 2026 (NTC 26-01); UC Davis California WaterBlog Table A data (2020); Zone 7 Water 2023 Annual Report (zone7water.report/2023/finance/); MWD FY2024/25–FY2025/26 Biennial Budget Book (adopted July 2024); Valley Water FY2024/25 adopted budget and CIP FY2026–2030; ACWD acwd.org rates process documentation Dec. 2024. Butte County and Feather Water District Table A amounts are estimated — verify with DWR. Revenue figures for most contractors are estimates from scale and available budget documents; audited figures available at individual contractor websites.</p>
+</div>
+
+<footer>Confidential — Internal Use Only &nbsp;|&nbsp; Deloitte LLP &nbsp;|&nbsp; May 2026 &nbsp;|&nbsp; Sources: CA DWR (water.ca.gov); State Water Contractors Association (swc.org); individual contractor ACFRs and budget documents. Not for distribution.</footer>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
