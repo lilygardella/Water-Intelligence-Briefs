@@ -3,480 +3,534 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Client Intelligence Brief — Metropolitan Water District of Southern California</title>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Market Insights Report — Metropolitan Water District of Southern California</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#1F2B5B;--green:#86BC25;--white:#fff;--ltgray:#F4F5F7;--midgray:#CCCCCC;--dkgray:#3A3A3A;--ltgreen:#EEF5D8;--border:#D8DCE8;--gold:#E8A020;--ltgold:#FFF8E1;}
+:root{--navy:#1F2B5B;--green:#86BC25;--dkgray:#3A3A3A;--ltgray:#F4F5F7;--midgray:#CCCCCC;--border:#D8DCE8;--ltgreen:#EEF5D8;--white:#fff;--gold:#E8A020;--ltgold:#FFF8E1;--blue2:#2E5B99;--red:#C62828;--ltred:#FFEBEE;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--dkgray);background:#ECEEF5;line-height:1.6;}
 nav{position:sticky;top:0;z-index:200;background:var(--navy);border-bottom:3px solid var(--green);}
-.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:8px;height:52px;overflow-x:auto;}
-.nav-brand{font-weight:700;font-size:12px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;margin-right:16px;}
-.tab-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.6);font-size:12px;font-weight:500;padding:6px 14px;border-radius:4px;white-space:nowrap;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:4px;height:52px;overflow-x:auto;scrollbar-width:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-brand{font-weight:700;font-size:11px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;margin-right:12px;flex-shrink:0;}
+.tab-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.6);font-size:11.5px;font-weight:500;padding:5px 12px;border-radius:4px;white-space:nowrap;font-family:'DM Sans',sans-serif;transition:all .15s;flex-shrink:0;}
 .tab-btn:hover{color:#fff;background:rgba(255,255,255,.08);}
 .tab-btn.active{color:#fff;background:rgba(134,188,37,.25);border-bottom:2px solid var(--green);}
 .page{max-width:1100px;margin:0 auto;padding:28px 24px 80px;}
 .tab-panel{display:none;}.tab-panel.active{display:block;}
 
-/* COVER */
-.cover{background:var(--navy);border-radius:6px;padding:44px 48px 40px;margin-bottom:32px;position:relative;overflow:hidden;}
+.cover{background:var(--navy);border-radius:6px;padding:40px 48px 36px;margin-bottom:32px;position:relative;overflow:hidden;}
 .cover::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--green);}
-.cover::after{content:'';position:absolute;bottom:-80px;right:-80px;width:300px;height:300px;border-radius:50%;border:50px solid rgba(134,188,37,.05);}
-.cover-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:10px;}
-.cover h1{font-family:'Libre Baskerville',serif;font-size:32px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:6px;}
-.cover-sub{font-size:15px;color:rgba(255,255,255,.55);margin-bottom:8px;}
-.cover-tagline{font-size:13px;color:rgba(255,255,255,.75);font-style:italic;margin-bottom:18px;}
-.cover-meta{display:flex;gap:20px;font-size:11px;color:rgba(255,255,255,.4);}
-.cover-meta span{display:flex;align-items:center;gap:5px;}
-.dot{width:3px;height:3px;border-radius:50%;background:var(--green);}
+.cover h1{font-family:'Libre Baskerville',serif;font-size:30px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:7px;}
+.cover-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:8px;}
+.cover-sub{font-size:14px;color:rgba(255,255,255,.6);margin-bottom:6px;}
+.cover-tagline{font-size:13px;color:rgba(255,255,255,.8);font-style:italic;margin-bottom:18px;}
+.cover-meta{display:flex;flex-wrap:wrap;gap:14px;font-size:11px;color:rgba(255,255,255,.4);}
+.dot{width:3px;height:3px;border-radius:50%;background:var(--green);display:inline-block;margin-right:4px;}
 
-/* STAT BOXES */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:28px;border-radius:4px;overflow:hidden;border:1px solid var(--navy);}
+.rel-banner{background:linear-gradient(135deg,#1a3a1a,#2a5a2a);border:1px solid var(--green);border-left:5px solid var(--green);border-radius:0 6px 6px 0;padding:16px 20px;margin-bottom:24px;}
+.rel-banner-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:8px;}
+.rel-banner-body{font-size:13px;color:#d4f0d4;line-height:1.7;}
+.rel-banner-body strong{color:#fff;}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:28px;border-radius:4px;overflow:hidden;}
 .stat{background:var(--navy);padding:18px 14px;text-align:center;}
 .stat-val{font-family:'Libre Baskerville',serif;font-size:22px;font-weight:700;color:var(--green);display:block;margin-bottom:5px;}
 .stat-lbl{font-size:10px;color:rgba(255,255,255,.6);line-height:1.4;}
 
-/* SECTION + SUB */
-.section-hdr{background:var(--navy);color:#fff;font-size:14px;font-weight:700;padding:12px 20px;border-radius:4px;margin:0 0 24px;}
+.section-hdr{background:var(--navy);color:#fff;font-size:14px;font-weight:700;padding:12px 20px;border-radius:4px;margin:0 0 20px;}
 .sub-hdr{font-size:14px;font-weight:700;color:var(--navy);border-bottom:2px solid var(--midgray);padding-bottom:7px;margin:28px 0 12px;}
-p.bt{font-size:13px;line-height:1.75;color:var(--dkgray);margin-bottom:14px;}
+p.bt{font-size:13px;line-height:1.75;color:var(--dkgray);margin-bottom:12px;}
 
-/* GRIDS */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px;}
-.cell{border:1px solid var(--border);padding:14px 16px;background:#fff;}
-.cell-title{font-size:12.5px;font-weight:700;color:var(--green);margin-bottom:6px;line-height:1.35;}
-.cell-body{font-size:12px;color:var(--dkgray);line-height:1.65;}
-.ch-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px;}
-.ch-cell{border:1px solid var(--border);padding:12px 14px;background:#fff;font-size:12px;line-height:1.6;}
-.ch-cell strong{color:var(--navy);}
-.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px;}
-.news-cell{border:1px solid var(--border);padding:14px 16px;background:#fff;}
-.news-title{font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:6px;}
-.news-body{font-size:12px;color:var(--dkgray);line-height:1.65;}
-.partners{background:var(--ltgray);border:1px solid var(--border);border-left:3px solid var(--green);padding:12px 16px;font-size:12px;line-height:1.7;margin-bottom:8px;border-radius:0 4px 4px 0;}
+.issue{border:1px solid var(--border);border-radius:0 4px 4px 0;padding:16px 20px;margin-bottom:12px;background:#fff;}
+.issue.critical{border-left:5px solid var(--red);}
+.issue.high{border-left:5px solid var(--gold);}
+.issue.elevated{border-left:5px solid var(--blue2);}
+.issue-hdr{display:flex;align-items:baseline;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
+.issue-num{font-size:10px;font-weight:700;color:var(--midgray);text-transform:uppercase;letter-spacing:.06em;}
+.issue-title{font-size:14px;font-weight:700;color:var(--navy);line-height:1.3;flex:1;}
+.issue-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;flex-shrink:0;}
+.badge-critical{background:var(--ltred);color:var(--red);}
+.badge-high{background:rgba(232,160,32,.12);color:#8a5200;}
+.badge-elevated{background:rgba(46,91,153,.1);color:var(--blue2);}
+.issue-body{font-size:12.5px;line-height:1.7;color:var(--dkgray);}
+.issue-source{font-size:11px;color:#888;margin-top:8px;font-style:italic;}
 
-/* RFP TABLE */
-.rfp-table{width:100%;border-collapse:collapse;margin-bottom:8px;font-size:12px;}
-.rfp-table thead tr{background:var(--navy);}
-.rfp-table thead th{color:#fff;font-weight:600;padding:9px 12px;text-align:left;font-size:11px;}
-.rfp-table tbody tr:nth-child(odd){background:var(--ltgray);}
-.rfp-table tbody tr:nth-child(even){background:#fff;}
-.rfp-table td{padding:9px 12px;border:1px solid var(--border);vertical-align:top;line-height:1.55;}
-.rfp-table td:first-child{width:80px;text-align:center;}
-.rfp-table td:nth-child(2){width:210px;font-weight:600;color:var(--navy);}
-.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
-.bp{background:rgba(31,43,91,.1);color:var(--navy);}
-.ba{background:rgba(134,188,37,.15);color:#4a7000;}
-.bpi{background:rgba(255,165,0,.12);color:#8a5200;}
-.baw{background:rgba(0,128,0,.1);color:#005200;}
-
-/* PURSUIT BOXES */
-.pursuit{border:1px solid var(--border);border-left:4px solid var(--navy);background:#fff;padding:20px 22px;margin-bottom:12px;border-radius:0 4px 4px 0;}
-.pursuit.hot{border-left-color:var(--green);}
-.pursuit-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:4px;}
-.pursuit-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.3;}
-.pursuit-body{font-size:12.5px;line-height:1.75;color:var(--dkgray);margin-bottom:12px;}
-.pursuit-why{background:var(--ltgreen);border-radius:4px;padding:10px 14px;font-size:12px;line-height:1.65;color:#2a4a00;margin-bottom:12px;}
-.pursuit-why strong{color:var(--navy);}
-.tags{display:flex;flex-wrap:wrap;gap:5px;}
+.platform{border:1px solid var(--border);border-left:4px solid var(--navy);background:#fff;padding:18px 20px;margin-bottom:12px;border-radius:0 4px 4px 0;}
+.platform-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:4px;}
+.platform-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.3;}
+.platform-row{font-size:12.5px;line-height:1.7;color:var(--dkgray);margin-bottom:8px;}
+.platform-row strong{color:var(--navy);}
+.platform-row.angle strong{color:var(--blue2);}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
 .tag{background:var(--ltgreen);color:#3a6000;font-size:10px;font-weight:700;padding:2px 9px;border-radius:3px;}
-.tag-hot{background:rgba(31,43,91,.1);color:var(--navy);}
 
-/* WHY NOW SECTION */
-.why-now-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px;}
-.why-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--green);border-radius:0 0 4px 4px;padding:16px 18px;}
-.why-card h4{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
-.why-card p{font-size:12px;line-height:1.65;color:var(--dkgray);}
+.map-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px;}
+.map-table thead tr{background:var(--navy);}
+.map-table thead th{color:#fff;font-weight:600;padding:9px 12px;text-align:left;font-size:11px;}
+.map-table tbody tr:nth-child(odd){background:var(--ltgray);}
+.map-table tbody tr:nth-child(even){background:var(--white);}
+.map-table td{padding:9px 12px;border:1px solid var(--border);vertical-align:top;line-height:1.55;}
+.map-table td:first-child{font-weight:700;color:var(--navy);}
+.map-table td:nth-child(2){font-weight:700;text-align:center;white-space:nowrap;}
+.tc{color:var(--red);}.th{color:#8a5200;}.te{color:var(--blue2);}
 
-/* KEY CONTACTS */
-.contacts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
-.contact-card{background:#fff;border:1px solid var(--border);padding:16px 18px;border-radius:4px;}
-.contact-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px;}
-.contact-title{font-size:11px;color:var(--green);font-weight:600;margin-bottom:6px;}
-.contact-note{font-size:11.5px;color:var(--dkgray);line-height:1.6;}
+.contacts-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.contact{background:#fff;border:1px solid var(--border);border-radius:4px;padding:16px 18px;}
+.contact.relationship{border-top:3px solid var(--green);}
+.contact-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;}
+.contact-title{font-size:11px;color:var(--green);font-weight:600;margin-bottom:8px;}
+.contact-body{font-size:12px;line-height:1.65;color:var(--dkgray);}
+.rel-tag{display:inline-block;background:var(--ltgreen);color:#3a6000;font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em;}
 
-/* BUDGET TABLE */
-.budget-table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:12px;}
-.budget-table thead tr{background:var(--navy);}
-.budget-table thead th{color:#fff;font-weight:600;padding:9px 12px;text-align:left;font-size:11px;}
-.budget-table tbody tr:nth-child(odd){background:var(--ltgray);}
-.budget-table tbody tr:nth-child(even){background:#fff;}
-.budget-table td{padding:9px 12px;border:1px solid var(--border);vertical-align:top;line-height:1.55;}
-.budget-table td:first-child{font-weight:600;color:var(--navy);}
-
-/* ACTION BOXES */
-.action-box{background:#fff;border:1px solid var(--border);border-radius:4px;padding:18px 20px;margin-bottom:10px;}
+.action{background:#fff;border:1px solid var(--border);border-radius:4px;padding:18px 20px;margin-bottom:10px;}
 .action-timing{display:inline-block;background:var(--navy);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:3px;margin-bottom:8px;}
 .action-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
-.action-body{font-size:12.5px;line-height:1.7;color:var(--dkgray);margin-bottom:10px;}
+.action-body{font-size:13px;line-height:1.7;color:var(--dkgray);margin-bottom:10px;}
 
-/* NOTE BOX */
-.note-box{background:var(--ltgold);border:1px solid #FFD54F;border-left:4px solid var(--gold);padding:12px 16px;border-radius:0 4px 4px 0;font-size:12px;line-height:1.6;margin-bottom:16px;color:var(--dkgray);}
+.ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+.ov-card{background:#fff;border:1px solid var(--border);border-radius:4px;padding:16px 18px;}
+.ov-card h4{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
+.ov-card p{font-size:12.5px;line-height:1.65;color:var(--dkgray);}
+
+.note-box{background:var(--ltgold);border:1px solid #FFD54F;border-left:4px solid var(--gold);padding:11px 15px;border-radius:0 4px 4px 0;font-size:12px;line-height:1.6;margin-bottom:16px;color:var(--dkgray);}
 .note-box strong{color:#7A5800;}
+.flag{color:var(--gold);font-weight:600;}
+
+ul.bul{list-style:none;padding:0;margin-bottom:12px;}
+ul.bul li{font-size:13px;line-height:1.7;color:var(--dkgray);padding:4px 0 4px 18px;position:relative;border-bottom:1px solid var(--ltgray);}
+ul.bul li:last-child{border-bottom:none;}
+ul.bul li::before{content:'▶';font-size:7px;color:var(--green);position:absolute;left:0;top:8px;}
+ul.bul li strong{color:var(--navy);}
 
 footer{text-align:center;padding:20px;font-size:11px;color:#999;border-top:1px solid var(--midgray);margin-top:48px;}
-@media(max-width:700px){.stats{grid-template-columns:1fr 1fr;}.two-col,.ch-grid,.news-grid,.why-now-grid,.contacts-grid{grid-template-columns:1fr;}.nav-brand{display:none;}}
+@media(max-width:700px){.stats{grid-template-columns:1fr 1fr;}.ov-grid,.contacts-grid{grid-template-columns:1fr;}.nav-brand{display:none;}}
 </style>
 </head>
 <body>
 <nav>
   <div class="nav-inner">
-    <div class="nav-brand">MWD SoCal Brief</div>
-    <button class="tab-btn active" onclick="showTab('overview')">Overview &amp; Why Now</button>
-    <button class="tab-btn" onclick="showTab('strategic')">Strategic Context</button>
-    <button class="tab-btn" onclick="showTab('budget')">Budget &amp; Technology</button>
-    <button class="tab-btn" onclick="showTab('procurement')">Procurement &amp; Contacts</button>
-    <button class="tab-btn" onclick="showTab('opportunities')">Deloitte Opportunities</button>
+    <div class="nav-brand">MWD SoCal</div>
+    <button class="tab-btn active" onclick="showTab('overview')">Overview &amp; Context</button>
+    <button class="tab-btn" onclick="showTab('issues')">Pressing Issues</button>
+    <button class="tab-btn" onclick="showTab('platforms')">Deloitte Platforms</button>
+    <button class="tab-btn" onclick="showTab('mapping')">Platform Mapping</button>
+    <button class="tab-btn" onclick="showTab('contacts')">Contacts &amp; Relationships</button>
     <button class="tab-btn" onclick="showTab('sequencing')">Pursuit Sequencing</button>
   </div>
 </nav>
-
 <div class="page">
-  <div class="cover">
-    <div class="cover-label">Client Intelligence Brief — Single Entity Focus</div>
-    <h1>Metropolitan Water District of Southern California</h1>
-    <div class="cover-sub">The largest treated water wholesaler in the United States &nbsp;·&nbsp; 19 million people &nbsp;·&nbsp; 26 member agencies &nbsp;·&nbsp; Six Southern California counties</div>
-    <div class="cover-tagline">"Deloitte has limited current footprint here. This brief is oriented toward why this matters, what's happening right now, and how to get in."</div>
-    <div class="cover-meta">
-      <span><span class="dot"></span>May 2026</span>
-      <span><span class="dot"></span>Confidential — Internal Use Only</span>
-      <span><span class="dot"></span>Deloitte LLP</span>
-      <span><span class="dot"></span>Sources: FY2024/25–FY2025/26 Biennial Budget Book; 2026 Annual Operating Plan; FY2026 Budget & Action Plan Summaries; mwdh2o.com</span>
-    </div>
+<div class="cover">
+  <div class="cover-label">Market Insights Report — Internal Sales Tool</div>
+  <h1>Metropolitan Water District of Southern California</h1>
+  <div class="cover-sub">MWD / Met &nbsp;·&nbsp; Largest Treated Water Wholesaler in the United States &nbsp;·&nbsp; 19 Million People &nbsp;·&nbsp; 26 Member Agencies</div>
+  <div class="cover-tagline">Pressing Business Issues · Deloitte Platform Fit · Relationship Intelligence · Pursuit Sequencing</div>
+  <div class="cover-meta">
+    <span><span class="dot"></span>May 2026</span>
+    <span><span class="dot"></span>Confidential — Internal Use Only</span>
+    <span><span class="dot"></span>Sources: MWD FY2024/25–FY2025/26 Biennial Budget Book; FY2026 Budget &amp; Action Plan Summaries; 2026 Annual Operating Plan; mwdh2o.com; USBR press releases; sdcwa.org</span>
   </div>
-
-  <!-- ═══════════════════════════ OVERVIEW & WHY NOW ═══════════════════════════ -->
-  <div id="tab-overview" class="tab-panel active">
-    <div class="section-hdr">Overview &amp; Why Now</div>
-
-    <div class="stats">
-      <div class="stat"><span class="stat-val">~$2.04B</span><div class="stat-lbl">FY2024/25 Operating Revenue Budget (water + fixed charges + taxes + misc; source: Biennial Budget p.30)</div></div>
-      <div class="stat"><span class="stat-val">$4.8B</span><div class="stat-lbl">FY2024/25 + FY2025/26 Biennial Budget Total (incl. $637M capital investments; source: mwdh2o.com)</div></div>
-      <div class="stat"><span class="stat-val">19M</span><div class="stat-lbl">People Served Across 6 Southern California Counties via 26 Member Agencies</div></div>
-      <div class="stat"><span class="stat-val">$280M+</span><div class="stat-lbl">New Revenue Bonds Planned FY2024/25–FY2025/26 Biennium (source: Biennial Budget p.33)</div></div>
-    </div>
-
-    <div class="sub-hdr">Who They Are</div>
-    <p class="bt">The Metropolitan Water District of Southern California (Metropolitan, or "Met") is the largest treated water wholesaler in the United States and a state-chartered public agency created by California state law in 1928. Metropolitan's mission is to provide its 26 member agencies — a voluntary cooperative of 14 cities, 11 municipal water districts, and one county water authority — with adequate and reliable supplies of high-quality water for the nearly 19 million people of Southern California. The six-county service area spans Los Angeles, Orange, San Diego, Riverside, San Bernardino, and Ventura counties — roughly half of California's economy. Metropolitan imports water from two sources: the Colorado River via the 242-mile Colorado River Aqueduct (CRA), and Northern California via the Edmund G. Brown California Aqueduct (State Water Project, or SWP). It operates five water treatment plants (among the largest in the nation), 20 reservoirs, 24 dams, and 830 miles of pipelines. Metropolitan maintains an annual operating budget of nearly $2 billion and a $4.8 billion biennial budget (FY2024/25–FY2025/26). It is a Aa1 Moody's / AA rated entity. In October 2025, Adán Deshmukh was named General Manager, replacing Adel Hagekhalil.</p>
-
-    <div class="sub-hdr">Why This Matters to Deloitte — Right Now</div>
-    <div class="why-now-grid">
-      <div class="why-card">
-        <h4>New General Manager — October 2025</h4>
-        <p>Adán Deshmukh was named General Manager in October 2025. A new GM is one of the most reliable signals of organizational openness to new advisory relationships. Deshmukh will be establishing his leadership agenda, assembling priorities, and making decisions about external partners over the next 12–18 months. This is the single most important relationship-building window at Met in years.</p>
-      </div>
-      <div class="why-card">
-        <h4>Business Model Transformation — CAMP4W</h4>
-        <p>Metropolitan's Climate Adaptation Master Plan for Water (CAMP4W) — a board-approved decision-making framework adopted April 2025 — is fundamentally reorienting how Metropolitan evaluates and selects capital investments. CAMP4W is simultaneously a planning exercise, a business model transformation, and a stakeholder engagement challenge. Deloitte's strategy and analytics practices are directly applicable. The framework is brand-new and external advisory has not yet been competitively established around it.</p>
-      </div>
-      <div class="why-card">
-        <h4>SDCWA Litigation Settlement — June 2025</h4>
-        <p>Metropolitan and the San Diego County Water Authority concluded 15 years of litigation on June 2, 2025. The settlement "introduces the most significant change to Metropolitan's business model" (Board Chair Ortega, 2025) — allowing member agencies to exchange surplus conserved supplies for sale to other agencies for the first time. This structural business model change creates immediate demand for financial modeling, rate design, and member agency relations advisory work.</p>
-      </div>
-      <div class="why-card">
-        <h4>Pure Water Southern California — $205M+ Federal Commitment</h4>
-        <p>Pure Water Southern California (PWSC) has secured $125.5M in FY2024/25 USBR/IRA grants, $26.2M in additional federal grants (November 2024), and $80M from the State of California. The Draft EIR was released May 14, 2025. If approved at full scale, PWSC will be one of the largest water purification programs in the world — producing 150 MGD for 1.5 million people. This program is generating advisory, PMO, and program management procurement demand now.</p>
-      </div>
-      <div class="why-card">
-        <h4>$10.3M Enterprise Content Management Phase II</h4>
-        <p>Metropolitan's FY2025/26 budget explicitly allocates $10.3M for Phase II of its Enterprise Content Management (ECM) system deployment, $6.68M for IT Applications, and $3.3M for Enterprise Data Analytics — all confirmed from the adopted Biennial Budget (p.315 and p.247). Metropolitan uses Oracle e-Business Suite for financials, procurement, project management, and grants management. These are live technology procurements that Deloitte's Digital Engineering practice can directly support.</p>
-      </div>
-      <div class="why-card">
-        <h4>Post-2026 Colorado River — Existential Supply Question</h4>
-        <p>Metropolitan's current Lower Basin water rights expire under the existing operating guidelines in 2026. The Bureau of Reclamation's DEIS process for post-2026 guidelines is underway. As the largest Colorado River user in Southern California, Metropolitan is a lead stakeholder in these negotiations — alongside CAP/CAWCD, SNWA, and LADWP. Scenario planning, financial modeling under shortage conditions, and stakeholder engagement strategy are all live advisory needs.</p>
-      </div>
-    </div>
-
-    <div class="sub-hdr">The Scale Context</div>
-    <p class="bt">Metropolitan is not a target comparable to the AZ and UT water districts in this research portfolio. It is an order of magnitude larger — $2B+ in annual operating revenue, a $4.8B biennial budget, 1,631 employees, 19 million customers, and infrastructure that spans six counties. For comparison: the entire AZ top-5 portfolio (SRP + CAP + Phoenix Water + Tucson Water + Metro Water) totals roughly $5B in combined revenue — Metropolitan alone is $2B of that. This means two things for Deloitte: (1) the engagements are correspondingly larger and more complex, and (2) the competition is correspondingly more intense — KPMG, Accenture, IBM, Black &amp; Veatch, Carollo Engineers, and other large firms are all present or pursuing Metropolitan. Deloitte's differentiation must be in strategy, analytics, digital, and OT security — lanes that engineering firms cannot easily occupy.</p>
-  </div>
-
-  <!-- ═══════════════════════════ STRATEGIC CONTEXT ═══════════════════════════ -->
-  <div id="tab-strategic" class="tab-panel">
-    <div class="section-hdr">Strategic Context — Priorities, Challenges &amp; Operating Environment</div>
-
-    <div class="sub-hdr">Five Strategic Priorities (FY2024/25–FY2025/26 Biennial Budget, p.55)</div>
-    <div class="two-col">
-      <div class="cell"><div class="cell-title">SP #1 — Empower the Workforce &amp; Promote Diversity, Equity and Inclusion</div><div class="cell-body">Workforce development, succession planning, and DEI are named strategic priorities in the Biennial Budget. Metropolitan explicitly notes that "leading the way" in water supply requires a workforce "as agile and efficient as the water delivery systems we develop and operate." Succession planning, diversity, and asset retention are cited as vital organizational focus areas. With ~1,631 employees and a massive capital program ahead, workforce planning is a live need.</div></div>
-      <div class="cell"><div class="cell-title">SP #2 — Sustain Metropolitan's Mission with a Strengthened Business Model</div><div class="cell-body">The SDCWA litigation settlement (June 2025) and CAMP4W framework together represent Metropolitan's most significant business model transformation in decades. For the first time, the settlement allows member agencies to exchange and sell surplus conserved supplies. CAMP4W creates a new standardized methodology for evaluating capital investments across six criteria: reliability, affordability, environmental co-benefits, equity, financial sustainability, and community impact. Business model advisory, financial modeling, and change management are directly applicable.</div></div>
-      <div class="cell"><div class="cell-title">SP #3 — Adapt to Changing Climate and Water Resources</div><div class="cell-body">CAMP4W (Climate Adaptation Master Plan for Water) was board-approved in April 2025. Metropolitan is now evaluating proposed capital projects — including Pure Water Southern California, Sites Reservoir, Delta Conveyance Project, and increased conservation investments — against CAMP4W criteria. The 2025 Urban Water Management Plan (UWMP) and Water Shortage Contingency Plan (WSCP) are under active development (public hearing April 13, 2026). Seismic resilience is a named sub-priority with its own annual report series (2025 Seismic Resilience Report published August 2025).</div></div>
-      <div class="cell"><div class="cell-title">SP #4 — Protect Public Health, the Regional Economy &amp; Metropolitan's Assets</div><div class="cell-body">This priority drives the largest share of technology investment. The Biennial Budget explicitly calls for: applying innovation and technology across project lifecycles (design, construction, operations, maintenance, replacement); implementing the Enterprise Content Management system ($10.3M Phase II); developing procurement policies that prioritize sustainable products and practices; and managing cybersecurity and OT risk. Oracle e-Business Suite is the enterprise platform for financials, procurement, project management, and grants management.</div></div>
-    </div>
-    <div class="two-col">
-      <div class="cell"><div class="cell-title">SP #5 — Partner with Interested Parties and the Communities We Serve</div><div class="cell-body">Metropolitan serves 26 member agencies, each represented on the 38-member Board of Directors. Managing the member agency relationship — rate setting, supply allocation, service agreements, communications — is a permanent strategic challenge. The SDCWA litigation settlement and post-2026 Colorado River negotiations both create acute near-term member agency communications and stakeholder engagement needs. Metropolitan's Board includes business, professional, and civic leaders from across Southern California.</div></div>
-      <div class="cell"><div class="cell-title">CAMP4W — The Overarching Strategic Framework</div><div class="cell-body">The Climate Adaptation Master Plan for Water (CAMP4W) is Metropolitan's new integrated decision-making framework for climate-driven capital investment. Board-approved April 2025. Evaluates proposed projects across 6 criteria: reliability, affordability, environmental co-benefits, equity, financial sustainability, community impact. Projects under assessment: Pure Water Southern California, Sites Reservoir, Delta Conveyance, conservation programs, High Desert Water Bank. Project assessments will be presented to the Board through 2025–2026 — the decision-making window is now open.</div></div>
-    </div>
-
-    <div class="sub-hdr">2026 Annual Operating Plan — Core Priorities</div>
-    <p class="bt">The 2026 Annual Operating Plan (published February 2026) establishes Metropolitan's operational framework for the year. Its stated core operating principles are: (1) meet member agency demands; (2) meet water quality requirements; (3) manage storage under water surplus and drought management principles; (4) manage maintenance and shutdowns; (5) meet blending objectives; and (6) maximize hydroelectric power production. The plan's core uncertainty driver is State Water Project allocation levels — below-30% allocation implies storage withdrawals; above-30% implies storage gains. The bottom-line objective: deliver reliable, compliant water service while preserving drought resilience through disciplined storage, flexible operations, coordinated maintenance, and adaptive use of SWP and Colorado River supplies.</p>
-
-    <div class="sub-hdr">Key Challenge Areas</div>
-    <div class="ch-grid">
-      <div class="ch-cell"><strong>Post-2026 Colorado River Operating Guidelines</strong> — Current Lower Basin shortage-sharing guidelines expire end of 2026. Metropolitan is Arizona's counterpart in these negotiations — the largest Colorado River user in Southern California. The post-2026 framework will determine Metropolitan's supply certainty, rate trajectory, and capital program for the next 20+ years. CAMP4W was designed specifically to manage this uncertainty.</div>
-      <div class="ch-cell"><strong>Pure Water Southern California Program Delivery</strong> — PWSC is potentially one of the world's largest water purification programs: 150 MGD for 1.5 million people. Draft EIR released May 14, 2025. $205M+ in federal/state grants secured. If approved by Metropolitan's board at full scale, the program delivery challenge — engineering, construction, permitting, stakeholder engagement, federal grant compliance — will be enormous.</div>
-      <div class="ch-cell"><strong>Aging Infrastructure &amp; PCCP Rehabilitation</strong> — Metropolitan has issued RFQs for Prestressed Concrete Cylinder Pipe (PCCP) rehabilitation ($70M estimated budget, 2024/2025). Aging distribution system infrastructure, treatment plant equipment, and seismic retrofits (confirmed active CIP projects) represent a sustained, multi-decade capital program need across the service area.</div>
-      <div class="ch-cell"><strong>Business Model Transformation — CAMP4W Implementation</strong> — CAMP4W is simultaneously Metropolitan's most important strategic initiative and its greatest organizational change challenge. Moving from a traditional integrated water resources planning model to a criteria-based, climate-adaptive capital investment framework requires new analytical capabilities, new stakeholder engagement approaches, and new financial modeling tools.</div>
-      <div class="ch-cell"><strong>Member Agency Relations &amp; Rate Pressure</strong> — Water rates increased 8.5% effective January 1, 2025 and another 8.5% effective January 1, 2026. Water transactions are at historically low levels (projected 1.34 MAF vs. FY2023/24 actuals near 1.17 MAF — 50-year low). Managing rate increases while water deliveries decline — and rebuilding member agency trust post-SDCWA litigation — is Metropolitan's central financial and political challenge.</div>
-      <div class="ch-cell"><strong>Cybersecurity &amp; OT/ICS Risk</strong> — Metropolitan operates 5 treatment plants, 20 reservoirs, 24 dams, 830 miles of pipelines, and an extensive SCADA/ICS network across a 5,200-square-mile service area. The 2025 Seismic Resilience Report and ongoing seismic retrofit program (Weymouth Administration Building, $28–35M; Diemer plant seismic work) both signal active infrastructure risk management investment. Water sector OT cybersecurity is a national priority and a direct Deloitte Cyber opportunity.</div>
-      <div class="ch-cell"><strong>PFAS &amp; Emerging Contaminants</strong> — The 2026 Annual Operating Plan explicitly cites PFAS tracking as a core water quality priority. EPA's PFAS final rule creates compliance deadlines across Metropolitan's 5 treatment plants and multiple source waters. PFAS treatment technology, compliance planning, and stakeholder communication are all near-term advisory needs.</div>
-      <div class="ch-cell"><strong>Declining Water Demand vs. Fixed Cost Structure</strong> — Metropolitan's water transactions are at or near 50-year lows (1.17 MAF projected for FY2023/24, vs. a historic range of 1.5–2.0 MAF). Fixed costs don't decline with deliveries — this creates sustained rate pressure and financial planning complexity. The business model review under CAMP4W is partially about how Metropolitan finances itself when delivery volumes decline.</div>
-    </div>
-
-    <div class="sub-hdr">Key Recent Developments</div>
-    <div class="news-grid">
-      <div class="news-cell"><div class="news-title">New General Manager — Adán Deshmukh Named October 2025</div><div class="news-body">Deshmukh was named Metropolitan's new General Manager in October 2025, replacing Adel Hagekhalil. A new GM represents the most significant leadership transition at Met in years. Deshmukh will establish his priorities, restructure advisory relationships, and make key capital and strategic decisions over the next 12–18 months. This is Deloitte's primary entry-point window.</div></div>
-      <div class="news-cell"><div class="news-title">SDCWA Litigation Settlement — June 2, 2025</div><div class="news-body">After 15 years of litigation over water pricing and rate methodology, Metropolitan and the San Diego County Water Authority settled on June 2, 2025. Board Chair Ortega described this as "the most significant change to Metropolitan's business model" — allowing member agencies to exchange and sell surplus conserved water supplies for the first time. The settlement also reduces Met's rate increase forecast by half (8.3% vs. 16.4% for 2026).</div></div>
-      <div class="news-cell"><div class="news-title">CAMP4W Implementation Strategy Approved — April 2025</div><div class="news-body">Metropolitan's board approved the CAMP4W Implementation Strategy at its April 2025 meeting. Staff are now preparing project assessments for Pure Water SoCal, Sites Reservoir, Delta Conveyance Project, and conservation investments to be presented to the Board through 2025–2026. CAMP4W is the analytical and governance framework for Metropolitan's next 25-year capital investment cycle.</div></div>
-      <div class="news-cell"><div class="news-title">Pure Water SoCal Draft EIR Released — May 14, 2025</div><div class="news-body">Metropolitan released the Draft Environmental Impact Report for Pure Water Southern California on May 14, 2025. With $205M+ in federal/state grants secured (USBR $125.5M FY2024/25, USBR $26.2M November 2024, State of California $80M) and LA County Sanitation Districts as joint development partner, the program is moving toward board approval for full-scale implementation. Draft EIR public comment period is active.</div></div>
-      <div class="news-cell"><div class="news-title">FY2026/27–FY2027/28 Biennial Budget Approved — April 14, 2026</div><div class="news-body">Metropolitan's board approved the proposed biennial budget for FY2026/27 and FY2027/28 on April 14, 2026 (four public workshops conducted February–April 2026). Budget includes "funding to rehabilitate aging infrastructure and advance planning of a major new recycled water program." The next biennial budget cycle (FY2026/27–FY2027/28) is now live — creating fresh capital and advisory procurement opportunities.</div></div>
-      <div class="news-cell"><div class="news-title">2025 UWMP &amp; Water Shortage Contingency Plan — Public Hearing April 13, 2026</div><div class="news-body">Metropolitan held a public hearing on its draft 2025 Urban Water Management Plan (UWMP) and 2025 Water Shortage Contingency Plan (WSCP) on April 13, 2026. The 2025 UWMP replaces the 2020 UWMP with updated demand projections, supply assumptions, and water reliability analyses. Final adoption expected mid-2026. The UWMP and WSCP are foundational to Metropolitan's supply planning and rate-setting processes.</div></div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════ BUDGET & TECHNOLOGY ═══════════════════════════ -->
-  <div id="tab-budget" class="tab-panel">
-    <div class="section-hdr">Budget &amp; Technology Investment — What the Documents Show</div>
-
-    <div class="note-box"><strong>Source note:</strong> All figures in this tab are sourced directly from the FY2024/25–FY2025/26 Biennial Budget Book (adopted July 2024) and the FY2026 Budget &amp; Action Plan Summaries document provided. Page references are included for all key figures.</div>
-
-    <div class="sub-hdr">Financial Overview</div>
-    <table class="budget-table">
-      <thead><tr><th>Budget Item</th><th>Amount</th><th>Source</th><th>Deloitte Relevance</th></tr></thead>
-      <tbody>
-        <tr><td>FY2024/25 Total Operating Revenue (budgeted)</td><td>$2.04 billion</td><td>Biennial Budget p.30</td><td>Revenue base confirms scale of advisory opportunity</td></tr>
-        <tr><td>FY2025/26 Total Operating Revenue (budgeted)</td><td>$2.17 billion</td><td>Biennial Budget p.30</td><td>+$133M vs. FY2024/25 — rate increases driving growth</td></tr>
-        <tr><td>FY2024/25 Water Revenue (water sales to 26 member agencies)</td><td>$1.40 billion</td><td>Biennial Budget p.30</td><td>Primary revenue driver; rate design advisory tied to this</td></tr>
-        <tr><td>FY2024/25 + FY2025/26 Biennial Budget Total</td><td>$4.8 billion</td><td>mwdh2o.com/budget-finance</td><td>Scale of advisory and capital program opportunity</td></tr>
-        <tr><td>FY2024/25 + FY2025/26 Capital Investment Plan (CIP)</td><td>$636.48 million</td><td>Biennial Budget p.237 / mwdh2o.com</td><td>Active CIP drives engineering, PMO, and advisory procurements</td></tr>
-        <tr><td>FY2025/26 Grand Total Operating &amp; Capital Appropriations</td><td>$2.39 billion</td><td>Action Plan Summaries p.26</td><td>Single-year budget scale for FY2025/26</td></tr>
-        <tr><td>New Revenue Bonds Planned (FY2024/25–FY2025/26)</td><td>$280 million</td><td>Biennial Budget p.33</td><td>Bond issuance drives capital program execution and financing advisory</td></tr>
-        <tr><td>Conservation Program (FY2024/25)</td><td>$54 million ($25M PAYGO + $29.2M bond-financed)</td><td>Biennial Budget p.33</td><td>Conservation program design and analytics advisory opportunity</td></tr>
-        <tr><td>State Water Contract (FY2025/26 operating expenditure)</td><td>$703.9 million</td><td>Biennial Budget FY2025/26 Fund Summary</td><td>Largest single operating expenditure — cost management advisory</td></tr>
-        <tr><td>Debt Service (FY2025/26)</td><td>$353.5 million</td><td>Biennial Budget FY2025/26 Fund Summary</td><td>Debt management and refinancing advisory opportunity</td></tr>
-      </tbody>
-    </table>
-
-    <div class="sub-hdr">Technology &amp; Digital Investment — Confirmed Budget Line Items</div>
-    <p class="bt">The following technology investments are explicitly confirmed in the adopted FY2024/25–FY2025/26 Biennial Budget Book and the FY2026 Budget &amp; Action Plan Summaries document. These are live budget line items — not estimates.</p>
-    <table class="budget-table">
-      <thead><tr><th>Technology Investment</th><th>Budget Amount</th><th>Source</th><th>Deloitte Opportunity</th></tr></thead>
-      <tbody>
-        <tr><td>Enterprise Content Management (ECM) — Phase II Deployment</td><td>$10.3 million (FY2025/26)</td><td>Action Plan Summaries p.315</td><td>ECM system advisory, implementation support, change management — Deloitte Digital Engineering and SAP/ECM practice directly applicable</td></tr>
-        <tr><td>IT Applications (FY2025/26)</td><td>$6.68 million</td><td>Action Plan Summaries p.247</td><td>IT applications advisory, vendor management, procurement support</td></tr>
-        <tr><td>Enterprise Data Analytics</td><td>$3.3 million</td><td>Action Plan Summaries p.315</td><td>Data analytics platform advisory, data governance, BI/reporting — Deloitte Analytics &amp; AI practice</td></tr>
-        <tr><td>Oracle e-Business Suite (existing enterprise platform)</td><td>Operational (not a new investment)</td><td>Action Plan Summaries p.318</td><td>Oracle/ERP modernization, upgrade advisory, integration support — Deloitte's Oracle practice is directly applicable</td></tr>
-        <tr><td>Information Technology &amp; Control Systems (CIP program)</td><td>Included in $636.48M CIP</td><td>Biennial Budget p.237</td><td>One of 10 named CIP programs — SCADA, control systems, and IT capital investments</td></tr>
-        <tr><td>PWSC Grant Management (FY2024/25 receipts: $20.9M applied)</td><td>$125.5M total FY2024/25 grants received</td><td>2025 ACFR / Action Plan Summaries</td><td>Federal grant compliance, reporting, and management — Public Finance Advisory practice</td></tr>
-      </tbody>
-    </table>
-
-    <div class="sub-hdr">Capital Investment Plan (CIP) — 10 Program Areas</div>
-    <p class="bt">Metropolitan's CIP is structured into 10 capital programs, all active in the FY2024/25–FY2025/26 biennium:</p>
-    <div class="two-col">
-      <div class="cell"><div class="cell-title">Climate Adaptation</div><div class="cell-body">CAMP4W-aligned capital investments — AVEK High Desert Water Bank ($177.9M+ debt-financed), Pure Water Southern California planning/design, Sites Reservoir participation rights. This is the fastest-growing CIP program driven by CAMP4W implementation.</div></div>
-      <div class="cell"><div class="cell-title">Colorado River Aqueduct</div><div class="cell-body">Ongoing rehabilitation and reliability work on the 242-mile CRA — pumping plant upgrades, pipe rehabilitation, SCADA upgrades. The CRA is aging infrastructure (built 1933–1941) requiring sustained capital investment. Active construction procurements confirmed at mwdh2o.com/construction.</div></div>
-      <div class="cell"><div class="cell-title">Prestressed Concrete Cylinder Pipe (PCCP) Rehabilitation</div><div class="cell-body">Active major procurement: RFQ No. 1374 for PCCP Rehabilitation 2024/2025 — estimated $70M budget. PCCP rehabilitation across Metropolitan's 830-mile distribution system is a multi-year, multi-hundred-million-dollar capital program. One of Metropolitan's most active construction procurement areas.</div></div>
-      <div class="cell"><div class="cell-title">Dams &amp; Reservoirs</div><div class="cell-body">Metropolitan owns and operates 20 reservoirs and 24 dams across the 5,200-square-mile service area. All are regularly inspected by Metropolitan staff and the California DSOD. Seismic retrofit work (Weymouth Administration &amp; Control Buildings, Spec 1937, $28–35M), slope erosion rehabilitation, and dam safety programs are active.</div></div>
-      <div class="cell"><div class="cell-title">Distribution System</div><div class="cell-body">Seismic retrofits, pipe rehabilitation, cathodic protection system upgrades, online analyzer replacements, security improvements, booster station work — all active in FY2024/25–FY2025/26. East Orange County Feeder No. 2 seismic retrofit at Diemer plant and cathodic protection rehabilitation are confirmed active projects.</div></div>
-      <div class="cell"><div class="cell-title">Information Technology &amp; Control Systems</div><div class="cell-body">One of 10 named CIP programs. ECM Phase II ($10.3M), IT Applications ($6.68M), Enterprise Data Analytics ($3.3M) are all budget line items. WiFi upgrades at LA and Orange County facilities (Spec 2105, $580–740K) and control room wildfire smoke control at Jensen WTP (Spec 2054A) are recent construction procurements under this program.</div></div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════ PROCUREMENT & CONTACTS ═══════════════════════════ -->
-  <div id="tab-procurement" class="tab-panel">
-    <div class="section-hdr">Procurement Mechanics &amp; Key Contacts</div>
-
-    <div class="sub-hdr">Procurement Infrastructure</div>
-    <p class="bt">Metropolitan has a formal, structured procurement infrastructure — one of the most accessible among large water utilities in the Western U.S. It uses an e-procurement system providing online access to competitive solicitations and results. Metropolitan procures goods, non-professional services, and professional services through: Request for Bid (RFB), Notice for Bid (NFB), Request for Proposals (RFP), Request for Qualifications (RFQ), and Direct Purchase. Professional services include engineering, architectural, legal, human resources, audit, communications networking, and environmental studies. All construction contracts over $100,000 include a small and/or disabled veteran business enterprise (SBE/DVBE) subcontractor usage requirement. Metropolitan holds quarterly construction workshops (program-level briefings) for its contractor community. Not on PlanetBids — Metropolitan uses its own procurement platform.</p>
-
-    <div class="two-col">
-      <div class="cell"><div class="cell-title">Professional Services Portal</div><div class="cell-body"><strong>URL:</strong> mwdh2o.com/procurement-and-professional-services/<br><br>Professional services that Metropolitan contracts out include: engineering, architectural, legal, human resources, audit, communications networking, and environmental studies. Deloitte advisory engagements typically fall under the "professional services" track — RFP-based. Vendor registration and solicitations available at the procurement portal.</div></div>
-      <div class="cell"><div class="cell-title">Construction Solicitations Portal</div><div class="cell-body"><strong>URL:</strong> mwdh2o.com/construction/<br><br>All construction solicitations published here. Active solicitations include: DPR Demonstration Plant equipment (Spec 2135, $4.5–6M; Spec 2137, $4–5M; Spec 2139), Weymouth seismic upgrades (Spec 1937, $28–35M), and PCCP rehabilitation (RFQ 1374, ~$70M). Construction workshops held quarterly — attend to build relationships with Metropolitan's engineering and capital programs leadership.</div></div>
-      <div class="cell"><div class="cell-title">Administrative Code — Governing Rules</div><div class="cell-body">Metropolitan procures in accordance with the Metropolitan Water District Administrative Code (adopted 1977, periodically amended) and applicable government statutes. The Administrative Code governs purchasing thresholds, approval authorities, competition requirements, and protest procedures. Protest procedures for competitive solicitations are posted at the procurement page. All procurement is subject to public transparency requirements consistent with Metropolitan's status as a public agency.</div></div>
-      <div class="cell"><div class="cell-title">SBE/DVBE Program &amp; Contractor Community</div><div class="cell-body">All construction contracts over $100K require SBE/DVBE subcontractor utilization unless waived. Metropolitan holds quarterly construction workshops providing contractor community intelligence on upcoming opportunities. Metropolitan explicitly values and tracks small business engagement. For Deloitte, this means: (1) teaming with SBE/DVBE firms is an access strategy; (2) attending quarterly workshops is a relationship-building tactic; (3) Metropolitan's procurement team is accessible and engaged with the external contractor community.</div></div>
-    </div>
-
-    <div class="sub-hdr">Active &amp; Pipeline Procurement Signals</div>
-    <table class="rfp-table">
-      <thead><tr><th>Status</th><th>Opportunity</th><th>Detail</th></tr></thead>
-      <tbody>
-        <tr><td><span class="badge ba">ACTIVE</span></td><td>DPR Demonstration Plant Equipment</td><td>Multiple active construction procurements for Direct Potable Reuse (DPR) Demonstration Plant: Membrane Filtration &amp; RO Equipment (Spec 2135, $4.5–6M, bids Jan. 22, 2026); CO2 Feed Equipment (Spec 2139, $450–600K); Ozone &amp; GAC Equipment (Spec 2137, $4–5M). These are precursors to the full Pure Water SoCal program procurement.</td></tr>
-        <tr><td><span class="badge ba">ACTIVE</span></td><td>PCCP Rehabilitation 2024/2025 — RFQ No. 1374</td><td>RFQ for qualified contractors for PCCP rehabilitation across Metropolitan's pipeline network. Estimated budget $70M. Bid deadline August 8, 2024. PCCP rehabilitation is a recurring, multi-year capital procurement program across 830 miles of distribution system.</td></tr>
-        <tr><td><span class="badge ba">ACTIVE</span></td><td>Weymouth Admin &amp; Control Buildings Seismic Upgrades</td><td>Spec 1937 — $28–35M estimated construction value. Seismic retrofit at one of Metropolitan's five major water treatment plants. Part of the 2025 Seismic Resilience Report action items.</td></tr>
-        <tr><td><span class="badge ba">ACTIVE</span></td><td>Water and Power Facility &amp; Renewable Energy Planning Engineering Services</td><td>RFQ-MN-1381, bid deadline October 21, 2024. Engineering services for water and power facility planning — signals active capital program support procurement in the energy/power optimization space.</td></tr>
-        <tr><td><span class="badge bpi">PIPELINE</span></td><td>Pure Water Southern California — Program Management &amp; Advisory</td><td>Draft EIR released May 14, 2025. If board-approved at full scale (150 MGD), PWSC will generate: program management, owner's advisor, environmental compliance, federal grant management, stakeholder engagement, and design/engineering procurements. This is the largest anticipated professional services procurement pipeline at Metropolitan. Monitor PWSC page (mwdh2o.com/pure-water-southern-california) and Board meeting agendas for approval timeline.</td></tr>
-        <tr><td><span class="badge bpi">PIPELINE</span></td><td>ECM Phase II — Implementation Support</td><td>$10.3M budgeted FY2025/26 for Enterprise Content Management Phase II (Action Plan Summaries p.315). Implementation support, change management, and systems integration advisory anticipated. Monitor Metropolitan procurement portal for ECM-related RFPs.</td></tr>
-        <tr><td><span class="badge bpi">PIPELINE</span></td><td>Enterprise Data Analytics Platform</td><td>$3.3M budgeted (Action Plan Summaries p.315) for Enterprise Data Analytics. Advisory support for data platform strategy, governance, and analytics program design anticipated. Oracle e-Business Suite integration context confirmed (p.318).</td></tr>
-        <tr><td><span class="badge bpi">PIPELINE</span></td><td>CAMP4W Implementation — Strategic Advisory</td><td>CAMP4W Implementation Strategy approved April 2025. Project assessments for PWSC, Sites Reservoir, Delta Conveyance, and conservation programs being developed for Board presentation through 2025–2026. Strategic advisory, scenario modeling, and financial analysis support anticipated as the framework moves from strategy to investment decisions.</td></tr>
-        <tr><td><span class="badge bpi">PIPELINE</span></td><td>2025 UWMP &amp; WSCP Implementation</td><td>Draft 2025 UWMP and Water Shortage Contingency Plan under final development (public hearing April 13, 2026). Implementation advisory, member agency communications, and compliance planning support anticipated post-adoption. These documents set the planning framework for Metropolitan's next 25 years of supply decisions.</td></tr>
-      </tbody>
-    </table>
-
-    <div class="sub-hdr">Key Contacts &amp; Organizational Structure</div>
-    <p class="bt">Metropolitan's General Manager reports directly to the 38-member Board of Directors and is supported by four assistant general managers: Chief Operating Officer, Chief Administrative Officer, Chief Financial Officer, and Chief External Affairs Officer. Seven management groups report to the assistant general managers. The Board approved the biennial budget, capital investment plan, rates, and major strategic initiatives.</p>
-    <div class="contacts-grid">
-      <div class="contact-card">
-        <div class="contact-name">Adán Deshmukh</div>
-        <div class="contact-title">General Manager (Named October 2025)</div>
-        <div class="contact-note">New GM as of October 2025. Replacing Adel Hagekhalil. Setting leadership agenda and external advisory relationships. Top relationship-building priority for Deloitte — primary entry point during organizational transition window.</div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-name">Adán Ortega, Jr.</div>
-        <div class="contact-title">Board Chair (through December 31, 2026)</div>
-        <div class="contact-note">Unanimously re-elected October 2024. Organized board leadership around CAMP4W and climate adaptation. Led SDCWA litigation settlement. "Whatever is done should be done for the benefit of the whole" — framing for advisory engagement approach.</div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-name">Chief Financial Officer</div>
-        <div class="contact-title">Assistant General Manager — Finance &amp; Administration</div>
-        <div class="contact-note">Manages financial planning, investments, debt management, annual budget, and accounting. Key contact for financial advisory, rate design, debt strategy, and CAMP4W financial modeling engagements. Name: confirm via Metropolitan's General Manager page (mwdh2o.com/management/general-manager).</div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-name">Chief Operating Officer</div>
-        <div class="contact-title">Assistant General Manager — Operations</div>
-        <div class="contact-note">Oversees Bay-Delta Initiatives and Colorado River Resources programs. Operations group manages conveyance, treatment, and distribution of water. Key contact for OT cybersecurity, seismic resilience, and operational advisory engagements.</div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-name">Chief Administrative Officer</div>
-        <div class="contact-title">Assistant General Manager — Administration</div>
-        <div class="contact-note">Manages environmental planning, administrative services, security, and Board administration. Also manages HR (recruitment, training, retention). Key contact for workforce strategy, DEI, and organizational design engagements.</div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-name">Chief External Affairs Officer</div>
-        <div class="contact-title">Assistant General Manager — External Affairs</div>
-        <div class="contact-note">Manages member agency relations, government affairs, and public communications. Key contact for CAMP4W stakeholder engagement, post-SDCWA settlement member agency communications, and Colorado River policy advisory work. Jannine Rojo and Monika Medina are public affairs representatives (confirmed mwdh2o.com/contact-us).</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════ DELOITTE OPPORTUNITIES ═══════════════════════════ -->
-  <div id="tab-opportunities" class="tab-panel">
-    <div class="section-hdr">Deloitte Pursuit Opportunities — Why Us, Why Now</div>
-
-    <p class="bt" style="margin-bottom:24px;">The following six pursuit angles are organized by near-term entry ease and Deloitte differentiation. For each, the brief identifies: what's happening at Metropolitan right now that creates the need, what makes this a Deloitte lane (not just an engineering or legal lane), and the specific signal that tells us this is live and actionable.</p>
-
-    <div class="pursuit hot">
-      <div class="pursuit-num">🔥 Highest Priority · Pursuit Angle 1</div>
-      <div class="pursuit-title">New GM Relationship — Adán Deshmukh Transition Advisory</div>
-      <div class="pursuit-body">A new General Manager at a $2B+ public utility is one of the most reliable advisory entry-point signals that exists. Deshmukh was named in October 2025 and is in his first year of leadership. He is building his agenda, evaluating the organization's capabilities and external advisory relationships, and will be making decisions over the next 12 months that will define Metropolitan's strategic direction for years. Deloitte's strategy, organizational effectiveness, and leadership advisory practices are directly applicable to this transition moment — and this window closes as the GM becomes established and existing advisory relationships get locked in.</div>
-      <div class="pursuit-why"><strong>Why Deloitte:</strong> Management consulting practices — organizational assessment, leadership agenda-setting, strategic priority framing, and stakeholder communication strategy — are Deloitte's home turf and not easily occupied by engineering firms or legal counsel who are Metropolitan's other large advisor categories. The transition moment is advisory-specific.</div>
-      <div class="pursuit-why"><strong>Why Now:</strong> First year of a new GM is the window. If Deloitte is not in relationship by Q3 2026, the organizational landscape will be set and this entry point closes. Start with the External Affairs or CFO as warm-up relationships; use the SDCWA settlement and CAMP4W as conversation anchors.</div>
-      <div class="tags"><span class="tag">Strategy Advisory</span><span class="tag">Org Effectiveness</span><span class="tag">Leadership Advisory</span><span class="tag tag-hot">HIGHEST PRIORITY</span></div>
-    </div>
-
-    <div class="pursuit hot">
-      <div class="pursuit-num">🔥 Highest Priority · Pursuit Angle 2</div>
-      <div class="pursuit-title">CAMP4W Strategy &amp; Scenario Planning — Business Model Transformation</div>
-      <div class="pursuit-body">CAMP4W (Climate Adaptation Master Plan for Water) is Metropolitan's new strategic framework for evaluating capital investments — approved by the Board in April 2025. Metropolitan is now conducting assessments of proposed projects (Pure Water SoCal, Sites Reservoir, Delta Conveyance, conservation programs) across six criteria. This is not just a planning exercise — it is a fundamental business model transformation that requires: climate scenario modeling, financial scenario analysis under multiple shortage frameworks, capital portfolio prioritization methodology, stakeholder engagement strategy across 26 member agencies and the public, and change management for a 38-member board-governed organization. The CAMP4W Implementation Strategy is brand-new; no incumbent advisory firm has been established around it yet.</div>
-      <div class="pursuit-why"><strong>Why Deloitte:</strong> CAMP4W requires capabilities that engineering firms and legal counsel cannot provide: strategic portfolio analysis, multi-scenario financial modeling, organizational change management, and stakeholder engagement strategy. Deloitte's Strategy &amp; Analytics and Human Capital practices are the most direct fit. The six-criteria project evaluation framework also requires the kind of quantitative modeling and decision-support infrastructure that Deloitte builds.</div>
-      <div class="pursuit-why"><strong>Why Now:</strong> Project assessments are being presented to Metropolitan's Board through 2025–2026. The analytical window for CAMP4W advisory is open right now — if Deloitte is not engaged before these assessments are finalized, the advisory opportunity shifts to implementation support, which is a narrower lane.</div>
-      <div class="tags"><span class="tag">Strategy &amp; Analytics</span><span class="tag">Scenario Planning</span><span class="tag">CAMP4W</span><span class="tag">Climate Advisory</span><span class="tag">Change Management</span><span class="tag tag-hot">HIGHEST PRIORITY</span></div>
-    </div>
-
-    <div class="pursuit">
-      <div class="pursuit-num">Pursuit Angle 3</div>
-      <div class="pursuit-title">Digital Transformation — ECM Phase II, Enterprise Data Analytics &amp; Oracle Modernization</div>
-      <div class="pursuit-body">Metropolitan's adopted FY2025/26 budget explicitly funds: $10.3M for Enterprise Content Management Phase II (p.315), $6.68M for IT Applications (p.247), and $3.3M for Enterprise Data Analytics (p.315). These are live budget line items — not aspirational. Metropolitan uses Oracle e-Business Suite as its enterprise platform for financials, procurement, project management, and grants management (p.318). The ECM Phase II deployment, Oracle platform optimization, and data analytics program development all create immediate advisory and implementation support needs. The Strategic Priority #4 in the Biennial Budget explicitly calls for implementing the ECM system and applying technology across project lifecycles — confirming board-level mandate for this investment.</div>
-      <div class="pursuit-why"><strong>Why Deloitte:</strong> Oracle e-Business Suite modernization and ECM implementation are Deloitte's Technology practice home turf. Combined with Deloitte Analytics &amp; AI for the Enterprise Data Analytics program, this is a bundled offering — Oracle advisory + data analytics + ECM program management — that engineering firms cannot provide and that directly maps to Metropolitan's confirmed budget line items.</div>
-      <div class="pursuit-why"><strong>Why Now:</strong> ECM Phase II is a FY2025/26 budget item — procurement is happening now or imminently. Monitor mwdh2o.com/procurement-and-professional-services for ECM-related RFPs. Oracle optimization is ongoing — unsolicited advisory outreach framed around Oracle EBS best practices for public utilities is a viable entry point.</div>
-      <div class="tags"><span class="tag">Digital Engineering</span><span class="tag">Oracle EBS</span><span class="tag">ECM Implementation</span><span class="tag">Enterprise Data Analytics</span><span class="tag">Change Management</span></div>
-    </div>
-
-    <div class="pursuit">
-      <div class="pursuit-num">Pursuit Angle 4</div>
-      <div class="pursuit-title">Pure Water Southern California — Program Management &amp; Federal Grant Compliance</div>
-      <div class="pursuit-body">Pure Water Southern California (PWSC) is potentially one of the world's largest water purification programs — 150 MGD for 1.5 million people. The Draft EIR was released May 14, 2025, and $205M+ in federal and state grants have been secured. If approved by Metropolitan's board at full scale, PWSC will generate an enormous professional services procurement pipeline: program management, owner's advisor, environmental compliance, federal grant compliance (USBR grants require specific reporting and tracking requirements), stakeholder engagement, public communications, and technology advisory for the advanced treatment systems. Metropolitan received $125.5M in USBR/IRA grants in FY2024/25 alone — this level of federal funding creates compliance and reporting obligations that require dedicated advisory support.</div>
-      <div class="pursuit-why"><strong>Why Deloitte:</strong> Deloitte's Government &amp; Infrastructure (G&I) practice, combined with Public Finance Advisory and Federal Grant Management capabilities, is directly applicable to PWSC's scale and complexity. Engineering firms (Carollo, CDM Smith, Jacobs) will compete for design and construction. Deloitte's lane is the strategic PMO, owner's advisor, and federal grant compliance track — work that cannot be done by the design-build firms due to conflict of interest.</div>
-      <div class="pursuit-why"><strong>Why Now:</strong> The Draft EIR public comment period is active as of May 2026. Board approval for full-scale implementation is the next major milestone. Program management and advisory procurements will follow within 6–12 months of board approval. Monitor mwdh2o.com/pure-water-southern-california and Board meeting agendas now.</div>
-      <div class="tags"><span class="tag">Capital PMO</span><span class="tag">Owner's Advisor</span><span class="tag">G&I Practice</span><span class="tag">Federal Grant Compliance</span><span class="tag">PWSC Program</span></div>
-    </div>
-
-    <div class="pursuit">
-      <div class="pursuit-num">Pursuit Angle 5</div>
-      <div class="pursuit-title">OT/ICS Cybersecurity — Critical Infrastructure at Scale</div>
-      <div class="pursuit-body">Metropolitan operates 5 water treatment plants (among the largest in the nation), 20 reservoirs, 24 dams, 830 miles of pipelines, extensive SCADA/ICS networks, and a CIP program that explicitly includes "Information Technology &amp; Control Systems" as one of its 10 programs. The 2025 Seismic Resilience Report (August 2025) and active seismic retrofit procurements (Weymouth, $28–35M; Diemer plant seismic work) signal active infrastructure risk management investment. Combined with EPA guidance increasingly requiring formal OT cybersecurity risk assessments from large water systems, Metropolitan is a compelling and large-scale OT cybersecurity advisory target. The scale of Metropolitan's infrastructure — across a 5,200-square-mile service area — makes this one of the most complex OT environments in the U.S. water sector.</div>
-      <div class="pursuit-why"><strong>Why Deloitte:</strong> Deloitte Cyber's OT/ICS practice is among the strongest in the market for critical infrastructure. Metropolitan's combined treatment plant SCADA, distribution system ICS, dam safety monitoring, and CRA pumping plant controls represent a uniquely large and complex OT environment — exactly the profile where Deloitte Cyber's specialized capabilities create clear differentiation over generalist IT security firms.</div>
-      <div class="pursuit-why"><strong>Why Now:</strong> EPA's formal OT risk assessment guidance creates a regulatory driver. Metropolitan's active seismic and infrastructure rehabilitation CIP signals organizational focus on resilience. A proactive Deloitte Cyber outreach — framed around Metropolitan's own Seismic Resilience Report and the EPA OT guidance — is a credible, timely entry point.</div>
-      <div class="tags"><span class="tag">Deloitte Cyber</span><span class="tag">OT/ICS Security</span><span class="tag">NIST CSF</span><span class="tag">Critical Infrastructure</span><span class="tag">Seismic Resilience</span></div>
-    </div>
-
-    <div class="pursuit">
-      <div class="pursuit-num">Pursuit Angle 6</div>
-      <div class="pursuit-title">Rate Design, Financial Modeling &amp; Post-SDCWA Business Model Advisory</div>
-      <div class="pursuit-body">The June 2025 SDCWA litigation settlement is described by Metropolitan's Board Chair as "the most significant change to Metropolitan's business model" — allowing member agencies to exchange and sell surplus conserved supplies for the first time in Metropolitan's history. This structural change, combined with historically low water delivery volumes (near 50-year lows) and two consecutive 8.5% rate increases, creates acute financial modeling and rate design advisory needs. Metropolitan's biennial budget process (next cycle: FY2026/27–FY2027/28, approved April 14, 2026) is the primary vehicle for rate-setting — and the new business model creates analytical complexity that did not exist before the settlement. Metropolitan also has a ten-year financial forecast model that will need to be updated to reflect the new member agency exchange market, declining deliveries trajectory, and CAMP4W capital investment scenarios.</div>
-      <div class="pursuit-why"><strong>Why Deloitte:</strong> Rate design, financial modeling for water utilities, and business model advisory are Deloitte Public Finance Advisory and Strategy capabilities — not engineering firm capabilities. The post-SDCWA settlement business model is genuinely new and requires the kind of financial and analytical advisory that Deloitte builds, not the construction and design work that engineering firms compete for.</div>
-      <div class="pursuit-why"><strong>Why Now:</strong> The FY2026/27–FY2027/28 biennial budget was approved April 14, 2026 — the next rate-setting cycle (FY2028/29–FY2029/30) begins its planning process in 2026/27. The post-settlement business model is live and requires financial modeling now. Engage with Metropolitan's CFO and finance team around the CAMP4W financial sustainability criterion — this is a natural entry point for rate design and financial advisory work.</div>
-      <div class="tags"><span class="tag">Public Finance Advisory</span><span class="tag">Rate Design</span><span class="tag">Financial Modeling</span><span class="tag">Business Model Advisory</span><span class="tag">Post-SDCWA Settlement</span></div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════ PURSUIT SEQUENCING ═══════════════════════════ -->
-  <div id="tab-sequencing" class="tab-panel">
-    <div class="section-hdr">Pursuit Sequencing &amp; Recommended Actions</div>
-
-    <div class="sub-hdr">The Strategic Framing for Getting In</div>
-    <p class="bt">Metropolitan is not a typical water district engagement target. It is one of the largest and most complex public utilities in the United States, with a sophisticated internal staff, a formal procurement infrastructure, a 38-member governing board, and established relationships with large consulting and engineering firms. The entry strategy must be: (1) advisory-first — not competing with engineering firms on design and construction; (2) executive relationship-driven — not portal-first; (3) CAMP4W-anchored — Metropolitan's new strategic framework is the most credible conversation opener; and (4) California-specific — Deloitte's California government and utility practice relationships are the most efficient path in. Cold outreach from the water practice alone is not sufficient for an account of this scale and sophistication.</p>
-
-    <div class="action-box">
-      <div class="action-timing">Immediate — Q2 2026</div>
-      <div class="action-title">Register on Procurement Portal &amp; Monitor Active Solicitations</div>
-      <div class="action-body">Register on Metropolitan's e-procurement system (mwdh2o.com/procurement-and-professional-services). Monitor the construction solicitations page (mwdh2o.com/construction) for new professional services and program management RFPs. Set up alerts for Board meeting agendas (mwdh2o.com/board-of-directors) — Board agendas signal upcoming procurements and strategic decisions 4–6 weeks in advance. Subscribe to Metropolitan's newsroom (mwdh2o.com/newsroom) for PWSC program advancement signals. Register for Metropolitan's quarterly contractor workshops — these are the relationship-building events where Metropolitan's capital programs and procurement teams are accessible.</div>
-      <div class="tags"><span class="tag">Procurement Registration</span><span class="tag">Board Agenda Monitoring</span><span class="tag">PWSC Tracking</span><span class="tag">Contractor Workshops</span></div>
-    </div>
-
-    <div class="action-box">
-      <div class="action-timing">Immediate — Q2 2026</div>
-      <div class="action-title">Leverage Deloitte California Government &amp; Utility Network — New GM Entry</div>
-      <div class="action-body">The most important action Deloitte can take right now is identifying warm-introduction paths to new General Manager Adán Deshmukh. Check whether Deloitte California has: (1) existing California state water agency relationships (DWR, State Water Board) where Deshmukh has connections; (2) existing Metropolitan Board member relationships (26 member agencies — check if Deloitte serves any of the 26 agency cities or districts); (3) any prior Metropolitan engagement history. A warm introduction to Deshmukh through a board member or California water policy network connection is worth more than any cold procurement approach. Frame the initial conversation around CAMP4W and the post-SDCWA settlement business model — these are Metropolitan's two most active strategic topics and Deloitte's two most differentiated capabilities.</div>
-      <div class="tags"><span class="tag">Executive Relationships</span><span class="tag">New GM Entry</span><span class="tag">CA Network Leverage</span><span class="tag">CAMP4W Anchor</span></div>
-    </div>
-
-    <div class="action-box">
-      <div class="action-timing">Near-Term — Q3 2026</div>
-      <div class="action-title">Proactive Advisory Outreach — CAMP4W Scenario Modeling</div>
-      <div class="action-body">Develop a proactive point-of-view (PoV) on CAMP4W's financial modeling challenge — specifically: how should Metropolitan model capital investment decisions under climate uncertainty, declining delivery volume, and the post-SDCWA business model? A 4–6 page executive brief (not a sales pitch — a genuine analytical contribution) positioned to Metropolitan's CFO and Planning/Resources Management group would demonstrate Deloitte's capability in the area where Metropolitan currently has the most analytical need and the least established external advisory. Use Metropolitan's own published CAMP4W documents, the 2026 Annual Operating Plan, and the ACFR as the reference framework — show you've read the documents and are offering something additive. Target delivery: Q3 2026 ahead of Fall 2025/2026 Board CAMP4W project assessment presentations.</div>
-      <div class="tags"><span class="tag">Thought Leadership</span><span class="tag">CAMP4W Advisory</span><span class="tag">Financial Modeling PoV</span><span class="tag">Proactive Outreach</span></div>
-    </div>
-
-    <div class="action-box">
-      <div class="action-timing">Near-Term — Q3 2026</div>
-      <div class="action-title">ECM Phase II &amp; Oracle Advisory — Technology Practice Entry</div>
-      <div class="action-body">Metropolitan's FY2025/26 budget allocates $10.3M for ECM Phase II — procurement is imminent. Monitor the professional services portal for ECM-related RFPs. In parallel, develop an outreach to Metropolitan's IT leadership around Oracle e-Business Suite optimization — Metropolitan's confirmed enterprise platform for financials, procurement, PM, and grants management. A brief on "Oracle EBS modernization for large public water utilities" tailored to Metropolitan's specific context (grants management complexity, PWSC federal compliance, CAMP4W financial modeling integration) would be a credible, relevant conversation opener for Metropolitan's Chief Administrative Officer and IT group. This is a lower-profile entry point than the GM relationship — but the ECM and data analytics budget line items are live and procurement-ready.</div>
-      <div class="tags"><span class="tag">Digital Engineering</span><span class="tag">Oracle EBS</span><span class="tag">ECM Advisory</span><span class="tag">Technology Practice</span></div>
-    </div>
-
-    <div class="action-box">
-      <div class="action-timing">Mid-Term — H2 2026</div>
-      <div class="action-title">OT/ICS Cybersecurity — Proactive Risk Assessment Offering</div>
-      <div class="action-body">Deloitte Cyber should develop a proactive OT/ICS risk assessment proposal for Metropolitan — framed around: (1) Metropolitan's own 2025 Seismic Resilience Report and the IT &amp; Control Systems CIP program; (2) EPA's OT cybersecurity guidance for large water utilities; (3) the unique complexity of Metropolitan's environment (5 treatment plants, 20 reservoirs, 24 dams, 830 miles of pipeline, CRA pumping plants). The proposal should position Deloitte as the only firm that combines water sector OT expertise with public utility advisory context — not as a generic cybersecurity vendor. Target: Metropolitan's Chief Operating Officer and the Engineering/Information Services groups. Timing: H2 2026, when Metropolitan's new CIP cycle (FY2026/27–FY2027/28) creates fresh capital budget for OT security investments.</div>
-      <div class="tags"><span class="tag">Deloitte Cyber</span><span class="tag">OT/ICS Security</span><span class="tag">Proactive Proposal</span><span class="tag">COO Target</span></div>
-    </div>
-
-    <div class="action-box">
-      <div class="action-timing">Mid-Term — H2 2026 / Early 2027</div>
-      <div class="action-title">PWSC Program Management — Position Ahead of Board Approval</div>
-      <div class="action-body">Pure Water Southern California is the most significant capital program opportunity at Metropolitan — potentially one of the world's largest water purification programs. The Draft EIR is in public comment (as of May 2026); board approval for full-scale implementation could come as early as late 2026. Deloitte G&I should begin building relationships with Metropolitan's PWSC program leadership and the Water Resource Management Group now — before the board approval triggers formal procurement. The target relationship at Metropolitan is the PWSC Program Director and the Engineering group (which manages CIP project management). The pitch: independent program management and owner's advisor, explicitly differentiated from the design-build firms (Carollo, CDM Smith, Jacobs) who will compete for engineering work. A teaming strategy with LA County Sanitation Districts' advisory side (Metropolitan's PWSC joint venture partner) could also provide a warm introduction pathway.</div>
-      <div class="tags"><span class="tag">Capital PMO</span><span class="tag">Owner's Advisor</span><span class="tag">PWSC Program</span><span class="tag">G&I Practice</span><span class="tag">Pre-Procurement Positioning</span></div>
-    </div>
-
-    <div class="sub-hdr" style="margin-top:32px;">What NOT to Do</div>
-    <div class="ch-grid">
-      <div class="ch-cell"><strong>Don't lead with procurement portals alone.</strong> Metropolitan is a sophisticated public agency that will not award meaningful advisory work based on portal registration. Relationship-building and thought leadership are the primary entry vehicles at this scale.</div>
-      <div class="ch-cell"><strong>Don't compete with engineering firms on design/build.</strong> Carollo, CDM Smith, Jacobs, and Black &amp; Veatch are deeply embedded in Metropolitan's engineering procurement. Deloitte's lane is advisory, technology, and strategy — not infrastructure design.</div>
-      <div class="ch-cell"><strong>Don't approach Metropolitan as a water district.</strong> Metropolitan is a $2B+ public utility with a sophisticated executive team, a formal procurement infrastructure, and established advisory relationships. Generic water sector messaging will not differentiate Deloitte.</div>
-      <div class="ch-cell"><strong>Don't miss the GM transition window.</strong> Adán Deshmukh is in his first year. New GMs establish external advisory relationships in Year 1. If Deloitte is not in relationship by Q4 2026, this window will close and the incumbent advisory landscape will be set for years.</div>
-    </div>
-  </div>
-
-  <footer>Confidential — Internal Use Only &nbsp;|&nbsp; Deloitte LLP &nbsp;|&nbsp; May 2026 &nbsp;|&nbsp; Sources: FY2024/25–FY2025/26 MWD Biennial Budget Book (adopted July 2024); FY2026 MWD Budget &amp; Action Plan Summaries; 2026 Annual Operating Plan; mwdh2o.com; SDCWA 2025 Annual Report. Not for distribution.</footer>
 </div>
 
+<!-- OVERVIEW -->
+<div id="tab-overview" class="tab-panel active">
+  <div class="rel-banner">
+    <div class="rel-banner-title">⭐ Deloitte Relationship Intelligence — This Is Not a Cold Pursuit</div>
+    <div class="rel-banner-body"><strong>Deloitte's Commercial Water leader has an active quarterly working relationship with GM Shivaji Deshmukh.</strong> Additionally, Deloitte is onboarding a 1099 resource who served as Chief of Staff and senior advisor under predecessor GM Deven Upadhyay, and who also has an established relationship with Shivaji. This combination — direct GM-level access plus deep institutional knowledge from a trusted insider — is a significant competitive advantage over every other advisory firm approaching Metropolitan. The priority is to activate both relationships now and convert them into formal engagements before the CAMP4W and PWSC advisory landscape locks in around competitors.</div>
+  </div>
+
+  <div class="section-hdr">Entity Overview</div>
+  <div class="stats">
+    <div class="stat"><span class="stat-val">~$2.3B</span><div class="stat-lbl">FY2026/27 Operating Budget (approved April 14, 2026)</div></div>
+    <div class="stat"><span class="stat-val">$1.025B</span><div class="stat-lbl">New CIP — FY2026/27–FY2027/28 (approved April 14, 2026; +$300M+ over prior biennium)</div></div>
+    <div class="stat"><span class="stat-val">19M</span><div class="stat-lbl">People Served — 6 Southern California Counties — 26 Member Agencies</div></div>
+    <div class="stat"><span class="stat-val">Aa1/AA</span><div class="stat-lbl">Bond Rating — Moody's / S&amp;P — Largest treated water wholesaler in the U.S.</div></div>
+  </div>
+
+  <div class="sub-hdr">Who They Are</div>
+  <p class="bt">The Metropolitan Water District of Southern California (Metropolitan, or Met) is the largest treated water wholesaler in the United States — a state-chartered public agency created by California state law in 1928. Metropolitan provides its 26 member agencies with water for nearly 19 million people across six Southern California counties: Los Angeles, Orange, Riverside, San Bernardino, San Diego, and Ventura. It imports water from the Colorado River via the 242-mile Colorado River Aqueduct (CRA, built 1933–1941) and from Northern California via the State Water Project (SWP). Metropolitan operates 5 water treatment plants (among the largest in the nation), 20 reservoirs, 24 dams, 830 miles of pipelines, and 14 CRA pumping plants across a 5,200-square-mile service area. It is governed by a 38-member Board of Directors representing its 26 member agencies.</p>
+  <p class="bt">In October 2025, Shivaji Deshmukh was appointed General Manager-designate (effective January 1, 2026), replacing retiring GM Deven Upadhyay. Deshmukh came from Inland Empire Utilities Agency — one of Metropolitan's own 26 member agencies — where he was GM for six years, and previously served as assistant GM at West Basin Municipal Water District. He brings a member agency perspective to the GM role.</p>
+
+  <div class="sub-hdr">Key Financial &amp; Operational Facts (Confirmed)</div>
+  <ul class="bul">
+    <li><strong>Operating Budget:</strong> ~$2.3B FY2026/27; ~$2.4B FY2027/28 (approved April 14, 2026). Prior biennium: ~$2.04B FY2024/25 / ~$2.17B FY2025/26. Source: MWD April 14, 2026 press release; Biennial Budget Book adopted July 2024 p.30.</li>
+    <li><strong>Capital Investment Plan:</strong> $1.025B FY2026/27–FY2027/28 — a $300M+ increase over the prior $636.48M biennial CIP. Source: MWD April 14, 2026 press release (BusinessWire).</li>
+    <li><strong>Rate Actions:</strong> 8.5% increases effective January 1, 2025 and January 1, 2026. New biennium: 6.2% effective January 1, 2027 and January 1, 2028. Source: MWD Board, April 14, 2026.</li>
+    <li><strong>Water Deliveries:</strong> Near 50-year lows — ~1.17 MAF projected FY2023/24 vs. historical range 1.5–2.0 MAF. Declining volume creates persistent rate pressure as fixed costs don't decline with deliveries.</li>
+    <li><strong>PWSC Grants (Confirmed):</strong> $99.2M USBR WaterSMART grant (May 2024) + $26.2M additional USBR grant (November 18, 2024) = $125.4M total USBR grants. Plus $80M State of California grant (2023) = ~$205.4M total confirmed. Source: USBR press releases; mwdh2o.com/pure-water-southern-california.</li>
+    <li><strong>Technology Budget (prior biennium — verify in new budget):</strong> ECM Phase II $10.3M; IT Applications $6.68M; Enterprise Data Analytics $3.3M. Oracle e-Business Suite confirmed as enterprise platform for financials, procurement, PM, and grants management. Source: FY2026 Budget &amp; Action Plan Summaries p.247, p.315, p.318. <span class="flag">[Verify these line items carry into FY2026/27–FY2027/28 budget]</span></li>
+    <li><strong>Operating Expenditures (FY2025/26):</strong> State Water Contract $703.9M; Departmental O&amp;M $649.7M; Debt Service $353.5M; Supply Programs $90.9M; CO River Power $93.3M; Demand Management $61.1M. Source: Biennial Budget Book FY2025/26 Fund Summary.</li>
+  </ul>
+
+  <div class="sub-hdr">Four Converging Strategic Change Events</div>
+  <div class="ov-grid">
+    <div class="ov-card">
+      <h4>1. New GM — Shivaji Deshmukh (January 1, 2026)</h4>
+      <p>Appointed by unanimous Board vote October 14, 2025; joined as GM-designate November 3, 2025; full leadership January 1, 2026. Came from Inland Empire Utilities Agency (one of Met's own 26 member agencies). <strong>Deloitte's Commercial Water leader already meets with Shivaji quarterly.</strong> The 1099 resource (former Chief of Staff under Upadhyay) has an established relationship with Shivaji and deep institutional knowledge of Metropolitan's priorities and decision-making. This is Deloitte's primary competitive advantage — activate now.</p>
+    </div>
+    <div class="ov-card">
+      <h4>2. CAMP4W — Board Approved April 8, 2025</h4>
+      <p>Climate Adaptation Master Plan for Water: new criteria-based framework evaluating all capital investments across six criteria — reliability, affordability, environmental co-benefits, equity, financial sustainability, and community impact. Staff preparing assessments for Pure Water SoCal, Sites Reservoir, Delta Conveyance, and conservation investments for Board presentation starting Fall 2025 through 2026. No incumbent advisory firm established around CAMP4W yet. Source: mwdh2o.com/addressing-climate-change.</p>
+    </div>
+    <div class="ov-card">
+      <h4>3. SDCWA Settlement — June 2, 2025</h4>
+      <p>15-year litigation settled. SDCWA now pays a fixed price ($671/AF starting 2026, inflation-adjusted) for water transfers — no longer tied to Metropolitan's rates. SDCWA gains new ability to sell/exchange surplus conserved water to other member agencies or to Metropolitan. Board Chair Ortega described this as introducing significant new water market dynamics for Southern California. Source: mwdh2o.com; sdcwa.org; Times of San Diego, June 2, 2025.</p>
+    </div>
+    <div class="ov-card">
+      <h4>4. PWSC — Final EIR Certified February 2026</h4>
+      <p>Board voted unanimously at February 2026 meeting to certify the Final EIR for Pure Water Southern California — completing CEQA review. Board decision on whether to proceed with construction expected later in 2026 via CAMP4W evaluation. <strong>Construction not yet approved as of May 2026.</strong> At full scale: 150 MGD for 1.5M people — potentially one of the world's largest water purification programs. First water delivery as early as 2032–2033. Source: mwdh2o.com February 10, 2026 press release.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRESSING ISSUES -->
+<div id="tab-issues" class="tab-panel">
+  <div class="section-hdr">Pressing Business Issues</div>
+  <p class="bt" style="margin-bottom:20px;">Rated: <span style="color:var(--red);font-weight:700;">CRITICAL</span> = active transformation requiring immediate advisory; <span style="color:#8a5200;font-weight:700;">HIGH</span> = significant ongoing challenge with near-term decision points; <span style="color:var(--blue2);font-weight:700;">ELEVATED</span> = material medium-term priority. All sourced from official MWD documents, board actions, and public reporting.</p>
+
+  <div class="issue critical">
+    <div class="issue-hdr"><div class="issue-num">Issue 1</div><div class="issue-title">New General Manager — Leadership Transition &amp; Strategic Agenda Setting</div><div class="issue-badge badge-critical">CRITICAL</div></div>
+    <div class="issue-body">Shivaji Deshmukh became Metropolitan's GM on January 1, 2026, replacing retiring GM Deven Upadhyay. Appointed by unanimous Board vote October 14, 2025; joined as GM-designate November 3, 2025. Came from Inland Empire Utilities Agency (one of Metropolitan's 26 member agencies) where he was GM for six years, and previously served as assistant GM at West Basin Municipal Water District. He brings a member agency perspective distinctly different from his predecessor. New GMs at large public agencies establish their external advisory landscape within the first 12–18 months — this window is open now. <strong>DELOITTE POSITION: Deloitte's Commercial Water leader has an active quarterly working relationship with Shivaji. Deloitte is also onboarding a 1099 resource who served as Chief of Staff and senior advisor under predecessor GM Deven Upadhyay, and who has an established relationship with Shivaji. This combination of direct GM-level access and deep institutional knowledge is Deloitte's single most significant competitive advantage at Metropolitan. Activate both relationships now.</strong></div>
+    <div class="issue-source">Source: mwdh2o.com/press-releases; MWD Board meeting October 14, 2025; public reporting.</div>
+  </div>
+
+  <div class="issue critical">
+    <div class="issue-hdr"><div class="issue-num">Issue 2</div><div class="issue-title">Business Model Transformation — CAMP4W &amp; Post-SDCWA Settlement</div><div class="issue-badge badge-critical">CRITICAL</div></div>
+    <div class="issue-body">Two simultaneous structural changes reorienting Metropolitan's business model: (1) <strong>CAMP4W</strong> (board-approved April 8, 2025) — new criteria-based framework for all capital investment decisions across six criteria. Staff preparing project assessments for Pure Water SoCal, Sites Reservoir, Delta Conveyance, and conservation investments for Board presentation starting Fall 2025 through 2026. No incumbent advisory firm established around CAMP4W yet. (2) <strong>SDCWA Settlement (June 2, 2025)</strong> — SDCWA pays fixed $671/AF for water transfers; gains new ability to sell surplus conserved water to other member agencies or to Metropolitan. Together these require: climate scenario modeling, financial analysis under multiple supply frameworks, capital portfolio prioritization, stakeholder engagement across 26 member agencies, and change management for a 38-member board-governed organization.</div>
+    <div class="issue-source">Source: mwdh2o.com/addressing-climate-change (April 8, 2025 Board approval confirmed); sdcwa.org/mwd-sdcwa-settlement; Times of San Diego June 2, 2025.</div>
+  </div>
+
+  <div class="issue critical">
+    <div class="issue-hdr"><div class="issue-num">Issue 3</div><div class="issue-title">Post-2026 Colorado River Operating Guidelines — Supply Uncertainty</div><div class="issue-badge badge-critical">CRITICAL</div></div>
+    <div class="issue-body">Metropolitan's Colorado River operations run under shortage guidelines expiring end of 2026. Bureau of Reclamation DEIS process for post-2026 guidelines is underway. Metropolitan is the largest Colorado River user in Southern California — a lead stakeholder alongside CAP/CAWCD, SNWA, and LADWP. The post-2026 framework will determine Metropolitan's supply certainty, rate trajectory, and capital program priorities for the next 20+ years. CAMP4W was designed specifically to manage this supply uncertainty. The 2026 SWP allocation is also 30% of Table A, further compressing near-term supply.</div>
+    <div class="issue-source">Source: 2026 Annual Operating Plan; MWD Biennial Budget Book; Bureau of Reclamation DEIS process.</div>
+  </div>
+
+  <div class="issue high">
+    <div class="issue-hdr"><div class="issue-num">Issue 4</div><div class="issue-title">Pure Water Southern California — Construction Decision Pending</div><div class="issue-badge badge-high">HIGH</div></div>
+    <div class="issue-body">Final EIR certified unanimously by Metropolitan's Board in February 2026 — completing CEQA environmental review. <strong>Board decision on whether to proceed with construction expected later in 2026 as part of CAMP4W evaluation. Construction has not yet been approved as of May 2026.</strong> At full scale: 150 MGD for 1.5 million people — potentially one of the world's largest water purification programs. LA County Sanitation Districts (A.K. Warren Water Resource Facility, Carson) is joint development partner. First water as early as 2032–2033. Confirmed grants: $99.2M USBR WaterSMART (May 2024) + $26.2M USBR (November 18, 2024) + $80M State of California (2023) = ~$205.4M total. Gov. Newsom authorized expedited judicial review of EIR challenges (January 2026). If approved at full scale, PWSC generates major professional services procurement: program management, owner's advisor, federal grant compliance, stakeholder engagement, and technology advisory.</div>
+    <div class="issue-source">Source: mwdh2o.com February 10, 2026 press release; January 12, 2026 press release; USBR press releases May 2024 and November 18, 2024.</div>
+  </div>
+
+  <div class="issue high">
+    <div class="issue-hdr"><div class="issue-num">Issue 5</div><div class="issue-title">Technology Modernization — ECM, Data Analytics &amp; Oracle EBS</div><div class="issue-badge badge-high">HIGH</div></div>
+    <div class="issue-body">Metropolitan's FY2024/25–FY2025/26 Biennial Budget funded: ECM Phase II $10.3M (p.315); IT Applications $6.68M (p.247); Enterprise Data Analytics $3.3M (p.315). Oracle e-Business Suite confirmed as enterprise platform for financials, procurement, PM, and grants management (p.318). Strategic Priority #4 in the Biennial Budget explicitly calls for implementing the ECM system and applying technology across project lifecycles — confirming board-level mandate. As PWSC federal grant funding grows and the new $1.025B CIP requires real-time capital cost tracking, Oracle EBS optimization and capital accounting modernization become increasingly critical. <span class="flag">[NOTE: Verify whether ECM Phase II and technology line items carry into the new FY2026/27–FY2027/28 adopted budget.]</span></div>
+    <div class="issue-source">Source: FY2026 Budget &amp; Action Plan Summaries p.247, p.315, p.318 (FY2024/25–FY2025/26 biennium).</div>
+  </div>
+
+  <div class="issue high">
+    <div class="issue-hdr"><div class="issue-num">Issue 6</div><div class="issue-title">Capital Program Delivery — $1.025B CIP + Aging Infrastructure</div><div class="issue-badge badge-high">HIGH</div></div>
+    <div class="issue-body">Metropolitan's Board approved a $1.025B CIP for FY2026/27–FY2027/28 on April 14, 2026 — a $300M+ increase over the prior $636.48M biennial CIP, described as funding "to rehabilitate aging infrastructure and advance planning of a major new recycled water program." Active procurements: PCCP rehabilitation (~$70M, active RFQ No. 1374); Weymouth Admin &amp; Control Buildings seismic upgrades (Spec 1937, $28–35M); CRA rehabilitation; Distribution System seismic retrofits and cathodic protection; IT &amp; Control Systems. The CRA (built 1933–1941) requires sustained rehabilitation. The 2025 Seismic Resilience Report (August 2025) and active seismic retrofit procurements signal active infrastructure risk management investment.</div>
+    <div class="issue-source">Source: MWD April 14, 2026 press release (BusinessWire, April 15, 2026); MWD Biennial Budget Book p.237; mwdh2o.com/construction.</div>
+  </div>
+
+  <div class="issue high">
+    <div class="issue-hdr"><div class="issue-num">Issue 7</div><div class="issue-title">Cybersecurity &amp; OT/ICS Risk — Critical Infrastructure at Scale</div><div class="issue-badge badge-high">HIGH</div></div>
+    <div class="issue-body">Metropolitan operates 5 water treatment plants, 20 reservoirs, 24 dams, 830 miles of pipelines, 14 CRA pumping plants, and extensive SCADA/ICS networks across a 5,200-square-mile service area. IT &amp; Control Systems is one of Metropolitan's 10 named CIP programs. The 2025 Seismic Resilience Report (August 2025) and active seismic retrofit procurements signal organizational focus on infrastructure risk. EPA guidance increasingly requires formal OT cybersecurity risk assessments from large water systems. The water sector is the #1 ransomware target nationally. The new $1.025B CIP introduces new systems and third-party contractors into the OT environment — expanding the attack surface during organizational transformation.</div>
+    <div class="issue-source">Source: MWD Biennial Budget Book p.237; mwdh2o.com/construction; EPA water sector OT guidance; 2025 Seismic Resilience Report.</div>
+  </div>
+
+  <div class="issue high">
+    <div class="issue-hdr"><div class="issue-num">Issue 8</div><div class="issue-title">Federal Grant Management &amp; Compliance — $205M+ PWSC Grants</div><div class="issue-badge badge-high">HIGH</div></div>
+    <div class="issue-body">Metropolitan has received ~$205.4M in confirmed grants for PWSC: $99.2M USBR WaterSMART (May 2024) + $26.2M USBR (November 18, 2024) = $125.4M total USBR; plus $80M State of California (2023). USBR grant agreements require specific procurement procedures, reporting timelines, performance metrics, and audit compliance obligations. Oracle e-Business Suite is confirmed as Metropolitan's grants management platform (p.318) — but system adequacy at this scale and growing federal exposure should be assessed. As PWSC advances toward a board construction decision, federal grant funding will grow substantially. Delta Conveyance Project may also attract WIFIA federal financing.</div>
+    <div class="issue-source">Source: USBR press releases May 28, 2024 and November 18, 2024; mwdh2o.com; MWD Action Plan Summaries p.318.</div>
+  </div>
+
+  <div class="issue high">
+    <div class="issue-hdr"><div class="issue-num">Issue 9</div><div class="issue-title">Rate Design &amp; Financial Sustainability — Declining Deliveries vs. Fixed Costs</div><div class="issue-badge badge-high">HIGH</div></div>
+    <div class="issue-body">Water deliveries near 50-year lows (~1.17 MAF projected FY2023/24 vs. historical 1.5–2.0 MAF) while fixed costs remain constant. Rates increased 8.5% in both 2025 and 2026; new biennium carries 6.2% increases for 2027 and 2028. The SDCWA settlement introduces a new member agency surplus exchange market (SDCWA pays fixed $671/AF) whose full financial modeling implications have not yet been worked through. Metropolitan's ten-year financial forecast will need updating to reflect: the new exchange market; declining deliveries trajectory; CAMP4W capital investment scenarios; and post-2026 Colorado River framework. Fixed Charge Coverage: 1.7 (FY2025 budget); 1.9 (FY2026 budget). Source: Biennial Budget Book p.240.</div>
+    <div class="issue-source">Source: MWD Biennial Budget Book p.240 (Ten-Year Financial Forecast); MWD April 14, 2026 press release; sdcwa.org 2025 Annual Report.</div>
+  </div>
+
+  <div class="issue elevated">
+    <div class="issue-hdr"><div class="issue-num">Issue 10</div><div class="issue-title">Member Agency Relations — 26 Agencies, Post-SDCWA Dynamics</div><div class="issue-badge badge-elevated">ELEVATED</div></div>
+    <div class="issue-body">Metropolitan's 38-member Board represents 26 member agencies. The June 2025 SDCWA settlement fundamentally changes member agency relationships — allowing surplus conserved supply exchanges for the first time at a fixed $671/AF. Managing communications, stakeholder engagement, legal structuring, and financial modeling implications across 26 agencies is a sustained advisory need. The 2025 UWMP (public hearing April 13, 2026, final adoption expected mid-2026) requires member agency engagement. CAMP4W project assessments require Board-level presentations and member agency consultation.</div>
+    <div class="issue-source">Source: mwdh2o.com; sdcwa.org 2025 Annual Report; 2025 UWMP public hearing notice.</div>
+  </div>
+
+  <div class="issue elevated">
+    <div class="issue-hdr"><div class="issue-num">Issue 11</div><div class="issue-title">Workforce Strategy &amp; Organizational Performance</div><div class="issue-badge badge-elevated">ELEVATED</div></div>
+    <div class="issue-body">Metropolitan employs ~1,631 people and faces simultaneous organizational challenges: new GM establishing priorities; post-SDCWA recalibration; CAMP4W requiring new analytical capabilities; technology modernization change management; and potential PWSC workforce scale-up if construction approved. Strategic Priority #1 in the Biennial Budget explicitly names "Empower the Workforce &amp; Promote Diversity, Equity and Inclusion" — including succession planning, diversity, and retention. The 1099 resource onboarding (former Chief of Staff) is itself evidence of Metropolitan's organizational knowledge transfer needs.</div>
+    <div class="issue-source">Source: MWD Biennial Budget Book p.55 Strategic Priorities.</div>
+  </div>
+
+  <div class="issue elevated">
+    <div class="issue-hdr"><div class="issue-num">Issue 12</div><div class="issue-title">Indirect Tax &amp; Tax Credit Exposure</div><div class="issue-badge badge-elevated">ELEVATED</div></div>
+    <div class="issue-body">Metropolitan's $1.025B biennial CIP creates California sales and use tax exposure on capital materials and equipment. Complex multi-party construction contracts create transaction tax complexity across six Southern California counties. The post-SDCWA surplus exchange market ($671/AF fixed rate) creates novel indirect tax questions — a new commercial structure with no established precedent. IRA clean energy provisions may apply to Metropolitan's PWSC investment, hydroelectric operations, and energy-efficient treatment improvements. <span class="flag">[NOTE: Post-SDCWA exchange market tax treatment and IRA credit applicability require tax counsel confirmation before presenting to Metropolitan.]</span></div>
+    <div class="issue-source">Source: MWD April 14, 2026 press release (CIP total); sdcwa.org settlement terms; IRS.gov IRA clean energy credit provisions.</div>
+  </div>
+</div>
+
+<!-- PLATFORMS -->
+<div id="tab-platforms" class="tab-panel">
+  <div class="section-hdr">Deloitte Platforms — Fit for Metropolitan Water District</div>
+  <p class="bt" style="margin-bottom:20px;">All 13 platforms in order of near-term relevance. Each includes platform description, MWD-specific fit, and a targeted pursuit angle grounded in confirmed MWD facts.</p>
+
+  <div class="platform">
+    <div class="platform-num">Platform 1 — Highest Priority</div>
+    <div class="platform-title">Strategy, Governance &amp; Organizational Performance</div>
+    <div class="platform-row"><strong>Platform:</strong> Align enterprise strategy, operating model, governance, workforce, and KPIs to execute modernization and resilience priorities.</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> The convergence of a new GM (January 1, 2026), CAMP4W business model transformation (board-approved April 8, 2025), SDCWA settlement (June 2, 2025), and post-2026 Colorado River uncertainty is the most significant strategic realignment moment at Metropolitan in decades. CAMP4W requires a new analytical framework for capital investment decisions across six criteria. The SDCWA settlement requires financial modeling of a new member agency exchange market at $671/AF. No incumbent advisory firm has been established around CAMP4W yet.</div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Leverage the existing quarterly GM relationship to deliver a proactive CAMP4W financial modeling point-of-view — specifically how Metropolitan should model capital investment decisions under climate uncertainty, declining deliveries, and the post-SDCWA business model. Brief the Commercial Water leader using the 1099 resource's institutional knowledge before the meeting so the offer is specific and informed, not generic.</div>
+    <div class="tags"><span class="tag">CAMP4W Advisory</span><span class="tag">GM Transition</span><span class="tag">Post-SDCWA Strategy</span><span class="tag">Business Model Transformation</span><span class="tag">Board Governance</span></div>
+  </div>
+
+  <div class="platform">
+    <div class="platform-num">Platform 2 — Highest Priority</div>
+    <div class="platform-title">Capital Infrastructure Delivery &amp; Program Management</div>
+    <div class="platform-row"><strong>Platform:</strong> Improve delivery of T&amp;D, substations, renewables, grid hardening, and water infrastructure builds and upgrades.</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> Metropolitan's $1.025B CIP (approved April 14, 2026) — plus pending PWSC construction decision — creates sustained program management demand. Active procurements include PCCP rehabilitation (~$70M, RFQ No. 1374), Weymouth seismic upgrades (Spec 1937, $28–35M), and CRA rehabilitation. If PWSC is approved at full scale (150 MGD), it will be one of the world's largest water purification programs. Carollo, CDM Smith, Jacobs, and AECOM will compete for design/build. Deloitte G&amp;I occupies the strategic PMO and owner's advisor lane with no conflict of interest.</div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Use the 1099 resource's institutional knowledge of Metropolitan's capital program history to develop a targeted PMO advisory proposal. Position as independent owner's advisor for PWSC — if Board approves construction H2 2026, procurement will follow within months. Build the PWSC program leadership relationship through the GM's quarterly meetings now.</div>
+    <div class="tags"><span class="tag">Capital PMO</span><span class="tag">Owner's Advisor</span><span class="tag">PWSC Program</span><span class="tag">Federal Grant Compliance</span><span class="tag">CRA Rehabilitation</span></div>
+  </div>
+
+  <div class="platform">
+    <div class="platform-num">Platform 3</div>
+    <div class="platform-title">ERP Transformation &amp; Enterprise Back Office Modernization</div>
+    <div class="platform-row"><strong>Platform:</strong> Modernize ERP and enterprise systems to strengthen finance, procurement, capital accounting, reporting, and internal controls.</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> Metropolitan uses Oracle e-Business Suite for financials, procurement, PM, and grants management (confirmed, p.318). Prior biennium budget funded ECM Phase II $10.3M and Enterprise Data Analytics $3.3M. As PWSC grant funding grows and the new $1.025B CIP requires real-time cost tracking, Oracle EBS optimization and capital accounting modernization become critical. <span class="flag">[Verify ECM Phase II carries into the new FY2026/27–FY2027/28 budget]</span></div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Monitor Metropolitan's procurement portal for ECM-related RFPs. Develop outreach to Metropolitan's Chief Administrative Officer around Oracle EBS optimization — framing around federal grants management complexity (PWSC $125.4M USBR grants) and CAMP4W financial scenario modeling requirements.</div>
+    <div class="tags"><span class="tag">Oracle EBS</span><span class="tag">ECM Phase II</span><span class="tag">Enterprise Data Analytics</span><span class="tag">Grants Management</span><span class="tag">Capital Accounting</span></div>
+  </div>
+
+  <div class="platform">
+    <div class="platform-num">Platform 4</div>
+    <div class="platform-title">Funding, Incentives, Grants &amp; Financial Advisory</div>
+    <div class="platform-row"><strong>Platform:</strong> Secure, structure, and manage clean energy and infrastructure funding while strengthening financial planning, compliance, and reporting.</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> Metropolitan has ~$205.4M in confirmed PWSC grants. If PWSC proceeds, federal funding grows substantially. WIFIA may finance Delta Conveyance. Post-SDCWA financial modeling is needed for the new $671/AF exchange market. Ten-year financial forecast needs updating for CAMP4W investment scenarios, declining deliveries, and post-2026 Colorado River framework. Fixed Charge Coverage 1.7–1.9x — manageable but with limited headroom as CIP grows to $1.025B.</div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Multi-scenario financial model for Metropolitan's FY2027–2032 capital investment choices under CAMP4W — comparing PWSC, Sites Reservoir, Delta Conveyance, and conservation investment scenarios across cost, reliability, and financial sustainability metrics. The GM relationship provides the access to deliver this as a proactive, targeted offer rather than a cold proposal.</div>
+    <div class="tags"><span class="tag">CAMP4W Financial Modeling</span><span class="tag">PWSC Grant Management</span><span class="tag">WIFIA Structuring</span><span class="tag">Rate Design</span><span class="tag">Post-SDCWA Business Model</span></div>
+  </div>
+
+  <div class="platform">
+    <div class="platform-num">Platform 5</div>
+    <div class="platform-title">Cybersecurity, Risk &amp; Resilience (IT/OT)</div>
+    <div class="platform-row"><strong>Platform:</strong> Strengthen cyber, regulatory, and operational resilience across IT and OT environments (SCADA, ADMS, AMI, cloud, enterprise IT).</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> Metropolitan operates one of the largest and most complex OT environments in the U.S. water sector — 5 treatment plants, 20 reservoirs, 24 dams, 830 miles of pipelines, 14 CRA pumping plants, distributed SCADA/ICS across 5,200 sq mi. IT &amp; Control Systems is one of Metropolitan's 10 named CIP programs. 2025 Seismic Resilience Report (August 2025) and active seismic retrofit procurements. EPA OT guidance increasingly requires formal risk assessments. New $1.025B CIP introduces new systems and contractors into the OT environment.</div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Proactive OT/ICS risk assessment proposal targeting Metropolitan's COO — framed around: (1) Metropolitan's own 2025 Seismic Resilience Report; (2) EPA OT guidance; (3) the unique scale and complexity of Metropolitan's environment. Timing: H2 2026, when the new CIP creates fresh budget for OT security. Use 1099 resource to identify the current COO by name.</div>
+    <div class="tags"><span class="tag">OT/ICS Security</span><span class="tag">NIST CSF</span><span class="tag">CRA SCADA Risk</span><span class="tag">Treatment Plant ICS</span><span class="tag">Seismic &amp; Cyber Resilience</span></div>
+  </div>
+
+  <div class="platform">
+    <div class="platform-num">Platform 6</div>
+    <div class="platform-title">Water &amp; Wastewater Utility Operations</div>
+    <div class="platform-row"><strong>Platform:</strong> Optimize treatment, distribution, collection, and regulatory compliance performance while lowering operating cost and improving sustainability.</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> Departmental O&amp;M is $649.7M in FY2025/26 — the largest single expenditure after the State Water Contract ($703.9M). The 2026 Annual Operating Plan explicitly cites PFAS tracking as a water quality priority — EPA's PFAS final rule creates compliance planning needs across Metropolitan's 5 treatment plants. Deliveries near 50-year lows make O&amp;M cost efficiency critical to financial sustainability.</div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Two angles: (1) O&amp;M benchmarking — with deliveries near 50-year lows and rates under pressure, reducing $649.7M in annual O&amp;M while maintaining reliability is a direct financial imperative; (2) PFAS compliance planning — treatment technology assessment and stakeholder communication across 5 treatment plants.</div>
+    <div class="tags"><span class="tag">O&amp;M Cost Optimization</span><span class="tag">PFAS Compliance</span><span class="tag">Treatment Performance</span><span class="tag">CAMP4W Financial Criterion</span></div>
+  </div>
+
+  <div class="platform">
+    <div class="platform-num">Platform 7</div>
+    <div class="platform-title">Customer &amp; Revenue Modernization</div>
+    <div class="platform-row"><strong>Platform:</strong> Modernize how utilities engage customers, recover revenue, enable electrification programs, and improve digital and billing performance.</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> Metropolitan is wholesale-only — no direct end-customer billing. However the post-SDCWA settlement creates a new commercial structure: SDCWA pays a fixed $671/AF for water transfers and can now sell/exchange surplus conserved water to other member agencies. This new market requires commercial structures, pricing mechanisms, and potentially digital transaction capabilities that didn't exist before June 2025.</div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Frame around the post-SDCWA member agency exchange market — Metropolitan needs financial modeling, commercial structures, and digital capabilities for this new market. Bundle with Strategy and ERP as a post-SDCWA business model transformation offering.</div>
+    <div class="tags"><span class="tag">Post-SDCWA Exchange Market</span><span class="tag">Member Agency Structures</span><span class="tag">Revenue Model</span><span class="tag">CAMP4W Financial Modeling</span></div>
+  </div>
+
+  <div class="platform">
+    <div class="platform-num">Platform 8</div>
+    <div class="platform-title">Utility Operations &amp; Grid Performance</div>
+    <div class="platform-row"><strong>Platform:</strong> Improve safety, reliability, and cost performance across water operations including field work, control room operations, AMI, asset management, and storm readiness.</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> Metropolitan's operational complexity — 5 treatment plants, 14 CRA pumping plants, 20 reservoirs, 24 dams, 830 miles of distribution, hydroelectric operations — creates sustained asset management needs. The CRA (built 1933–1941) requires proactive rehabilitation planning. CAMP4W's reliability criterion requires rigorous infrastructure reliability analysis.</div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Asset management strategy for Metropolitan's aging CRA infrastructure — connecting directly to CAMP4W's reliability criterion and the new $1.025B CIP priorities. Risk-based rehabilitation prioritization framework feeds directly into CAMP4W project assessments.</div>
+    <div class="tags"><span class="tag">CRA Asset Management</span><span class="tag">Hydroelectric Operations</span><span class="tag">CAMP4W Reliability</span><span class="tag">Maintenance Optimization</span></div>
+  </div>
+
+  <div class="platform">
+    <div class="platform-num">Platform 9</div>
+    <div class="platform-title">Internal Audit</div>
+    <div class="platform-row"><strong>Platform:</strong> Enhance internal audit effectiveness by aligning risk, controls, and governance with business strategy — leveraging analytics and automation.</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> Metropolitan's scale ($2.3B+ operating budget, $1.025B CIP, $205M+ federal grants, 38-member Board) and complexity (post-SDCWA business model change, CAMP4W capital decisions, technology transformation) create significant internal audit demands. USBR grant agreements require specific internal controls and audit oversight. The $1.025B CIP creates procurement integrity and change order control needs.</div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Three MWD-specific angles: (1) federal grant compliance audit — USBR $125.4M grant agreement audit requirements; (2) capital program procurement integrity for the new $1.025B CIP; (3) CAMP4W governance audit — independent audit trail of project evaluation and approval.</div>
+    <div class="tags"><span class="tag">Federal Grant Compliance Audit</span><span class="tag">Capital Program Integrity</span><span class="tag">CAMP4W Governance Audit</span><span class="tag">Board Risk Reporting</span></div>
+  </div>
+
+  <div class="platform">
+    <div class="platform-num">Platform 10</div>
+    <div class="platform-title">General IT Controls (ITSA) and Security</div>
+    <div class="platform-row"><strong>Platform:</strong> Design and strengthen IT control and security environments across enterprise and operational systems.</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> Metropolitan is in a concurrent technology transformation — ECM Phase II, Enterprise Data Analytics platform, Oracle EBS optimization — all simultaneously. Federal grant audits require demonstrated ITGC effectiveness. New systems must be designed with appropriate access controls, change management, and data integrity from day one.</div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Position as the IT control environment foundation for Metropolitan's technology transformation — specifically Oracle EBS ITGC requirements for federal grant compliance (USBR $125.4M grant agreement requirements) and ECM Phase II implementation control environment design.</div>
+    <div class="tags"><span class="tag">ITGC Design</span><span class="tag">Oracle EBS Controls</span><span class="tag">Data Analytics Governance</span><span class="tag">Federal Grant ITGC</span></div>
+  </div>
+
+  <div class="platform">
+    <div class="platform-num">Platform 11</div>
+    <div class="platform-title">Third-Party Risk Management (TPRM)</div>
+    <div class="platform-row"><strong>Platform:</strong> Assess and manage risk across third-party vendors and partners by strengthening governance, controls, and monitoring.</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> Metropolitan's $1.025B CIP involves dozens of engineering, construction, technology, and professional services vendors. USBR grant-funded contracts ($125.4M) require specific vendor integrity and procurement compliance. LA County Sanitation Districts as PWSC joint development partner creates a significant third-party relationship requiring governance.</div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Frame around federal grant procurement compliance: USBR $125.4M grants require a formal vendor governance framework for all federally-funded contracts. Pair with Internal Audit for a bundled federal grant compliance and vendor governance offering.</div>
+    <div class="tags"><span class="tag">Federal Grant Vendor Compliance</span><span class="tag">Technology Vendor Risk</span><span class="tag">PWSC Contractor Governance</span><span class="tag">LA County Sanitation JV Risk</span></div>
+  </div>
+
+  <div class="platform">
+    <div class="platform-num">Platform 12</div>
+    <div class="platform-title">Indirect Tax</div>
+    <div class="platform-row"><strong>Platform:</strong> Manage indirect tax obligations across operations and capital programs — including sales and use, property, and transaction taxes.</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> Metropolitan's $1.025B biennial CIP creates California sales and use tax exposure. The post-SDCWA surplus exchange market ($671/AF fixed rate) creates novel indirect tax questions — a new commercial structure with no established precedent. <span class="flag">[NOTE: Post-SDCWA exchange market tax treatment requires tax counsel confirmation.]</span></div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Two bounded entry points: (1) CIP capital program tax optimization — at $1.025B in capital expenditure, indirect tax planning is worth tens of millions; (2) post-SDCWA exchange market tax analysis — the $671/AF fixed-price structure is novel and should be analyzed proactively.</div>
+    <div class="tags"><span class="tag">Sales &amp; Use Tax — CIP</span><span class="tag">PWSC Capital Tax</span><span class="tag">Post-SDCWA Exchange Tax</span><span class="tag">Property Tax</span></div>
+  </div>
+
+  <div class="platform">
+    <div class="platform-num">Platform 13</div>
+    <div class="platform-title">Tax Credits and Incentives</div>
+    <div class="platform-row"><strong>Platform:</strong> Identify and capture federal and state tax credits and incentives — including clean energy programs — to maximize funding and improve project economics.</div>
+    <div class="platform-row"><strong>MWD Fit:</strong> Pure Water SoCal is a strong candidate for IRA clean energy tax credits. Metropolitan operates hydroelectric generation at treatment plants and CRA pumping plants — energy efficiency improvements may qualify. AVEK High Desert Water Bank ($177.9M+ debt-financed by Metropolitan) may include energy credit eligibility. <span class="flag">[NOTE: Specific IRA credit applicability requires tax counsel confirmation before presenting to Metropolitan.]</span></div>
+    <div class="platform-row angle"><strong>Specific Angle:</strong> Develop a proactive IRA credit analysis for PWSC specifically — at full scale, PWSC is a multi-billion-dollar advanced water purification program where IRA credits could materially improve economics and partially offset rate increases. High-ROI, bounded entry point.</div>
+    <div class="tags"><span class="tag">IRA Clean Energy Credits — PWSC</span><span class="tag">Hydroelectric Energy Credits</span><span class="tag">AVEK Water Bank</span><span class="tag">Tax Credit Monetization</span></div>
+  </div>
+</div>
+
+<!-- MAPPING -->
+<div id="tab-mapping" class="tab-panel">
+  <div class="section-hdr">Platform-to-Issue Summary Mapping</div>
+  <p class="bt" style="margin-bottom:16px;">Each platform mapped to the primary MWD pressing business issue it addresses, with pursuit priority rating.</p>
+  <table class="map-table">
+    <thead><tr><th>Deloitte Platform</th><th>Priority</th><th>Primary MWD Issue Addressed</th></tr></thead>
+    <tbody>
+      <tr><td>Strategy, Governance &amp; Organizational Performance</td><td class="tc">CRITICAL</td><td>New GM Shivaji Deshmukh (Jan. 1, 2026) — Deloitte has quarterly GM relationship + 1099 insider resource. CAMP4W business model transformation (board-approved April 8, 2025). Post-SDCWA strategic realignment.</td></tr>
+      <tr><td>Capital Infrastructure Delivery &amp; Program Management</td><td class="tc">CRITICAL</td><td>$1.025B FY2026/27–FY2027/28 CIP (approved April 14, 2026) + PWSC construction decision pending H2 2026. Owner's advisor, federal grant compliance. No conflict of interest vs. design-build firms.</td></tr>
+      <tr><td>ERP Transformation &amp; Enterprise Back Office</td><td class="th">HIGH</td><td>ECM Phase II ($10.3M prior biennium — verify in new budget) + Oracle EBS (confirmed p.318) + Enterprise Data Analytics ($3.3M). Growing federal grant management complexity.</td></tr>
+      <tr><td>Funding, Incentives, Grants &amp; Financial Advisory</td><td class="th">HIGH</td><td>CAMP4W financial modeling + post-SDCWA $671/AF exchange market modeling + PWSC grant management ($125.4M USBR confirmed) + rate design under declining deliveries (~1.17 MAF vs. 1.5–2.0 MAF historical).</td></tr>
+      <tr><td>Cybersecurity, Risk &amp; Resilience (IT/OT)</td><td class="th">HIGH</td><td>SCADA/OT across 5 treatment plants, 14 CRA pumping plants, 830-mile distribution system, 5,200 sq mi. EPA OT guidance. 2025 Seismic Resilience Report. New $1.025B CIP expanding OT environment.</td></tr>
+      <tr><td>Water &amp; Wastewater Utility Operations</td><td class="th">HIGH</td><td>O&amp;M cost optimization ($649.7M FY2025/26) + PFAS compliance (EPA final rule). Deliveries near 50-year lows — cost efficiency critical to financial sustainability.</td></tr>
+      <tr><td>Customer &amp; Revenue Modernization</td><td class="th">HIGH</td><td>Post-SDCWA member agency exchange market (SDCWA pays $671/AF, can now sell surplus to other agencies). New commercial structures and financial modeling required.</td></tr>
+      <tr><td>Utility Operations &amp; Grid Performance</td><td class="te">ELEVATED</td><td>CRA asset management — aging 1933–1941 infrastructure — reliability criterion for CAMP4W assessments. New $1.025B CIP priorities.</td></tr>
+      <tr><td>Internal Audit</td><td class="te">ELEVATED</td><td>Federal grant compliance audit (USBR $125.4M) + CAMP4W governance audit + capital procurement integrity for $1.025B CIP.</td></tr>
+      <tr><td>General IT Controls (ITSA) and Security</td><td class="te">ELEVATED</td><td>ECM Phase II + Enterprise Data Analytics + Oracle EBS ITGC during concurrent technology transformation. USBR grant agreement ITGC requirements.</td></tr>
+      <tr><td>Third-Party Risk Management (TPRM)</td><td class="te">ELEVATED</td><td>Federal grant vendor compliance (USBR $125.4M) + PWSC contractor governance + LA County Sanitation Districts JV risk. Technology vendor risk during digital transformation.</td></tr>
+      <tr><td>Indirect Tax</td><td class="te">ELEVATED</td><td>Sales &amp; use tax on $1.025B CIP. Post-SDCWA surplus exchange market tax treatment ($671/AF fixed rate — novel structure, flagged for tax counsel).</td></tr>
+      <tr><td>Tax Credits and Incentives</td><td class="te">ELEVATED</td><td>IRA clean energy credits for PWSC + hydroelectric energy improvements. Flagged for tax counsel confirmation before presenting to MWD.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CONTACTS -->
+<div id="tab-contacts" class="tab-panel">
+  <div class="section-hdr">Key Contacts &amp; Relationship Intelligence</div>
+  <div class="rel-banner" style="margin-bottom:24px;">
+    <div class="rel-banner-title">⭐ Deloitte Relationship Position — Summary</div>
+    <div class="rel-banner-body"><strong>Deloitte's Commercial Water leader meets quarterly with GM Shivaji Deshmukh.</strong> This is an active, ongoing relationship — not a cold pursuit. Additionally, <strong>Deloitte is onboarding a 1099 resource who served as Chief of Staff and senior advisor under predecessor GM Deven Upadhyay</strong>, and who also has an established relationship with Shivaji. This insider has deep knowledge of Metropolitan's organizational dynamics, institutional history, decision-making processes, board relationships, and key internal stakeholders. The combination of these two relationships is Deloitte's single most significant competitive advantage at Metropolitan. Activate both strategically — coordinate the Commercial Water leader's quarterly meetings and the 1099 resource's knowledge into a coherent, informed engagement strategy.</div>
+  </div>
+
+  <div class="contacts-grid">
+    <div class="contact relationship">
+      <div class="rel-tag">⭐ Active Deloitte Relationship — Quarterly Meetings</div>
+      <div class="contact-name">Shivaji Deshmukh</div>
+      <div class="contact-title">General Manager (effective January 1, 2026)</div>
+      <div class="contact-body">Appointed by unanimous Board vote October 14, 2025; joined as GM-designate November 3, 2025. Came from Inland Empire Utilities Agency (one of Metropolitan's 26 member agencies) where he was GM for six years; previously assistant GM at West Basin Municipal Water District. Brings a member agency perspective to the role. <strong>Deloitte's Commercial Water leader has an active quarterly working relationship with Shivaji.</strong> Primary target for CAMP4W strategy, post-SDCWA advisory, new $1.025B CIP program management, and organizational transformation engagements.</div>
+    </div>
+
+    <div class="contact relationship">
+      <div class="rel-tag">⭐ 1099 Resource — Onboarding — Insider Knowledge</div>
+      <div class="contact-name">1099 Resource (Onboarding)</div>
+      <div class="contact-title">Former Chief of Staff &amp; Senior Advisor — Under GM Deven Upadhyay</div>
+      <div class="contact-body">Deloitte is onboarding a 1099 resource who served as Chief of Staff and senior advisor under predecessor GM Deven Upadhyay, and who has an established relationship with current GM Shivaji Deshmukh. This resource has deep institutional knowledge of Metropolitan's organizational dynamics, strategic priorities, decision-making processes, board relationships, and key internal stakeholders. <strong>This insider context — combined with the Commercial Water leader's direct GM relationship — is a material competitive differentiator.</strong> Use this resource to: (1) brief the pursuit team on internal priorities; (2) identify key contacts by name; (3) inform the framing of all advisory offers before external engagement.</div>
+    </div>
+
+    <div class="contact">
+      <div class="contact-name">Adán Ortega, Jr.</div>
+      <div class="contact-title">Board Chair (confirmed active per April 2026 press releases)</div>
+      <div class="contact-body">Unanimously re-elected October 2024. Organized Board around CAMP4W and climate adaptation. Led the SDCWA settlement process. Key stakeholder for strategy and governance engagements. Quoted in February 2026 PWSC press release alongside GM Deshmukh.</div>
+    </div>
+
+    <div class="contact">
+      <div class="contact-name">Chief Financial Officer (AGM — Finance &amp; Administration)</div>
+      <div class="contact-title">Assistant General Manager — Finance &amp; Administration</div>
+      <div class="contact-body">Manages financial planning, investments, debt management, annual budget, and accounting. Key contact for financial advisory, rate design, debt strategy, and CAMP4W financial modeling engagements. Primary target for the proactive CAMP4W financial modeling point-of-view. <span class="flag">Confirm current name via 1099 resource or mwdh2o.com/management.</span></div>
+    </div>
+
+    <div class="contact">
+      <div class="contact-name">Chief Operating Officer (AGM — Operations)</div>
+      <div class="contact-title">Assistant General Manager — Operations</div>
+      <div class="contact-body">Oversees Bay-Delta Initiatives and Colorado River Resources programs. Manages conveyance, treatment, and distribution. Key contact for OT/ICS cybersecurity, CRA asset management, PFAS compliance, and operational advisory. Target for proactive OT/ICS risk assessment proposal. <span class="flag">Confirm current name via 1099 resource or mwdh2o.com/management.</span></div>
+    </div>
+
+    <div class="contact">
+      <div class="contact-name">Chief Administrative Officer (AGM — Administration)</div>
+      <div class="contact-title">Assistant General Manager — Administration</div>
+      <div class="contact-body">Manages ECM, IT, HR, security, and Board administration. Key contact for ERP/ECM Phase II, Enterprise Data Analytics, workforce strategy, and ITGC engagements. Monitor procurement portal for ECM-related RFPs. <span class="flag">Confirm current name via 1099 resource or mwdh2o.com/management.</span></div>
+    </div>
+
+    <div class="contact">
+      <div class="contact-name">Chief External Affairs Officer (AGM — External Affairs)</div>
+      <div class="contact-title">Assistant General Manager — External Affairs</div>
+      <div class="contact-body">Manages member agency relations, government affairs, and public communications. Key contact for CAMP4W stakeholder engagement strategy, post-SDCWA member agency communications, and Colorado River policy advisory. <span class="flag">Confirm current name via 1099 resource or mwdh2o.com/management.</span></div>
+    </div>
+
+    <div class="contact">
+      <div class="contact-name">PWSC Program Director</div>
+      <div class="contact-title">Water Resource Management Group — Pure Water Southern California</div>
+      <div class="contact-body">Leads Pure Water SoCal program. Final EIR certified February 2026; board construction decision expected H2 2026 via CAMP4W. Key target for owner's advisor and program management advisory positioning ahead of procurement. <span class="flag">Confirm current name via 1099 resource — this is the most critical program leadership contact to identify before PWSC board decision.</span></div>
+    </div>
+  </div>
+  <div class="note-box"><strong>Note:</strong> Several AGM and program director positions are confirmed by title but current names are not independently verified in this brief. The 1099 resource (former Chief of Staff) has current names for all key contacts — coordinate with them before any external outreach to avoid errors.</div>
+</div>
+
+<!-- SEQUENCING -->
+<div id="tab-sequencing" class="tab-panel">
+  <div class="section-hdr">Pursuit Sequencing &amp; Recommended Actions</div>
+
+  <div class="rel-banner" style="margin-bottom:24px;">
+    <div class="rel-banner-title">⭐ Strategic Framing — You Have the Relationships. Now Activate Them.</div>
+    <div class="rel-banner-body">Unlike most water sector pursuits, Deloitte does not need to cold-outreach Metropolitan. <strong>The Commercial Water leader already meets with GM Shivaji quarterly. The 1099 resource has an existing relationship with Shivaji and deep institutional knowledge from the previous GM's office.</strong> The strategic imperative is to convert these relationships into formal engagements — now, while Shivaji is still in his first year and the CAMP4W and PWSC advisory landscape is not yet locked in by competitors.</div>
+  </div>
+
+  <div class="action">
+    <div class="action-timing">Immediate — Q2 2026</div>
+    <div class="action-title">1099 Knowledge Transfer — Brief the Pursuit Team Before Any External Engagement</div>
+    <div class="action-body">Before any external outreach, the onboarding 1099 resource (former Chief of Staff under Upadhyay) should brief Deloitte's pursuit team on: (1) Metropolitan's current internal priorities and organizational dynamics under Shivaji; (2) key internal stakeholders and decision-makers by name — CFO, COO, CAO, PWSC Program Director; (3) state of CAMP4W project assessments and board decision timeline; (4) internal reception of the SDCWA settlement and its business model implications; (5) any current or recent consulting advisory relationships and which firms are active at Metropolitan. This internal knowledge transfer is more valuable than any external research and must happen before Deloitte engages externally.</div>
+    <div class="tags"><span class="tag">1099 Knowledge Transfer</span><span class="tag">Internal Brief</span><span class="tag">Stakeholder Mapping</span><span class="tag">Competitive Intelligence</span></div>
+  </div>
+
+  <div class="action">
+    <div class="action-timing">Immediate — Q2 2026</div>
+    <div class="action-title">Use the Quarterly GM Meeting to Deliver a CAMP4W Point-of-View</div>
+    <div class="action-body">The Commercial Water leader's next quarterly meeting with Shivaji is the highest-value near-term action available to Deloitte. Come prepared with a concise (4–6 page) analytical point-of-view on CAMP4W's financial modeling challenge: how should Metropolitan model capital investment decisions under climate uncertainty, declining deliveries (~1.17 MAF vs. 1.5–2.0 MAF historical), and the post-SDCWA business model ($671/AF fixed exchange rate)? Use Metropolitan's own published CAMP4W documents and the 2026 Annual Operating Plan as the reference framework. Brief the Commercial Water leader using the 1099 resource's institutional knowledge before the meeting so the offer is specific and informed — not generic consulting language.</div>
+    <div class="tags"><span class="tag">Quarterly GM Meeting</span><span class="tag">CAMP4W Point-of-View</span><span class="tag">1099 Brief Prep</span><span class="tag">Financial Modeling Offer</span></div>
+  </div>
+
+  <div class="action">
+    <div class="action-timing">Near-Term — Q3 2026</div>
+    <div class="action-title">PWSC Owner's Advisor Positioning — Before Board Construction Decision</div>
+    <div class="action-body">Metropolitan's Board is expected to decide on PWSC construction later in 2026 as part of CAMP4W evaluation. If approved, program management and advisory procurement will follow within months. Use the GM relationship and 1099 resource's knowledge of Metropolitan's program delivery structure to build relationships with PWSC program leadership and the Water Resource Management Group now — before board approval triggers formal procurement. Pitch: independent program management and owner's advisor, differentiated from Carollo, CDM Smith, and Jacobs competing for engineering work. Also position around federal grant compliance — the USBR $125.4M grant agreement creates specific procurement and reporting obligations that engineering firms cannot manage.</div>
+    <div class="tags"><span class="tag">PWSC Owner's Advisor</span><span class="tag">Pre-Procurement</span><span class="tag">G&amp;I Practice</span><span class="tag">Federal Grant Compliance</span></div>
+  </div>
+
+  <div class="action">
+    <div class="action-timing">Near-Term — Q3 2026</div>
+    <div class="action-title">ECM Phase II &amp; Oracle Advisory — Monitor Procurement Portal</div>
+    <div class="action-body">Verify whether ECM Phase II ($10.3M, prior biennium) carries into the new FY2026/27–FY2027/28 budget (approved April 14, 2026). Monitor mwdh2o.com/procurement-and-professional-services for ECM-related RFPs. Develop outreach to Metropolitan's CAO and IT leadership around Oracle EBS optimization — framing around federal grants management complexity (USBR $125.4M grants) and CAMP4W financial modeling integration. The 1099 resource should identify the current CAO and IT leadership by name before outreach.</div>
+    <div class="tags"><span class="tag">ECM Phase II</span><span class="tag">Oracle EBS</span><span class="tag">IT Leadership Outreach</span><span class="tag">Federal Grants Management</span></div>
+  </div>
+
+  <div class="action">
+    <div class="action-timing">Mid-Term — H2 2026</div>
+    <div class="action-title">OT/ICS Cybersecurity — Proactive Risk Assessment Proposal</div>
+    <div class="action-body">Develop a proactive OT/ICS risk assessment proposal for Metropolitan's COO, framed around: (1) Metropolitan's own 2025 Seismic Resilience Report; (2) EPA OT guidance requirements; (3) the unique complexity of Metropolitan's OT environment (5 treatment plants, 14 CRA pumping plants, 830 miles of pipeline). Timing: H2 2026 — when the new $1.025B CIP (FY2026/27–FY2027/28) creates fresh capital budget for IT &amp; Control Systems investments. The 1099 resource should identify the current COO by name and provide context on Metropolitan's OT security posture before outreach.</div>
+    <div class="tags"><span class="tag">Deloitte Cyber</span><span class="tag">OT/ICS Security</span><span class="tag">COO Target</span><span class="tag">New CIP Budget</span></div>
+  </div>
+
+  <div class="action">
+    <div class="action-timing">Mid-Term — 2027</div>
+    <div class="action-title">Expand to Financial Advisory, Internal Audit &amp; TPRM</div>
+    <div class="action-body">Once CAMP4W strategy and PWSC program management relationships are established, expand to: (1) rate design and financial advisory — updating the ten-year financial forecast for the post-SDCWA business model and CAMP4W investment scenarios; (2) internal audit — federal grant compliance audit for growing PWSC grant funding and capital program procurement integrity; (3) TPRM — federal grant vendor compliance framework for USBR-funded contracts. These are natural relationship-driven expansions, not new cold pursuits.</div>
+    <div class="tags"><span class="tag">Financial Advisory</span><span class="tag">Internal Audit</span><span class="tag">TPRM</span><span class="tag">Relationship-Driven Expansion</span></div>
+  </div>
+</div>
+
+<footer>Confidential — Internal Use Only &nbsp;|&nbsp; Deloitte LLP &nbsp;|&nbsp; May 2026 &nbsp;|&nbsp; Sources: MWD FY2024/25–FY2025/26 Biennial Budget Book (adopted July 2024); FY2026 MWD Budget &amp; Action Plan Summaries; MWD April 14, 2026 press release (BusinessWire); mwdh2o.com; sdcwa.org 2025 Annual Report; USBR press releases May 2024 and November 2024. Not for distribution.</footer>
+</div>
 <script>
-function showTab(id) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
   event.target.classList.add('active');
-  window.scrollTo({top: 0, behavior: 'smooth'});
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
 </body>
